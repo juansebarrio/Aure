@@ -36,7 +36,7 @@ const T = {
   flipDur: 1.35,
   flipRun: 1.45, // hueco para que el Flip corra dentro del timeline
   dotDur: 0.7,
-  dotOverlap: -0.3,
+  dotDelay: 0.05, // el punto aparece DESPUÉS de que el logo ya se formó (no se encabalga con el Flip)
   holdLogo: 1.2, // respiro (más largo) sobre el logo antes del fade
   fadeDur: 1.0,
 };
@@ -200,11 +200,12 @@ export function IntroSequence() {
           });
         }, "fundido");
         tl.to({}, { duration: T.flipRun }); // deja correr el Flip dentro del timeline
-        // 5 · Punto dorado → queda "aure."
+        // 5 · Punto dorado: aparece en su lugar (después de "e") con el logo YA
+        //     formado, sin encabalgarse con el Flip → no "salta".
         tl.to(
           dot,
           { autoAlpha: 1, scale: 1, duration: T.dotDur, ease: "power2.out" },
-          `>${T.dotOverlap}`,
+          `>+${T.dotDelay}`,
         );
         // 6 · Respiro y fade del overlay entero (revela el sitio, sin tocarlo).
         tl.addLabel("logo", `>+${T.holdLogo}`);
