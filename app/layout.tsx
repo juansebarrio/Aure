@@ -29,9 +29,16 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
     url: siteConfig.url,
-    // TODO(SEO): imagen OG real (1200x630) cuando haya assets del cliente.
+    // La imagen OG (1200x630) la genera app/opengraph-image.tsx.
+    // TODO(assets): refinar la OG con la fuente/asset definitivos.
   },
-  // TODO(SEO): twitter card, robots y verification en la pasada de SEO.
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    description: siteConfig.description,
+  },
+  robots: { index: true, follow: true },
+  // TODO(SEO): verification (Google/Bing) cuando estén las cuentas del cliente.
 };
 
 export const viewport: Viewport = {
