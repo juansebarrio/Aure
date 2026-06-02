@@ -20,22 +20,22 @@ gsap.registerPlugin(Flip);
  * flash); la timeline va 100% en cliente.
  */
 
-// Tiempos (segundos). Ajustar acá para tunear. Total ~2.7s. TODO(afinado): tunear.
+// Tiempos (segundos). Ajustar acá para tunear. Total ~3.9s. TODO(afinado): tunear.
 const T = {
-  revealStart: 0.25,
-  revealDur: 1.0,
-  revealStagger: 0.15,
-  hold: 0.5, // pausa de lectura antes de cerrar
-  restFadeDur: 0.55,
-  restWidthDur: 0.9,
-  restStagger: 0.07,
-  flipOffset: 0.55, // arranque del Flip respecto a "cierre"
-  flipDur: 1.15,
-  flipRun: 1.2, // hueco para que el Flip corra dentro del timeline
-  dotDur: 0.6,
+  revealStart: 0.3,
+  revealDur: 1.2,
+  revealStagger: 0.16,
+  hold: 0.65, // pausa de lectura antes de cerrar
+  restFadeDur: 0.65,
+  restWidthDur: 1.05,
+  restStagger: 0.08,
+  flipOffset: 0.6, // arranque del Flip respecto a "cierre"
+  flipDur: 1.35,
+  flipRun: 1.45, // hueco para que el Flip corra dentro del timeline
+  dotDur: 0.7,
   dotOverlap: -0.3,
-  holdLogo: 0.55, // respiro sobre el logo
-  fadeDur: 0.8,
+  holdLogo: 1.2, // respiro (más largo) sobre el logo antes del fade
+  fadeDur: 1.0,
 };
 
 const SEEN_KEY = "aure_intro_seen";
