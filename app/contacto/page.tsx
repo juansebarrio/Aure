@@ -8,7 +8,7 @@ import { whatsappUrl } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    "Agendá una reunión con AURE. Real estate premium en Buenos Aires para inversores calificados.",
+    "Contacto de AURE. Consultá por los desarrollos que comercializamos en Buenos Aires; te acompañamos en cada paso.",
 };
 
 export default function ContactoPage() {
@@ -20,11 +20,12 @@ export default function ContactoPage() {
         <div className="max-w-2xl">
           <Eyebrow>Contacto</Eyebrow>
           <h1 className="mt-5 text-4xl font-medium tracking-display text-white sm:text-5xl">
-            Hablemos de tu próxima inversión
+            Estamos para ayudarte
           </h1>
           {/* TODO(contenido): texto de apoyo definitivo. */}
           <p className="mt-6 text-lg font-light leading-relaxed text-mist">
-            Coordinemos una reunión. Respondemos cada consulta de forma personal.
+            Escribinos por el canal que prefieras y te respondemos de forma
+            personal, sin compromiso.
           </p>
         </div>
 

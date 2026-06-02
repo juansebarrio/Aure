@@ -5,24 +5,24 @@ import { Accordion, AccordionItem } from "@/components/ui/Accordion";
 /** TODO(contenido): preguntas y respuestas reales. */
 const faqs = [
   {
-    q: "¿Quién puede invertir con AURE?",
-    a: "Placeholder: descripción del perfil de inversor calificado al que acompaña AURE.",
+    q: "¿AURE desarrolla los proyectos?",
+    a: "No. AURE es comercializadora: selecciona y vende desarrollos de terceros (desarrolladores) y te acompaña en la compra. [TODO: redacción final.]",
   },
   {
-    q: "¿Cuál es el ticket mínimo de inversión?",
-    a: "Placeholder: rango orientativo de inversión y cómo se define según el desarrollo.",
+    q: "¿Qué significa comprar en pozo?",
+    a: "Placeholder: explicación simple de comprar en pozo, sus etapas y qué esperar en cada una.",
   },
   {
-    q: "¿Cómo es el proceso desde la primera reunión?",
-    a: "Placeholder: etapas desde el primer contacto hasta la concreción de la operación.",
+    q: "¿Cómo son las formas de pago?",
+    a: "Placeholder: anticipo, cuotas y planes de pago según el desarrollo.",
   },
   {
-    q: "¿Qué tipo de desarrollos ofrecen?",
-    a: "Placeholder: tipologías de activos y criterios de selección arquitectónica y urbana.",
+    q: "¿Cómo es el proceso de compra con AURE?",
+    a: "Placeholder: pasos desde la primera consulta hasta la entrega de la unidad.",
   },
   {
-    q: "¿Cómo se reporta el avance de la inversión?",
-    a: "Placeholder: frecuencia y formato de los reportes de avance al inversor.",
+    q: "¿Puedo visitar la obra o ver el proyecto?",
+    a: "Placeholder: visitas a obra, recorridos y showroom 3D de cada proyecto.",
   },
 ];
 

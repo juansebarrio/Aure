@@ -28,11 +28,11 @@ type VideoHeroProps = {
  * NOTA: componente listo, hoy NO montado en la home (ver app/page.tsx).
  */
 export function VideoHero({
-  eyebrow = "Inversión inmobiliaria premium",
-  title = "Real estate con criterio arquitectónico y urbano.",
-  subtitle = "Oportunidades seleccionadas en Buenos Aires para inversores que valoran el diseño, la ubicación y la rentabilidad a largo plazo.",
+  eyebrow = "Comercialización inmobiliaria · Buenos Aires",
+  title = "Invertí en desarrollos seleccionados, con respaldo de principio a fin.",
+  subtitle = "En AURE comercializamos proyectos —sobre todo de pozo— de desarrolladores de confianza. Te acompañamos de la primera consulta a la entrega.",
   ctaLabel = "Agendá una reunión",
-  ctaHref = "/#agenda",
+  ctaHref = "/#contacto",
   videoSrc,
   posterSrc = "/video/poster.svg",
 }: VideoHeroProps) {

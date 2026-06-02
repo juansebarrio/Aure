@@ -61,7 +61,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-mist transition-colors hover:text-white"
+              className="text-xs font-medium uppercase tracking-[0.12em] text-mist transition-colors hover:text-white"
             >
               {link.label}
             </Link>
@@ -97,7 +97,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={close}
-              className="py-3 text-base text-mist transition-colors hover:text-white"
+              className="py-3 text-sm font-medium uppercase tracking-[0.12em] text-mist transition-colors hover:text-white"
             >
               {link.label}
             </Link>

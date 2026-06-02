@@ -3,18 +3,21 @@
  * TODO(contenido): reemplazar todos los textos/links placeholder por el
  * contenido final aprobado por el cliente.
  *
- * TODO(registro): el brief pide "no asumir voseo ni tono informal", pero
- * nombra al formulario "Agendá una reunión" (voseo). Se usa esa etiqueta tal
- * cual para el CTA/form y se mantiene el resto del copy en registro neutro.
- * Confirmar con el cliente el registro definitivo de toda la pieza.
+ * TODO(registro): audiencia = clase media en Buenos Aires. Registro cercano,
+ * claro y honesto; el voseo natural en CTAs ("Agendá una visita") es apropiado.
+ * Confirmar el registro definitivo de toda la pieza.
+ *
+ * POSICIONAMIENTO: AURE es una COMERCIALIZADORA. Vende desarrollos de TERCEROS
+ * (sobre todo de pozo). NO es desarrolladora ni ofrece "arquitectura como
+ * servicio": el copy no debe dar a entender lo contrario.
  */
 export const siteConfig = {
   name: "AURE",
-  legalName: "AURE — Arch & Urban Real Estate",
-  tagline: "Arch & Urban Real Estate",
+  legalName: "AURE — Comercialización inmobiliaria",
+  tagline: "Comercialización inmobiliaria · Buenos Aires",
   // TODO(contenido): descripción final aprobada por el cliente.
   description:
-    "Real estate premium en Buenos Aires. Acompañamos a inversores calificados en oportunidades inmobiliarias seleccionadas con criterio arquitectónico y urbano.",
+    "AURE comercializa desarrollos inmobiliarios seleccionados en Buenos Aires, sobre todo de pozo. Te acompañamos con información clara y respaldo, de la primera consulta a la entrega.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   /** Número de WhatsApp: solo dígitos, formato internacional. Desde env. */
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "",
@@ -32,17 +35,16 @@ export const siteConfig = {
 
 /** Navegación principal. Anclas con prefijo "/" para funcionar desde cualquier página. */
 export const navLinks = [
-  { label: "Garantías", href: "/#garantias" },
-  { label: "Testimonios", href: "/#testimonios" },
-  { label: "Preguntas", href: "/#faqs" },
+  { label: "Proyectos", href: "/#proyectos" },
   { label: "Nosotros", href: "/#nosotros" },
+  { label: "Preguntas", href: "/#faqs" },
   { label: "Contacto", href: "/contacto" },
 ] as const;
 
-/** CTA primario reutilizable (lleva al formulario). */
+/** CTA primario reutilizable (lleva al formulario de contacto). */
 export const primaryCta = {
-  label: "Agendá una reunión",
-  href: "/#agenda",
+  label: "Quiero más información",
+  href: "/#contacto",
 } as const;
 
 export type NavLink = (typeof navLinks)[number];

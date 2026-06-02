@@ -51,7 +51,7 @@ export function ContactForm() {
       if (res.ok && data.ok) {
         setStatus("success");
         setStatusMessage(
-          "Gracias. Recibimos el mensaje y el equipo responde a la brevedad.",
+          "Gracias. Recibimos tu consulta y te contactamos a la brevedad.",
         );
         setValues(EMPTY);
         setErrors({});
@@ -74,17 +74,17 @@ export function ContactForm() {
   const submitting = status === "submitting";
 
   return (
-    <Section id="agenda" background="cloud">
+    <Section id="contacto" background="cloud">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <Eyebrow>Agendá una reunión</Eyebrow>
+          <Eyebrow>Contacto</Eyebrow>
           <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-            Conversemos sobre tu próxima inversión
+            Dejá tu consulta y te contactamos
           </h2>
           {/* TODO(contenido): texto de apoyo definitivo. */}
           <p className="mt-6 max-w-md leading-relaxed text-muted">
-            Dejá tus datos y una breve descripción de lo que buscás. Coordinamos
-            una reunión para presentar oportunidades que se ajusten a tu perfil.
+            Contanos qué estás buscando y un asesor te escribe para coordinar una
+            consulta, una reunión o una visita. Sin compromiso.
           </p>
         </div>
 
@@ -146,7 +146,7 @@ export function ContactForm() {
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Button type="submit" disabled={submitting}>
-                {submitting ? "Enviando…" : "Agendá una reunión"}
+                {submitting ? "Enviando…" : "Enviar consulta"}
               </Button>
               <p
                 id="form-status"

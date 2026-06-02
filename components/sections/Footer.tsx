@@ -22,7 +22,8 @@ export function Footer() {
             </p>
             {/* TODO(contenido): submarca / descripción breve definitiva. */}
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-mist">
-              {siteConfig.legalName}. Real estate premium en Buenos Aires.
+              {siteConfig.legalName}. Desarrollos seleccionados en Buenos Aires,
+              con acompañamiento real.
             </p>
           </div>
 

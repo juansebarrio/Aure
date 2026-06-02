@@ -15,28 +15,30 @@ export function Hero() {
     <HeroBackground>
       <Container className="relative z-10 grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
-          <Eyebrow>Inversión inmobiliaria premium</Eyebrow>
+          <Eyebrow>Comercialización inmobiliaria · Buenos Aires</Eyebrow>
+          {/* TODO(contenido): titular y subtítulo finales. */}
           <h1 className="mt-6 text-balance text-4xl font-medium leading-[1.08] tracking-display sm:text-5xl lg:text-6xl">
-            Real estate con criterio arquitectónico y urbano.
+            Invertí en desarrollos seleccionados, con respaldo de principio a fin.
           </h1>
           <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-mist">
-            Oportunidades seleccionadas en Buenos Aires para inversores que
-            valoran el diseño, la ubicación y la rentabilidad a largo plazo.
+            En AURE comercializamos proyectos —sobre todo de pozo— de
+            desarrolladores de confianza. Te acompañamos con información clara,
+            de la primera consulta a la entrega.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <Button href="/#agenda">Agendá una reunión</Button>
-            <Button href="/#nosotros" variant="secondary">
-              Cómo trabajamos
+            <Button href="/#contacto">Quiero más información</Button>
+            <Button href="/#proyectos" variant="secondary">
+              Ver proyectos
             </Button>
           </div>
         </div>
 
         <div className="lg:col-span-6">
-          {/* TODO(assets): foto principal del desarrollo (ratio vertical premium). */}
+          {/* TODO(assets): render/foto del desarrollo (ratio vertical). */}
           <ImagePlaceholder
             aspect="aspect-[4/5]"
             tone="ghost"
-            label="Foto del proyecto"
+            label="Render del proyecto"
             className="lg:ml-auto lg:max-w-md"
           />
         </div>
