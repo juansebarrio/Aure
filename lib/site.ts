@@ -13,7 +13,9 @@
  */
 export const siteConfig = {
   name: "AURE",
-  legalName: "AURE — Comercialización inmobiliaria",
+  /** Submarca / nombre completo (spec §5). Es el nombre de marca, NO un claim de servicio. */
+  submarca: "Arch & Urban Real Estate",
+  legalName: "AURE · Arch & Urban Real Estate",
   tagline: "Comercialización inmobiliaria · Buenos Aires",
   // TODO(contenido): descripción final aprobada por el cliente.
   description:

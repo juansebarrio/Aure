@@ -74,7 +74,7 @@ export function ContactForm() {
   const submitting = status === "submitting";
 
   return (
-    <Section id="contacto" background="cloud">
+    <Section id="contacto" background="gris-claro">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Eyebrow>Contacto</Eyebrow>
@@ -82,7 +82,7 @@ export function ContactForm() {
             Dejá tu consulta y te contactamos
           </h2>
           {/* TODO(contenido): texto de apoyo definitivo. */}
-          <p className="mt-6 max-w-md leading-relaxed text-muted">
+          <p className="mt-6 max-w-md leading-relaxed text-gris-texto">
             Contanos qué estás buscando y un asesor te escribe para coordinar una
             consulta, una reunión o una visita. Sin compromiso.
           </p>
@@ -92,7 +92,7 @@ export function ContactForm() {
           <form
             noValidate
             onSubmit={onSubmit}
-            className="rounded-brand border border-line bg-white p-6 sm:p-8"
+            className="rounded-brand border border-borde bg-white p-6 sm:p-8"
             aria-describedby="form-status"
           >
             <div className="grid gap-5 sm:grid-cols-2">
@@ -154,10 +154,10 @@ export function ContactForm() {
                 aria-live="polite"
                 className={
                   status === "success"
-                    ? "text-sm text-brand-blue"
+                    ? "text-sm text-azul"
                     : status === "error"
                       ? "text-sm text-danger"
-                      : "text-sm text-muted"
+                      : "text-sm text-gris-texto"
                 }
               >
                 {statusMessage}

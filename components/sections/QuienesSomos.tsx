@@ -28,12 +28,12 @@ export function QuienesSomos() {
             Una inmobiliaria joven que se toma en serio tu confianza
           </TextReveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-lg font-light leading-relaxed text-mist">
+            <p className="mt-6 text-lg font-light leading-relaxed text-gris">
               AURE es una comercializadora: seleccionamos y vendemos desarrollos
               de terceros —sobre todo de pozo— en Buenos Aires. No desarrollamos:
               nos dedicamos a que elijas bien y con respaldo.
             </p>
-            <p className="mt-4 leading-relaxed text-mist">
+            <p className="mt-4 leading-relaxed text-gris">
               Somos un equipo nuevo, con experiencia en el rubro, que apuesta a
               una forma más clara y honesta de comprar. Sin promesas que no
               podamos cumplir.
@@ -42,11 +42,11 @@ export function QuienesSomos() {
             <dl className="mt-10 grid gap-6 border-t border-white/15 pt-8 sm:grid-cols-3">
               {valores.map((valor) => (
                 <div key={valor.titulo}>
-                  <div className="h-px w-8 bg-gold" aria-hidden="true" />
+                  <div className="h-px w-8 bg-dorado" aria-hidden="true" />
                   <dt className="mt-4 text-sm font-medium text-white">
                     {valor.titulo}
                   </dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-mist">
+                  <dd className="mt-1 text-sm leading-relaxed text-gris">
                     {valor.texto}
                   </dd>
                 </div>

@@ -41,8 +41,8 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
       onClick={onClick}
       className="text-xl font-medium tracking-tight text-white"
     >
-      aure<span className="text-gold">.</span>
-      <span className="sr-only"> — {siteConfig.tagline}</span>
+      aure<span className="text-dorado">.</span>
+      <span className="sr-only"> — {siteConfig.submarca}</span>
     </Link>
   );
 }
@@ -52,7 +52,7 @@ export function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-blue text-white">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-azul text-white">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Wordmark onClick={close} />
 
@@ -61,7 +61,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-medium uppercase tracking-[0.12em] text-mist transition-colors hover:text-white"
+              className="text-[11px] font-medium uppercase tracking-[0.1em] text-gris transition-colors hover:text-white"
             >
               {link.label}
             </Link>
@@ -89,7 +89,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="border-t border-white/10 bg-brand-blue md:hidden"
+        className="border-t border-white/10 bg-azul md:hidden"
       >
         <Container className="flex flex-col py-4">
           {navLinks.map((link) => (
@@ -97,7 +97,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={close}
-              className="py-3 text-sm font-medium uppercase tracking-[0.12em] text-mist transition-colors hover:text-white"
+              className="py-3 text-sm font-medium uppercase tracking-[0.12em] text-gris transition-colors hover:text-white"
             >
               {link.label}
             </Link>

@@ -37,11 +37,11 @@ export function Badges() {
       <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => (
           <li key={item.title}>
-            <div className="h-px w-8 bg-gold" aria-hidden="true" />
+            <div className="h-px w-8 bg-dorado" aria-hidden="true" />
             <h3 className="mt-5 text-lg font-medium tracking-display">
               {item.title}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
+            <p className="mt-3 text-sm leading-relaxed text-gris-texto">
               {item.text}
             </p>
           </li>

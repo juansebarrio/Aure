@@ -25,7 +25,7 @@ export function Equipo() {
           <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
             Personas que te acompañan
           </h2>
-          <p className="mt-4 leading-relaxed text-muted">
+          <p className="mt-4 leading-relaxed text-gris-texto">
             Un equipo cercano, con cara visible, en cada paso de la compra.
           </p>
         </div>
@@ -38,7 +38,7 @@ export function Equipo() {
               <h3 className="mt-4 text-base font-medium tracking-display">
                 {persona.nombre}
               </h3>
-              <p className="mt-1 text-sm text-muted">{persona.rol}</p>
+              <p className="mt-1 text-sm text-gris-texto">{persona.rol}</p>
             </li>
           ))}
         </ul>

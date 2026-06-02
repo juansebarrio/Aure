@@ -25,7 +25,7 @@ const testimonials = [
 
 export function SocialProof() {
   return (
-    <Section id="testimonios" background="cloud">
+    <Section id="testimonios" background="gris-claro">
       <div className="max-w-2xl">
         <Eyebrow>Confianza</Eyebrow>
         <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
@@ -38,17 +38,17 @@ export function SocialProof() {
         {testimonials.map((item, index) => (
           <figure
             key={index}
-            className="flex flex-col rounded-brand border border-line bg-white p-8"
+            className="flex flex-col rounded-brand border border-borde bg-white p-8"
           >
-            <div className="h-px w-8 bg-gold" aria-hidden="true" />
-            <blockquote className="mt-6 grow text-base leading-relaxed text-brand-blue">
+            <div className="h-px w-8 bg-dorado" aria-hidden="true" />
+            <blockquote className="mt-6 grow text-base leading-relaxed text-azul">
               «{item.quote}»
             </blockquote>
             <figcaption className="mt-6 text-sm">
-              <span className="block font-medium text-brand-blue">
+              <span className="block font-medium text-azul">
                 {item.name}
               </span>
-              <span className="block text-muted">{item.role}</span>
+              <span className="block text-gris-texto">{item.role}</span>
             </figcaption>
           </figure>
         ))}

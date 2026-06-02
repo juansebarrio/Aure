@@ -14,7 +14,7 @@ export function Accordion({
   children: ReactNode;
 }) {
   return (
-    <div className={cn("border-y border-line", className)}>{children}</div>
+    <div className={cn("border-y border-borde", className)}>{children}</div>
   );
 }
 
@@ -29,7 +29,7 @@ export function AccordionItem({
 }) {
   return (
     <details
-      className="group border-b border-line last:border-b-0 [&_summary::-webkit-details-marker]:hidden"
+      className="group border-b border-borde last:border-b-0 [&_summary::-webkit-details-marker]:hidden"
       open={defaultOpen}
     >
       <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left">
@@ -38,12 +38,12 @@ export function AccordionItem({
         </span>
         <span
           aria-hidden="true"
-          className="shrink-0 select-none text-2xl font-light leading-none text-gold transition-transform duration-200 group-open:rotate-45"
+          className="shrink-0 select-none text-2xl font-light leading-none text-dorado transition-transform duration-200 group-open:rotate-45"
         >
           +
         </span>
       </summary>
-      <div className="max-w-prose pb-6 text-sm leading-relaxed text-muted sm:text-base">
+      <div className="max-w-prose pb-6 text-sm leading-relaxed text-gris-texto sm:text-base">
         {children}
       </div>
     </details>

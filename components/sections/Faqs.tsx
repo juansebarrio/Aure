@@ -35,7 +35,7 @@ export function Faqs() {
           <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
             Respuestas a las consultas más habituales
           </h2>
-          <p className="mt-4 text-muted">
+          <p className="mt-4 text-gris-texto">
             ¿Quedó algo sin responder? El equipo lo resuelve en una reunión.
           </p>
         </div>

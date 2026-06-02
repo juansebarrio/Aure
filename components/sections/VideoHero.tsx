@@ -51,7 +51,7 @@ export function VideoHero({
   const showVideo = !reduced && Boolean(videoSrc);
 
   return (
-    <section className="relative isolate flex min-h-svh items-center overflow-hidden bg-brand-blue text-white">
+    <section className="relative isolate flex min-h-svh items-center overflow-hidden bg-azul text-white">
       <Image
         src={posterSrc}
         alt=""
@@ -77,7 +77,7 @@ export function VideoHero({
         </video>
       ) : null}
       {/* Overlay sobrio (azul de marca con alpha) para legibilidad del texto. */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-blue/90 via-brand-blue/70 to-brand-blue/55" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-azul/90 via-azul/70 to-azul/55" />
 
       <Container className="py-28">
         <div className="max-w-3xl">
@@ -88,7 +88,7 @@ export function VideoHero({
           >
             {title}
           </TextReveal>
-          <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-mist">
+          <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-gris">
             {subtitle}
           </p>
           <div className="mt-10">

@@ -2,52 +2,53 @@
 
 /* ============================================================
    AURE — tokens de marca (Tailwind v4, CSS-first).
-   Fuente de verdad: AURE_Brand_Spec.md.
-   Regla: no usar colores fuera de esta paleta, ni sombras/efectos.
-   El dorado es acento/CTA, NUNCA texto de cuerpo.
+   Fuente de verdad: AURE_Brand_Spec.md (§3). Nombres en español,
+   tal como define el spec: azul, dorado, blanco, gris, gris-claro,
+   gris-texto, borde. No usar colores fuera de la paleta; el dorado
+   nunca es texto de cuerpo; sin sombras/efectos.
    ============================================================ */
 @theme {
-  /* --- Colores de marca --- */
-  --color-brand-blue: #1e2a47; /* superficie de marca */
-  --color-brand-blue-deep: #11182c; /* azul más oscuro: degradado animado del hero */
-  --color-gold: #c6a86b; /* acento + CTA (no para texto de cuerpo) */
-  --color-mist: #afc0d9; /* texto secundario sobre azul */
+  /* --- Marca (paleta oficial) --- */
+  --color-azul: #1e2a47; /* superficie de marca / texto sobre claro */
+  --color-dorado: #c6a86b; /* acento + CTA (no para texto de cuerpo) */
+  --color-blanco: #ffffff; /* texto sobre azul / fondos */
+  --color-gris: #afc0d9; /* submarca / texto secundario sobre azul */
 
-  /* --- Neutrales de UI (superficies claras) --- */
-  --color-cloud: #f4f6fa; /* gris-claro: fondos de sección claros */
-  --color-muted: #6b7280; /* gris-texto: cuerpo/secundario sobre claro */
-  --color-line: #e5e9f0; /* borde fino / separadores */
+  /* --- Neutrales de interfaz (no son de marca) --- */
+  --color-gris-claro: #f4f6fa; /* fondos claros alternativos */
+  --color-gris-texto: #6b7280; /* cuerpo sobre fondo claro */
+  --color-borde: #e5e9f0; /* líneas finas / separadores / bordes */
 
   /* --- Funcional (NO es color de marca) --- */
-  /* Solo para estados de error de formularios (accesibilidad/UX). El spec no
-     define un color de error; TODO(marca): confirmar con el cliente o sumarlo
-     al brand spec. No usar como acento decorativo. */
+  /* Solo para estados de error de formularios. TODO(marca): confirmar. */
   --color-danger: #b42318;
+
+  /* Azul más oscuro para el degradado del hero (motion; no es de marca). */
+  --color-azul-profundo: #11182c;
 
   /* --- Tipografía --- */
   --font-sans: var(--font-ibm-plex-sans), ui-sans-serif, system-ui,
     -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  /* Tracking de marca */
-  --tracking-display: -0.02em; /* titulares (peso 500) */
+  /* Tracking de marca (spec §4) */
+  --tracking-display: -0.02em; /* titulares peso 500 */
   --tracking-eyebrow: 0.3em; /* eyebrows en MAYÚSCULA, dorado */
 
-  /* Radio de bordes (confirmado con el cliente: sutil, 2–4px).
-     Centralizado: cambiar acá ajusta botones, inputs, cards e imágenes. */
-  --radius-brand: 3px;
+  /* Radio de bordes (spec §7: 4–8px). */
+  --radius-brand: 4px;
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    /* Compensa la navbar sticky al saltar a anclas (#agenda, etc.). */
+    /* Compensa la navbar sticky al saltar a anclas. */
     scroll-padding-top: 5rem;
   }
 
   body {
-    background-color: var(--color-white);
-    color: var(--color-brand-blue);
+    background-color: var(--color-blanco);
+    color: var(--color-azul);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -56,13 +57,13 @@
 
   /* Foco visible accesible, en el dorado de marca. */
   :focus-visible {
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid var(--color-dorado);
     outline-offset: 2px;
   }
 
   ::selection {
-    background-color: var(--color-gold);
-    color: var(--color-brand-blue);
+    background-color: var(--color-dorado);
+    color: var(--color-azul);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -73,18 +74,17 @@
 }
 
 @layer components {
-  /* Hero: superficie azul con un degradado MUY sutil en movimiento (azul de
-     marca + uno más oscuro) y un brillo que reacciona al cursor. Excepción
-     puntual a la regla "plana" del spec, pedida puntualmente para el hero. */
+  /* Hero: superficie azul con un degradado MUY sutil en movimiento + un brillo
+     que reacciona al cursor. Excepción puntual a la regla "plana", para el hero. */
   .hero-surface {
     position: relative;
     overflow: hidden;
-    background-color: var(--color-brand-blue);
+    background-color: var(--color-azul);
     background-image: linear-gradient(
       135deg,
-      var(--color-brand-blue) 0%,
-      var(--color-brand-blue-deep) 50%,
-      var(--color-brand-blue) 100%
+      var(--color-azul) 0%,
+      var(--color-azul-profundo) 50%,
+      var(--color-azul) 100%
     );
     background-size: 200% 200%;
     animation: brand-gradient-pan 22s ease-in-out infinite;
@@ -102,9 +102,8 @@
     );
   }
 
-  /* Cuadrícula blanca de baja opacidad (las líneas). Las celdas (HeroGrid) se
-     llenan y agrandan sutilmente cerca del cursor. Mantener 64px en sync con
-     CELL de HeroGrid.tsx. */
+  /* Cuadrícula blanca de baja opacidad (líneas). Las celdas (HeroGrid) se
+     llenan y agrandan cerca del cursor. Mantener 64px en sync con HeroGrid.tsx. */
   .hero-grid {
     position: absolute;
     inset: 0;

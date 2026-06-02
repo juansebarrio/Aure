@@ -18,7 +18,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} · ${siteConfig.tagline}`,
+    default: `${siteConfig.name} · ${siteConfig.submarca}`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     siteName: siteConfig.name,
-    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    title: `${siteConfig.name} · ${siteConfig.submarca}`,
     description: siteConfig.description,
     url: siteConfig.url,
     // La imagen OG (1200x630) la genera app/opengraph-image.tsx.
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    title: `${siteConfig.name} · ${siteConfig.submarca}`,
     description: siteConfig.description,
   },
   robots: { index: true, follow: true },
@@ -54,7 +54,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-brand focus:bg-gold focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-blue"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-brand focus:bg-dorado focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-azul"
         >
           Saltar al contenido
         </a>

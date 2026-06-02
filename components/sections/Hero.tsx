@@ -20,7 +20,7 @@ export function Hero() {
           <h1 className="mt-6 text-balance text-4xl font-medium leading-[1.08] tracking-display sm:text-5xl lg:text-6xl">
             Invertí en desarrollos seleccionados, con respaldo de principio a fin.
           </h1>
-          <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-mist">
+          <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-gris">
             En AURE comercializamos proyectos —sobre todo de pozo— de
             desarrolladores de confianza. Te acompañamos con información clara,
             de la primera consulta a la entrega.

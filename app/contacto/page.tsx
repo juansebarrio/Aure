@@ -23,7 +23,7 @@ export default function ContactoPage() {
             Estamos para ayudarte
           </h1>
           {/* TODO(contenido): texto de apoyo definitivo. */}
-          <p className="mt-6 text-lg font-light leading-relaxed text-mist">
+          <p className="mt-6 text-lg font-light leading-relaxed text-gris">
             Escribinos por el canal que prefieras y te respondemos de forma
             personal, sin compromiso.
           </p>
@@ -31,8 +31,8 @@ export default function ContactoPage() {
 
         <dl className="mt-12 grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-3">
           <div>
-            <dt className="text-xs uppercase tracking-eyebrow text-gold">Email</dt>
-            <dd className="mt-2 text-sm text-mist">
+            <dt className="text-xs uppercase tracking-eyebrow text-dorado">Email</dt>
+            <dd className="mt-2 text-sm text-gris">
               <a
                 href={`mailto:${siteConfig.contact.email}`}
                 className="transition-colors hover:text-white"
@@ -42,10 +42,10 @@ export default function ContactoPage() {
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-eyebrow text-gold">
+            <dt className="text-xs uppercase tracking-eyebrow text-dorado">
               Teléfono
             </dt>
-            <dd className="mt-2 text-sm text-mist">
+            <dd className="mt-2 text-sm text-gris">
               {siteConfig.contact.phoneDisplay}
               {wa ? (
                 <>
@@ -63,10 +63,10 @@ export default function ContactoPage() {
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-eyebrow text-gold">
+            <dt className="text-xs uppercase tracking-eyebrow text-dorado">
               Ubicación
             </dt>
-            <dd className="mt-2 text-sm text-mist">
+            <dd className="mt-2 text-sm text-gris">
               {siteConfig.contact.addressLine}
             </dd>
           </div>

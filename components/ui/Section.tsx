@@ -2,12 +2,12 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/Container";
 
-type SectionBackground = "blue" | "cloud" | "white";
+type SectionBackground = "blue" | "gris-claro" | "white";
 
 const backgrounds: Record<SectionBackground, string> = {
-  blue: "bg-brand-blue text-white",
-  cloud: "bg-cloud text-brand-blue",
-  white: "bg-white text-brand-blue",
+  blue: "bg-azul text-white",
+  "gris-claro": "bg-gris-claro text-azul",
+  white: "bg-white text-azul",
 };
 
 type SectionProps = {

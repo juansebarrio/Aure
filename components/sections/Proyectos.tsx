@@ -29,7 +29,7 @@ const PROYECTOS: Proyecto[] = [
 
 export function Proyectos() {
   return (
-    <Section id="proyectos" background="cloud">
+    <Section id="proyectos" background="gris-claro">
       <Reveal>
         <div className="max-w-2xl">
           <Eyebrow>Proyectos</Eyebrow>
@@ -37,7 +37,7 @@ export function Proyectos() {
             Desarrollos que comercializamos
           </h2>
           {/* Honestidad: son proyectos de terceros, AURE no desarrolla. */}
-          <p className="mt-4 leading-relaxed text-muted">
+          <p className="mt-4 leading-relaxed text-gris-texto">
             Proyectos de desarrolladores de confianza, seleccionados por AURE.
             No los desarrollamos: los comercializamos y te acompañamos en la compra.
           </p>
@@ -55,15 +55,15 @@ export function Proyectos() {
                 <h3 className="text-lg font-medium tracking-display">
                   {proyecto.nombre}
                 </h3>
-                <span className="shrink-0 text-xs uppercase tracking-eyebrow text-gold">
+                <span className="shrink-0 text-xs uppercase tracking-eyebrow text-dorado">
                   {proyecto.estado}
                 </span>
               </div>
-              <p className="mt-1 text-sm text-muted">{proyecto.zona}</p>
+              <p className="mt-1 text-sm text-gris-texto">{proyecto.zona}</p>
               {/* TODO(integración): link real al showroom 3D. */}
               <a
                 href={proyecto.showroomHref}
-                className="mt-3 inline-block text-sm font-medium text-brand-blue underline underline-offset-4 transition-opacity hover:opacity-70"
+                className="mt-3 inline-block text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
                 aria-label={`Ver showroom 3D de ${proyecto.nombre}`}
               >
                 Ver showroom 3D
