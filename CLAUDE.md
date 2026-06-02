@@ -68,10 +68,11 @@ CLAUDE.md
 
 Capa de animación con scroll suave, **sobria y de marca** (easings suaves, duraciones cortas, cero fuegos artificiales).
 
-- **Stack:** `gsap` + `@gsap/react` (`useGSAP`) + `ScrollTrigger`, y `lenis` (`lenis/react`). Sin `framer-motion`.
+- **Stack:** `gsap` + `@gsap/react` (`useGSAP`) + `ScrollTrigger` + `Flip` (para la intro), y `lenis` (`lenis/react`). Sin `framer-motion`.
 - **Dónde vive:** `components/motion/` — `SmoothScrollProvider` (Lenis + sync con ScrollTrigger, montado en `layout`), `<Reveal>`, `<TextReveal>` (SplitText con fallback), `<Parallax>`, y `gsap.ts` (registra plugins una sola vez).
 - **`<VideoHero>`** (`components/sections/`): hero full-screen con video (muted/loop/playsInline/poster, lazy) + CTA siempre visible. Listo, hoy **NO montado** (la home usa el hero con grilla). El video real va en `public/video/`.
-- **`prefers-reduced-motion` (regla dura):** si está activo, NO se monta Lenis y las animaciones se saltean (`gsap.matchMedia`). Todos los componentes de motion son `"use client"` y no rompen SSR.
+- **`<IntroSequence>`** (`components/motion/`): intro de apertura que forma el logotipo "aure." (las 3 palabras de la sigla se comprimen a sus iniciales con Flip, aparece el punto dorado) y **se desvanece sin tocar el resto del sitio** (no mueve el logo al navbar ni revela el hero). Montada en `layout` dentro del provider. Reglas: **solo primera visita** (sessionStorage `aure_intro_seen` + script inline en `layout` que evita el flash en visitas siguientes), **reduced-motion lo saltea**, espera `document.fonts.ready` antes de medir, **bloquea el scroll** mientras corre (body + `lenis.stop()`), y se puede **saltar** con click o Esc. Tiempos en constantes (`T`) arriba del componente.
+- **`prefers-reduced-motion` (regla dura):** si está activo, NO se monta Lenis y las animaciones se saltean (`gsap.matchMedia`); la intro no corre. Todos los componentes de motion son `"use client"` y no rompen SSR.
 
 ---
 

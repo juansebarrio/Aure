@@ -45,10 +45,13 @@ adelante.
 
 Animación con scroll suave: `gsap` + `@gsap/react` + `ScrollTrigger` + `lenis`.
 Primitivos en `components/motion/` (`SmoothScrollProvider`, `Reveal`, `TextReveal`,
-`Parallax`). Detalle en [`CLAUDE.md`](./CLAUDE.md) (sección _Motion_).
+`Parallax`, `IntroSequence`). Detalle en [`CLAUDE.md`](./CLAUDE.md) (sección _Motion_).
 
 **TODO motion:**
 
+- **Afinar la intro:** tunear los tiempos de `IntroSequence` (constantes `T` en
+  `components/motion/IntroSequence.tsx`) y validarla en mobile. Es la animación de
+  apertura que forma el logo "aure." y se desvanece (solo primera visita).
 - **Video del hero:** dropear el loop cinematográfico real en `public/video/`
   (ej. `hero.mp4`, liviano) + actualizar el poster. Hoy hay solo un poster
   placeholder (`public/video/poster.svg`). El `<VideoHero>` está listo pero **NO
