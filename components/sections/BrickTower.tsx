@@ -4,20 +4,19 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Torre de ladrillos isométricos que se "construye" con el scroll en una
- * esquina del módulo de Testimonios: al bajar, los ladrillos caen y apilan
- * (de abajo hacia arriba); al subir, se levantan. Scrubbeado al progreso de
- * scroll de la sección. Respeta prefers-reduced-motion (muestra la torre
- * armada, sin animación). Decorativo: aria-hidden y pointer-events-none.
+ * esquina del módulo de Testimonios. Al bajar, los ladrillos caen y se apilan
+ * en diagonal isométrica (cada uno medio paso hacia atrás y arriba → quedan
+ * UNO DELANTE DEL OTRO, no en columna); al subir, se desarman. Scrubbeado al
+ * progreso de scroll de la sección, throttle por rAF. Respeta
+ * prefers-reduced-motion. Decorativo: aria-hidden y pointer-events-none.
  *
- * Ladrillos en tonos del dorado de marca (shading 3D), no terracota, para
- * respetar la paleta del spec.
+ * Tonos del dorado de marca (shading 3D), no terracota, para respetar la paleta.
  */
 const N = 6; // ladrillos (torre bajita)
 const BRICK_W = 104; // px de ancho de cada ladrillo
 const VB = { x: 0, y: 56, w: 118, h: 72 }; // viewBox del SVG
 const SCALE = BRICK_W / VB.w;
 const BRICK_H_PX = VB.h * SCALE;
-const STACK_STEP = 24 * SCALE; // alto de cara (H) escalado: cuánto sube cada ladrillo
 const DROP = 34; // px desde donde "cae" cada ladrillo
 
 const clamp = (v: number, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
@@ -41,13 +40,12 @@ const tR = add(P0, R, UP);
 const tB = add(P0, R, D, UP);
 const tL = add(P0, D, UP);
 
-// Punto sobre la cara superior (u a lo largo de R, v a lo largo de D).
 const top = (u: number, v: number) =>
   add(tF, { x: R.x * u, y: R.y * u }, { x: D.x * v, y: D.y * v });
 const slot = (u0: number, u1: number, v: number, dv: number) =>
   poly([top(u0, v), top(u1, v), top(u1, v + dv), top(u0, v + dv)]);
 
-// Perforaciones del ladrillo (2 filas × 3).
+// Perforaciones (2 filas × 3).
 const SLOTS = [0.22, 0.55].flatMap((v) =>
   (
     [
@@ -57,6 +55,14 @@ const SLOTS = [0.22, 0.55].flatMap((v) =>
     ] as const
   ).map(([u0, u1]) => slot(u0, u1, v, 0.18)),
 );
+
+// Paso de apilado: cada ladrillo sube (UP) + medio paso de profundidad (D),
+// proyectado a pantalla y escalado. Resultado: diagonal hacia arriba-izquierda,
+// con los ladrillos uno delante del otro.
+const STEP = {
+  x: (UP.x + D.x * 0.5) * SCALE,
+  y: (UP.y + D.y * 0.5) * SCALE,
+};
 
 function IsoBrick() {
   return (
@@ -119,17 +125,26 @@ export function BrickTower() {
     <div
       ref={wrapRef}
       aria-hidden="true"
-      className="pointer-events-none absolute bottom-0 right-4 hidden lg:block xl:right-10"
-      style={{ width: BRICK_W, height: BRICK_H_PX + (N - 1) * STACK_STEP + DROP }}
+      className="pointer-events-none absolute bottom-0 right-4 hidden isolate lg:block xl:right-10"
+      style={{
+        width: BRICK_W + (N - 1) * Math.abs(STEP.x),
+        height: BRICK_H_PX + (N - 1) * Math.abs(STEP.y) + DROP,
+      }}
     >
       {Array.from({ length: N }).map((_, i) => {
         const bp = reduced ? 1 : clamp((progress - i * seg) / seg);
-        const y = -(i * STACK_STEP) - (1 - bp) * DROP;
+        const x = i * STEP.x;
+        const y = i * STEP.y - (1 - bp) * DROP;
         return (
           <div
             key={i}
             className="absolute bottom-0 right-0 transition-opacity duration-150"
-            style={{ transform: `translateY(${y.toFixed(1)}px)`, opacity: clamp(bp * 1.4) }}
+            style={{
+              transform: `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`,
+              opacity: clamp(bp * 1.4),
+              // El de más adelante (i=0) queda por encima.
+              zIndex: N - i,
+            }}
           >
             <IsoBrick />
           </div>
