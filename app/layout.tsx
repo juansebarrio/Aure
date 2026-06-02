@@ -4,6 +4,8 @@ import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { Navbar } from "@/components/sections/Navbar";
+import { Footer } from "@/components/sections/Footer";
+import { WhatsappButton } from "@/components/WhatsappButton";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -44,12 +46,19 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-gold focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-blue"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-brand focus:bg-gold focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-blue"
         >
           Saltar al contenido
         </a>
         <Navbar />
         {children}
+        <Footer />
+        <WhatsappButton />
+        {/*
+          Medición (GA4 / Meta Pixel): hueco preparado, nada instalado todavía.
+          Cuando estén las claves/definición, montar <Analytics /> acá
+          (ver components/Analytics.tsx).
+        */}
       </body>
     </html>
   );
