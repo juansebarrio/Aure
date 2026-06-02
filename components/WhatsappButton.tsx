@@ -20,7 +20,7 @@ export function WhatsappButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp"
-      className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold text-brand-blue transition-opacity hover:opacity-90"
+      className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-dorado text-azul transition-opacity hover:opacity-90"
     >
       <svg
         width="26"

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" role="img" aria-label="AURE">
+  <!-- TODO(assets): poster placeholder on-brand. Reemplazar por el frame real del video. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E2A47" />
+      <stop offset="1" stop-color="#11182C" />
+    </linearGradient>
+    <radialGradient id="v" cx="0.5" cy="0.4" r="0.75">
+      <stop offset="0" stop-color="#1E2A47" stop-opacity="0" />
+      <stop offset="1" stop-color="#0D1322" stop-opacity="0.65" />
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g)" />
+  <rect width="1920" height="1080" fill="url(#v)" />
+</svg>

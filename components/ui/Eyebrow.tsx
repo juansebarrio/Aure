@@ -15,7 +15,7 @@ export function Eyebrow({ as: Tag = "p", className, children }: EyebrowProps) {
   return (
     <Tag
       className={cn(
-        "text-xs font-medium uppercase tracking-eyebrow text-gold",
+        "text-[11px] font-medium uppercase tracking-eyebrow text-dorado",
         className,
       )}
     >

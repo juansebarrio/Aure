@@ -41,6 +41,27 @@ adelante.
 - **Trabajo en el repo:** [`CLAUDE.md`](./CLAUDE.md) — stack, estructura,
   convenciones e integraciones.
 
+## Motion (capa instalada)
+
+Animación con scroll suave: `gsap` + `@gsap/react` + `ScrollTrigger` + `lenis`.
+Primitivos en `components/motion/` (`SmoothScrollProvider`, `Reveal`, `TextReveal`,
+`Parallax`, `IntroSequence`). Detalle en [`CLAUDE.md`](./CLAUDE.md) (sección _Motion_).
+
+**TODO motion:**
+
+- **Afinar la intro:** tunear los tiempos de `IntroSequence` (constantes `T` en
+  `components/motion/IntroSequence.tsx`) y validarla en mobile. Es la animación de
+  apertura que forma el logo "aure." y se desvanece (solo primera visita).
+- **Video del hero:** dropear el loop cinematográfico real en `public/video/`
+  (ej. `hero.mp4`, liviano) + actualizar el poster. Hoy hay solo un poster
+  placeholder (`public/video/poster.svg`). El `<VideoHero>` está listo pero **NO
+  montado**: para usarlo, reemplazar `<Hero />` por
+  `<VideoHero videoSrc="/video/hero.mp4" />` en `app/page.tsx`.
+- **Secciones a motionizar después:** hero (o VideoHero), Social proof, FAQs,
+  Formulario y Footer. Hoy solo **Badges** y **About** tienen `<Reveal>` /
+  `<TextReveal>` como muestra de que el sistema funciona.
+- Mantener todo **sobrio** y respetando `prefers-reduced-motion`.
+
 ## Estado
 
 Scaffold + sitio en construcción con contenido **placeholder** (sin fotos ni

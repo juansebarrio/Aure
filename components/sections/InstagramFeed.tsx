@@ -29,7 +29,7 @@ export function InstagramFeed() {
           href={siteConfig.social.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-medium text-brand-blue underline underline-offset-4 transition-opacity hover:opacity-70"
+          className="text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
         >
           Ver perfil
         </a>

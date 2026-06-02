@@ -1,12 +1,12 @@
 import { cn } from "@/lib/cn";
 
-type PlaceholderTone = "cloud" | "ghost";
+type PlaceholderTone = "gris-claro" | "ghost";
 
 const tones: Record<PlaceholderTone, string> = {
   // Para superficies claras.
-  cloud: "bg-cloud border border-line text-muted",
+  "gris-claro": "bg-gris-claro border border-borde text-gris-texto",
   // Para superficies azules (marco translúcido, sin sombras).
-  ghost: "bg-white/[0.04] border border-white/15 text-mist",
+  ghost: "bg-white/[0.04] border border-white/15 text-gris",
 };
 
 /**
@@ -19,7 +19,7 @@ const tones: Record<PlaceholderTone, string> = {
 export function ImagePlaceholder({
   aspect = "aspect-[4/3]",
   label = "Imagen del proyecto",
-  tone = "cloud",
+  tone = "gris-claro",
   className,
 }: {
   /** Clase de aspect-ratio (ej: "aspect-[4/5]", "aspect-square"). */

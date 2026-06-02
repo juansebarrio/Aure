@@ -1,33 +1,35 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Reveal } from "@/components/motion/Reveal";
 
-/** Garantías / beneficios. Detalle dorado, sin cajas pesadas. */
+/** Respaldo / por qué AURE. Detalle dorado, sin cajas pesadas. */
 const items = [
   {
-    title: "Curaduría profesional",
-    text: "Cada oportunidad pasa por un análisis arquitectónico, urbano y financiero antes de presentarse.",
+    title: "Desarrolladores de confianza",
+    text: "Comercializamos proyectos de desarrolladores con trayectoria y documentación en regla. AURE no desarrolla: selecciona y acompaña.",
   },
   {
-    title: "Transparencia total",
-    text: "Información clara sobre rentabilidad, plazos y riesgos en cada operación.",
+    title: "Información clara",
+    text: "Plazos, formas de pago y estado de obra explicados sin letra chica.",
   },
   {
-    title: "Acompañamiento integral",
-    text: "Un equipo dedicado durante todo el proceso, de la evaluación a la escritura.",
+    title: "De la consulta a la entrega",
+    text: "Te acompañamos en cada paso, desde la primera consulta hasta la entrega de la unidad.",
   },
   {
-    title: "Ubicaciones estratégicas",
-    text: "Activos seleccionados en zonas de valorización sostenida de Buenos Aires.",
+    title: "Pensado para vos",
+    text: "Oportunidades de pozo con planes de pago accesibles para clase media.",
   },
 ];
 
 export function Badges() {
   return (
     <Section id="garantias" background="white">
+      <Reveal>
       <div className="max-w-2xl">
         <Eyebrow>Por qué AURE</Eyebrow>
         <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-          Respaldo en cada decisión de inversión
+          Respaldo y claridad en cada paso
         </h2>
       </div>
 
@@ -35,16 +37,17 @@ export function Badges() {
       <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => (
           <li key={item.title}>
-            <div className="h-px w-8 bg-gold" aria-hidden="true" />
+            <div className="h-px w-8 bg-dorado" aria-hidden="true" />
             <h3 className="mt-5 text-lg font-medium tracking-display">
               {item.title}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
+            <p className="mt-3 text-sm leading-relaxed text-gris-texto">
               {item.text}
             </p>
           </li>
         ))}
       </ul>
+      </Reveal>
     </Section>
   );
 }

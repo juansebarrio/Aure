@@ -49,7 +49,7 @@ export default function PoliticasPage() {
           <h1 className="mt-5 text-4xl font-medium tracking-display text-white sm:text-5xl">
             Políticas
           </h1>
-          <p className="mt-6 text-lg font-light leading-relaxed text-mist">
+          <p className="mt-6 text-lg font-light leading-relaxed text-gris">
             Privacidad, cookies y términos. Contenido preliminar, pendiente de
             revisión legal.
           </p>
@@ -59,7 +59,7 @@ export default function PoliticasPage() {
                 <li key={policy.id}>
                   <a
                     href={`#${policy.id}`}
-                    className="text-mist underline underline-offset-4 transition-colors hover:text-white"
+                    className="text-gris underline underline-offset-4 transition-colors hover:text-white"
                   >
                     {policy.title}
                   </a>
@@ -86,7 +86,7 @@ export default function PoliticasPage() {
                 {policy.title}
               </h2>
               {policy.body.map((paragraph, index) => (
-                <p key={index} className="mt-4 leading-relaxed text-muted">
+                <p key={index} className="mt-4 leading-relaxed text-gris-texto">
                   {paragraph}
                 </p>
               ))}

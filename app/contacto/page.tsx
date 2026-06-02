@@ -8,7 +8,7 @@ import { whatsappUrl } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    "Agendá una reunión con AURE. Real estate premium en Buenos Aires para inversores calificados.",
+    "Contacto de AURE. Consultá por los desarrollos que comercializamos en Buenos Aires; te acompañamos en cada paso.",
 };
 
 export default function ContactoPage() {
@@ -20,18 +20,19 @@ export default function ContactoPage() {
         <div className="max-w-2xl">
           <Eyebrow>Contacto</Eyebrow>
           <h1 className="mt-5 text-4xl font-medium tracking-display text-white sm:text-5xl">
-            Hablemos de tu próxima inversión
+            Estamos para ayudarte
           </h1>
           {/* TODO(contenido): texto de apoyo definitivo. */}
-          <p className="mt-6 text-lg font-light leading-relaxed text-mist">
-            Coordinemos una reunión. Respondemos cada consulta de forma personal.
+          <p className="mt-6 text-lg font-light leading-relaxed text-gris">
+            Escribinos por el canal que prefieras y te respondemos de forma
+            personal, sin compromiso.
           </p>
         </div>
 
         <dl className="mt-12 grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-3">
           <div>
-            <dt className="text-xs uppercase tracking-eyebrow text-gold">Email</dt>
-            <dd className="mt-2 text-sm text-mist">
+            <dt className="text-xs uppercase tracking-eyebrow text-dorado">Email</dt>
+            <dd className="mt-2 text-sm text-gris">
               <a
                 href={`mailto:${siteConfig.contact.email}`}
                 className="transition-colors hover:text-white"
@@ -41,10 +42,10 @@ export default function ContactoPage() {
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-eyebrow text-gold">
+            <dt className="text-xs uppercase tracking-eyebrow text-dorado">
               Teléfono
             </dt>
-            <dd className="mt-2 text-sm text-mist">
+            <dd className="mt-2 text-sm text-gris">
               {siteConfig.contact.phoneDisplay}
               {wa ? (
                 <>
@@ -62,10 +63,10 @@ export default function ContactoPage() {
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-eyebrow text-gold">
+            <dt className="text-xs uppercase tracking-eyebrow text-dorado">
               Ubicación
             </dt>
-            <dd className="mt-2 text-sm text-mist">
+            <dd className="mt-2 text-sm text-gris">
               {siteConfig.contact.addressLine}
             </dd>
           </div>

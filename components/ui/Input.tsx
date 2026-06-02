@@ -13,7 +13,7 @@ type FieldProps = {
 };
 
 const fieldBase =
-  "block w-full rounded-brand border border-line bg-white px-4 py-3 text-base text-brand-blue placeholder:text-muted/70 transition-colors focus:border-gold focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-danger";
+  "block w-full rounded-brand border border-borde bg-white px-4 py-3 text-base text-azul placeholder:text-gris-texto/70 transition-colors focus:border-dorado focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-danger";
 
 function FieldShell({
   id,
@@ -31,17 +31,17 @@ function FieldShell({
   const errorId = error ? `${id}-error` : undefined;
   return (
     <div className={cn("flex flex-col gap-2", wrapperClassName)}>
-      <label htmlFor={id} className="text-sm font-medium text-brand-blue">
+      <label htmlFor={id} className="text-sm font-medium text-azul">
         {label}
         {required ? (
-          <span className="ml-1 text-muted" aria-hidden="true">
+          <span className="ml-1 text-gris-texto" aria-hidden="true">
             *
           </span>
         ) : null}
       </label>
       {children}
       {hint && !error ? (
-        <p id={hintId} className="text-sm text-muted">
+        <p id={hintId} className="text-sm text-gris-texto">
           {hint}
         </p>
       ) : null}
