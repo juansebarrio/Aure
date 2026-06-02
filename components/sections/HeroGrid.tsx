@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 // Mantener CELL en sync con `background-size` de .hero-grid en globals.css.
 const CELL = 64; // px, tamaño de celda
 const RADIUS = 150; // px, alcance del efecto proximity
-const MAX_SCALE = 0.45; // crecimiento máximo de la celda bajo el cursor
-const MAX_FILL = 0.12; // opacidad máxima del relleno blanco bajo el cursor
+const MAX_SCALE = 0.3; // crecimiento máximo de la celda bajo el cursor
+const MAX_FILL = 0.08; // opacidad máxima del relleno blanco bajo el cursor
 
 /**
  * Capa interactiva de la cuadrícula del hero. Las líneas las dibuja .hero-grid
