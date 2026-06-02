@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AURE">
+  <!-- TODO(assets): placeholder. Reemplazar por el ícono/favicon real del cliente. -->
+  <rect width="64" height="64" fill="#1E2A47" />
+  <text x="13" y="45" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="36" font-weight="500" letter-spacing="-0.02em" fill="#FFFFFF">a</text>
+  <circle cx="41" cy="41" r="3.4" fill="#C6A86B" />
+</svg>
