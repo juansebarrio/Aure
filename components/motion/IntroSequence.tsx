@@ -32,7 +32,7 @@ const T = {
   restWordOffset: 0.07, // desfase entre palabras
   restWidthDur: 1.05,
   restStagger: 0.08,
-  flipOffset: 0.6, // arranque del Flip respecto a "cierre"
+  meltSettle: 0.18, // beat tras el fundido, antes de que las iniciales viajen
   flipDur: 1.35,
   flipRun: 1.45, // hueco para que el Flip corra dentro del timeline
   dotDur: 0.7,
@@ -186,7 +186,10 @@ export function IntroSequence() {
           },
           "cierre+=0.12",
         );
-        // 4 · Convergencia con Flip: las iniciales glidean a "aure".
+        // Las palabras YA se fundieron: solo quedan las iniciales, en su lugar.
+        tl.addLabel("fundido", `>+${T.meltSettle}`);
+        // 4 · Convergencia con Flip: RECIÉN AHORA las iniciales viajan al logotipo
+        //     (secuencial, no encabalgado → lectura fluida palabra → letra → logo).
         tl.add(() => {
           const state = Flip.getState(keys, { props: "fontSize" });
           overlay.classList.add("collapsed");
@@ -195,7 +198,7 @@ export function IntroSequence() {
             ease: "power2.inOut",
             absolute: true,
           });
-        }, `cierre+=${T.flipOffset}`);
+        }, "fundido");
         tl.to({}, { duration: T.flipRun }); // deja correr el Flip dentro del timeline
         // 5 · Punto dorado → queda "aure."
         tl.to(
