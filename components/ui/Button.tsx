@@ -9,13 +9,12 @@ type ButtonVariant = "primary" | "secondary";
  * - primary: fondo dorado + texto azul (CTA principal).
  * - secondary: fantasma (borde fino, hereda el color del contexto).
  *
- * Corners rectos: decisión de marca (estética arquitectónica/sobria). El spec
- * no define radio; queda centralizado en `base` para cambiarlo en un solo lugar.
+ * Radio sutil vía token de marca (--radius-brand). Centralizado en `base`.
  *
  * Polimórfico: si recibe `href` renderiza un <Link>, si no un <button>.
  */
 const base =
-  "inline-flex items-center justify-center gap-2 font-medium tracking-wide transition-opacity disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-brand font-medium tracking-wide transition-opacity disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-gold text-brand-blue hover:opacity-90",

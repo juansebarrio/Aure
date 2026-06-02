@@ -119,8 +119,8 @@ Tailwind v4 (`bg-brand-blue`, `text-gold`, `text-mist`, `bg-cloud`, `text-muted`
 Puntos que el brief no definía; resueltos siguiendo el espíritu sobrio/premium y
 marcados para confirmar con el cliente:
 
-- **Radio de bordes:** se eligieron **corners rectos** (estética arquitectónica).
-  Centralizado en los primitivos para cambiarlo fácil. _Confirmar._
+- **Radio de bordes:** **radio sutil (~3px)**, confirmado con el cliente.
+  Token `--radius-brand` centralizado (botones, inputs, cards, imágenes).
 - **Color de error de formularios:** no existe en la paleta. Se usa un rojo
   funcional restringido (`--color-danger`, marcado como **no-marca**) solo para
   validación. _Confirmar o sumar al spec._

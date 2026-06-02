@@ -13,7 +13,7 @@ type FieldProps = {
 };
 
 const fieldBase =
-  "block w-full border border-line bg-white px-4 py-3 text-base text-brand-blue placeholder:text-muted/70 transition-colors focus:border-gold focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-danger";
+  "block w-full rounded-brand border border-line bg-white px-4 py-3 text-base text-brand-blue placeholder:text-muted/70 transition-colors focus:border-gold focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-danger";
 
 function FieldShell({
   id,

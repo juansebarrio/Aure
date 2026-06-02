@@ -30,6 +30,10 @@
   /* Tracking de marca */
   --tracking-display: -0.02em; /* titulares (peso 500) */
   --tracking-eyebrow: 0.3em; /* eyebrows en MAYÚSCULA, dorado */
+
+  /* Radio de bordes (confirmado con el cliente: sutil, 2–4px).
+     Centralizado: cambiar acá ajusta botones, inputs, cards e imágenes. */
+  --radius-brand: 3px;
 }
 
 @layer base {

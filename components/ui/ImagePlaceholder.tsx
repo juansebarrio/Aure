@@ -32,7 +32,7 @@ export function ImagePlaceholder({
     <div
       aria-hidden="true"
       className={cn(
-        "flex w-full items-center justify-center overflow-hidden",
+        "flex w-full items-center justify-center overflow-hidden rounded-brand",
         aspect,
         tones[tone],
         className,
