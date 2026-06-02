@@ -1,6 +1,8 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { Reveal } from "@/components/motion/Reveal";
+import { TextReveal } from "@/components/motion/TextReveal";
 
 /** TODO(contenido): cifras reales. */
 const stats = [
@@ -15,10 +17,14 @@ export function About() {
       <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
           <Eyebrow>Quiénes somos</Eyebrow>
-          <h2 className="mt-5 text-3xl font-medium tracking-display text-white sm:text-4xl">
+          <TextReveal
+            as="h2"
+            className="mt-5 text-3xl font-medium tracking-display text-white sm:text-4xl"
+          >
             Arquitectura y criterio urbano aplicados a la inversión
-          </h2>
+          </TextReveal>
           {/* TODO(contenido): texto institucional definitivo. */}
+          <Reveal delay={0.1}>
           <p className="mt-6 text-lg font-light leading-relaxed text-mist">
             AURE acompaña a inversores calificados en operaciones inmobiliarias
             premium en Buenos Aires, combinando lectura arquitectónica, análisis
@@ -41,6 +47,7 @@ export function About() {
               </div>
             ))}
           </dl>
+          </Reveal>
         </div>
 
         <div className="lg:col-span-6">

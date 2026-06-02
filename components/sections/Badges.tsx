@@ -1,5 +1,6 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Reveal } from "@/components/motion/Reveal";
 
 /** Garantías / beneficios. Detalle dorado, sin cajas pesadas. */
 const items = [
@@ -24,6 +25,7 @@ const items = [
 export function Badges() {
   return (
     <Section id="garantias" background="white">
+      <Reveal>
       <div className="max-w-2xl">
         <Eyebrow>Por qué AURE</Eyebrow>
         <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
@@ -45,6 +47,7 @@ export function Badges() {
           </li>
         ))}
       </ul>
+      </Reveal>
     </Section>
   );
 }

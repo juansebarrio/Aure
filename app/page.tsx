@@ -6,6 +6,9 @@ import { About } from "@/components/sections/About";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { InstagramFeed } from "@/components/sections/InstagramFeed";
 // import { DevelopmentsGrid } from "@/components/sections/DevelopmentsGrid";
+// Hero alternativo con video (capa de motion). Listo pero NO montado: para
+// usarlo, reemplazar <Hero /> por <VideoHero /> (ver components/sections/VideoHero.tsx).
+// import { VideoHero } from "@/components/sections/VideoHero";
 
 export default function HomePage() {
   return (
