@@ -1,6 +1,5 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { BrickTower } from "@/components/sections/BrickTower";
 
 /** Testimonios placeholder en cards sobrias (borde fino, sin sombras). */
 const testimonials = [
@@ -26,13 +25,7 @@ const testimonials = [
 
 export function SocialProof() {
   return (
-    <Section
-      id="testimonios"
-      background="cloud"
-      className="relative overflow-hidden"
-    >
-      <BrickTower />
-      <div className="relative z-10">
+    <Section id="testimonios" background="cloud">
       <div className="max-w-2xl">
         <Eyebrow>Confianza</Eyebrow>
         <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
@@ -59,7 +52,6 @@ export function SocialProof() {
             </figcaption>
           </figure>
         ))}
-      </div>
       </div>
     </Section>
   );
