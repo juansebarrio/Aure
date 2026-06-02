@@ -2,16 +2,18 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { HeroBackground } from "@/components/sections/HeroBackground";
 
 /**
- * Hero / banner sobre azul de marca.
+ * Hero / banner sobre azul de marca, con degradado animado muy sutil + brillo
+ * que reacciona al cursor (ver HeroBackground y .hero-surface en globals.css).
  * TODO(contenido): reemplazar eyebrow, titular, subtítulo y fotos por el
  * material final del cliente.
  */
 export function Hero() {
   return (
-    <section className="bg-brand-blue text-white">
-      <Container className="grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16">
+    <HeroBackground>
+      <Container className="relative z-10 grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
           <Eyebrow>Inversión inmobiliaria premium</Eyebrow>
           <h1 className="mt-6 text-balance text-4xl font-medium leading-[1.08] tracking-display sm:text-5xl lg:text-6xl">
@@ -39,6 +41,6 @@ export function Hero() {
           />
         </div>
       </Container>
-    </section>
+    </HeroBackground>
   );
 }
