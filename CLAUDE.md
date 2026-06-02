@@ -44,7 +44,9 @@ app/
 components/
   ui/                 # primitivos: Button, Container, Section, Eyebrow,
                       #             Input/Textarea, Accordion, ImagePlaceholder
-  sections/           # bloques de la home: Navbar, Hero, ... (en progreso)
+  motion/             # capa de motion: SmoothScrollProvider, Reveal, TextReveal,
+                      #             Parallax, gsap.ts (registro de plugins)
+  sections/           # bloques de la home: Navbar, Hero, VideoHero, ...
 lib/
   cn.ts               # helper de clases
   site.ts             # config del sitio, navegación, CTA (textos placeholder)
@@ -75,6 +77,31 @@ Todas con `TODO` claro y sin claves reales (ver `.env.example`):
 - **WhatsApp:** link `wa.me` con `NEXT_PUBLIC_WHATSAPP`.
 - **Instagram:** `<InstagramFeed>` con datos mock; `TODO` para la API real.
 - **Medición (GA4 / Meta Pixel):** hueco dejado, **nada instalado** todavía.
+
+## Motion
+
+Capa de animación con scroll suave. **Sobria y de marca**: easings suaves,
+duraciones cortas, cero fuegos artificiales (azul profundo + dorado, IBM Plex Sans).
+
+- **Stack:** `gsap` + `@gsap/react` (hook `useGSAP`) + `ScrollTrigger`, y `lenis`
+  (smooth scroll, vía `lenis/react`). **Sin `framer-motion`** (un solo sistema).
+- **Dónde vive:** `components/motion/`.
+  - `SmoothScrollProvider` — Lenis + sincronización con ScrollTrigger; montado en
+    `app/layout.tsx` envolviendo la app.
+  - `<Reveal>` (fade + translate-y), `<TextReveal>` (titulares por línea/palabra
+    con SplitText, fallback a elemento entero), `<Parallax>` (velocidad distinta
+    en el scroll).
+  - `gsap.ts` — registra los plugins una sola vez; importá `gsap`/`ScrollTrigger`
+    desde acá en los componentes de motion.
+- **`<VideoHero>`** (`components/sections/VideoHero.tsx`): hero full-screen con
+  video (muted/loop/playsInline/poster, lazy) + CTA "Agendá una reunión" siempre
+  visible. **Listo, hoy NO montado** (la home usa el hero con grilla).
+- **Regla dura — `prefers-reduced-motion`:** si está activo, NO se monta Lenis y
+  las animaciones se saltean (gateadas con
+  `gsap.matchMedia("(prefers-reduced-motion: no-preference)")`). Con reduced-motion,
+  el VideoHero muestra solo el poster.
+- Todos los componentes de motion son `"use client"` y no rompen SSR (el texto va
+  plano en el DOM). El video cinematográfico real va en `public/video/` (ver README).
 
 ## Variables de entorno
 
