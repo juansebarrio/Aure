@@ -125,7 +125,7 @@ export function BrickTower() {
     <div
       ref={wrapRef}
       aria-hidden="true"
-      className="pointer-events-none absolute bottom-0 right-4 hidden isolate lg:block xl:right-10"
+      className="pointer-events-none absolute bottom-0 right-2 isolate origin-bottom-right scale-[0.55] sm:right-4 sm:scale-75 lg:scale-100 xl:right-10"
       style={{
         width: BRICK_W + (N - 1) * Math.abs(STEP.x),
         height: BRICK_H_PX + (N - 1) * Math.abs(STEP.y) + DROP,
