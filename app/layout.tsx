@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/site";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { WhatsappButton } from "@/components/WhatsappButton";
+import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -57,10 +58,12 @@ export default function RootLayout({
         >
           Saltar al contenido
         </a>
-        <Navbar />
-        {children}
-        <Footer />
-        <WhatsappButton />
+        <SmoothScrollProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <WhatsappButton />
+        </SmoothScrollProvider>
         {/*
           Medición (GA4 / Meta Pixel): hueco preparado, nada instalado todavía.
           Cuando estén las claves/definición, montar <Analytics /> acá
