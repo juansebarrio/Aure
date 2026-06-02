@@ -4,8 +4,9 @@ import { useRef, useState } from "react";
 import { useLenis } from "lenis/react";
 import { gsap, useGSAP } from "@/components/motion/gsap";
 import { Flip } from "gsap/Flip";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(Flip);
+gsap.registerPlugin(Flip, SplitText);
 
 /**
  * Intro tipográfica de apertura: las tres palabras de la sigla aparecen, cada
@@ -26,7 +27,9 @@ const T = {
   revealDur: 1.2,
   revealStagger: 0.16,
   hold: 0.65, // pausa de lectura antes de cerrar
-  restFadeDur: 0.65,
+  restCharDur: 0.5, // cada letra del resto al fundirse
+  restCharStagger: 0.022, // entre letras (de afuera hacia adentro)
+  restWordOffset: 0.07, // desfase entre palabras
   restWidthDur: 1.05,
   restStagger: 0.08,
   flipOffset: 0.6, // arranque del Flip respecto a "cierre"
@@ -136,8 +139,10 @@ export function IntroSequence() {
         if (!overlayRef.current) return;
         lenisRef.current?.stop();
 
-        // Fijar el ancho de cada "resto" para poder colapsarlo suave (con la fuente ya cargada).
+        // Fijar el ancho de cada "resto" (fuente ya cargada) para colapsarlo suave...
         rests.forEach((r) => gsap.set(r, { width: r.offsetWidth }));
+        // ...y partirlo en letras para que se "fundan" en la inicial de a poco.
+        const restSplits = rests.map((r) => new SplitText(r, { type: "chars" }));
 
         tl = gsap.timeline({
           defaults: { ease: "power2.out" },
@@ -152,17 +157,25 @@ export function IntroSequence() {
         );
         // 2 · Pausa de lectura.
         tl.addLabel("cierre", `>+${T.hold}`);
-        // 3 · Compresión: el resto se desvanece y colapsa su ancho hacia la inicial.
-        tl.to(
-          rests,
-          {
-            opacity: 0,
-            duration: T.restFadeDur,
-            stagger: T.restStagger,
-            ease: "power2.in",
-          },
-          "cierre",
-        );
+        // 3 · Compresión: cada palabra se FUNDE en su inicial — las letras del
+        //     resto se retraen de afuera hacia adentro (fade + encogen + se corren
+        //     hacia la inicial), mientras el ancho colapsa suave.
+        const timeline = tl;
+        restSplits.forEach((split, i) => {
+          timeline.to(
+            split.chars,
+            {
+              opacity: 0,
+              scale: 0.55,
+              x: -5,
+              transformOrigin: "left center",
+              duration: T.restCharDur,
+              ease: "power2.in",
+              stagger: { each: T.restCharStagger, from: "end" },
+            },
+            `cierre+=${i * T.restWordOffset}`,
+          );
+        });
         tl.to(
           rests,
           {
@@ -171,7 +184,7 @@ export function IntroSequence() {
             stagger: T.restStagger,
             ease: "power2.inOut",
           },
-          "cierre",
+          "cierre+=0.12",
         );
         // 4 · Convergencia con Flip: las iniciales glidean a "aure".
         tl.add(() => {
