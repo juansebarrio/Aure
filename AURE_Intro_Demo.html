@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURE · Animación de entrada (demo)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+  :root{
+    --azul:#1E2A47;
+    --azul-hi:#26345A;
+    --dorado:#C6A86B;
+    --blanco:#FFFFFF;
+    --gris:#AFC0D9;
+    --font: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; }
+  body{
+    font-family:var(--font);
+    background:var(--azul);
+    color:var(--blanco);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- NAVBAR (detrás del intro) ---------- */
+  .nav{
+    position:fixed; inset:0 0 auto 0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 40px;
+  }
+  .nav .logo{
+    font-weight:500; font-size:21px; letter-spacing:-0.025em; line-height:1; color:var(--blanco);
+  }
+  .nav .logo .dot{ color:var(--dorado); }
+  .nav .links{ display:flex; gap:30px; }
+  .nav .links span{
+    font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gris);
+  }
+  @media (max-width:640px){ .nav{ padding:20px; } .nav .links{ display:none; } }
+
+  /* ---------- HERO (lo que se revela) ---------- */
+  .hero{
+    position:relative; min-height:100vh; z-index:10;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 40px;
+    background:
+      radial-gradient(120% 80% at 75% 10%, var(--azul-hi) 0%, rgba(38,52,90,0) 55%),
+      var(--azul);
+  }
+  @media (max-width:640px){ .hero{ padding:0 20px; } }
+  .hero .eyebrow{
+    font-size:12px; letter-spacing:0.28em; text-transform:uppercase; color:var(--dorado);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-weight:500; letter-spacing:-0.02em; line-height:1.04;
+    font-size:clamp(34px, 6.2vw, 76px); max-width:14ch;
+  }
+  .hero p{
+    font-weight:300; color:var(--gris); margin-top:24px;
+    font-size:clamp(16px,2vw,20px); max-width:46ch; line-height:1.6;
+  }
+  .hero .cta{
+    margin-top:40px; align-self:flex-start;
+    background:var(--dorado); color:var(--azul);
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:500;
+    padding:14px 30px; border-radius:4px; border:0; cursor:pointer;
+  }
+  .hero .foot{
+    position:absolute; left:40px; right:40px; bottom:28px;
+    display:flex; justify-content:space-between;
+    font-size:11px; letter-spacing:0.04em; color:rgba(175,192,217,.5);
+  }
+  @media (max-width:640px){ .hero .foot{ left:20px; right:20px; } }
+
+  /* ---------- INTRO OVERLAY ---------- */
+  #intro{
+    position:fixed; inset:0; z-index:50;
+    background:var(--azul);
+    display:flex; align-items:center; justify-content:center;
+    will-change:transform;
+  }
+  .seq{
+    display:flex; flex-direction:column; align-items:center;
+    gap:0.06em;
+    font-weight:500; letter-spacing:-0.01em; line-height:1.04;
+    font-size:clamp(30px, 6.4vw, 66px);
+  }
+  .line{ overflow:hidden; display:block; }
+  .inner{ display:inline-block; will-change:transform; }
+  .k{ color:var(--blanco); display:inline-block; vertical-align:top; }
+  .r{ color:var(--blanco); display:inline-block; vertical-align:top; white-space:nowrap; overflow:hidden; }
+  .dot{ display:none; color:var(--dorado); }
+
+  /* Estado colapsado: solo sobreviven las iniciales en una línea = aure. */
+  #intro.collapsed .r{ display:none; }
+  #intro.collapsed .line{ display:contents; }
+  #intro.collapsed .inner{ display:contents; }
+  #intro.collapsed .seq{
+    flex-direction:row; gap:0; align-items:baseline; letter-spacing:-0.03em;
+  }
+  #intro.collapsed .k{
+    font-size:clamp(46px, 11vw, 108px);
+  }
+  #intro.collapsed .dot{
+    display:inline;
+    font-size:clamp(46px, 11vw, 108px);
+  }
+
+  /* ---------- Replay ---------- */
+  .replay{
+    position:fixed; right:24px; bottom:24px; z-index:60;
+    background:transparent; color:var(--gris);
+    border:1px solid rgba(198,168,107,.55); border-radius:4px;
+    font-family:var(--font); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:10px 18px; cursor:pointer; transition:color .2s, border-color .2s;
+  }
+  .replay:hover{ color:var(--dorado); border-color:var(--dorado); }
+</style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="logo">aure<span class="dot" style="display:inline">.</span></div>
+    <div class="links"><span>Proyectos</span><span>Nosotros</span><span>Contacto</span></div>
+  </nav>
+
+  <!-- HERO -->
+  <main class="hero">
+    <div class="eyebrow reveal">Real estate · Buenos Aires</div>
+    <h1 class="reveal">Invertí en pozo con respaldo.</h1>
+    <p class="reveal">Comercializamos desarrollos seleccionados y te acompañamos en cada paso. Esto es un placeholder para ver la entrada al sitio.</p>
+    <button class="cta reveal">Agendá una reunión</button>
+    <div class="foot reveal"><span>aure.</span><span>Arch &amp; Urban Real Estate</span></div>
+  </main>
+
+  <!-- INTRO -->
+  <div id="intro" aria-hidden="true">
+    <div class="seq">
+      <div class="line"><span class="inner"><span class="k">a</span><span class="r">rquitectura</span></span></div>
+      <div class="line"><span class="inner"><span class="k">u</span><span class="r">rbanismo</span></span></div>
+      <div class="line"><span class="inner"><span class="k">r</span><span class="r">eal&nbsp;</span><span class="k">e</span><span class="r">state</span></span></div>
+      <span class="dot intro-dot" aria-hidden="true">.</span>
+    </div>
+  </div>
+
+  <button class="replay" onclick="play()">Reproducir de nuevo</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script>
+    gsap.registerPlugin(Flip);
+
+    const intro   = document.querySelector('#intro');
+    const keys     = gsap.utils.toArray('#intro .k');
+    const rests    = gsap.utils.toArray('#intro .r');
+    const inners   = gsap.utils.toArray('#intro .inner');
+    const introDot = document.querySelector('.intro-dot');
+    const navLogo  = document.querySelector('.nav .logo');
+    const heroEls  = gsap.utils.toArray('.hero .reveal');
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let tl;
+
+    function showEndState(){
+      gsap.set(intro, { autoAlpha:0, yPercent:-100 });
+      gsap.set(navLogo, { autoAlpha:1 });
+      gsap.set(heroEls, { autoAlpha:1, y:0 });
+    }
+
+    function resetStates(){
+      if (tl) tl.kill();
+      intro.classList.remove('collapsed');
+      gsap.set(intro,    { autoAlpha:1, yPercent:0 });
+      gsap.set(keys,     { clearProps:'transform,fontSize,opacity,visibility' });
+      gsap.set(rests,    { clearProps:'all', opacity:1 });
+      gsap.set(inners,   { clearProps:'all', yPercent:118 });
+      gsap.set(introDot, { autoAlpha:0, scale:0.4, transformOrigin:'center bottom' });
+      gsap.set(navLogo,  { autoAlpha:0 });
+      gsap.set(heroEls,  { autoAlpha:0, y:26 });
+    }
+
+    function play(){
+      if (reduce){ showEndState(); return; }
+      resetStates();
+
+      // medir el ancho de cada "resto" para poder comprimirlo (que no desaparezca de golpe)
+      rests.forEach(r => gsap.set(r, { width: r.offsetWidth }));
+
+      tl = gsap.timeline({ defaults:{ ease:'power2.out' } });
+
+      // 1 · Las tres palabras aparecen (reveal con máscara), suave y escalonado
+      tl.to(inners, { yPercent:0, duration:1.0, stagger:0.15 }, 0.25);
+
+      // pausa para que se lean
+      tl.addLabel('cierre', '>+0.5');
+
+      // 2 · Cada palabra se comprime hacia su inicial: el resto se desvanece (opacidad)
+      //     y, a la vez, colapsa su ancho de forma suave, retrayéndose hacia la inicial
+      tl.to(rests, { opacity:0, duration:0.55, stagger:0.07, ease:'power2.in' }, 'cierre');
+      tl.to(rests, { width:0,   duration:0.9,  stagger:0.07, ease:'power2.inOut' }, 'cierre');
+
+      // 3 · Las iniciales se juntan en "aure" (Flip, glide suave), encabalgado con la compresión
+      tl.add(() => {
+        const state = Flip.getState(keys, { props:'fontSize' });
+        intro.classList.add('collapsed');
+        Flip.from(state, { duration:1.15, ease:'power2.inOut', absolute:true });
+      }, 'cierre+=0.55');
+      tl.to({}, { duration:1.2 }); // deja correr el Flip dentro del timeline
+
+      // 4 · Aparece el punto dorado, sin rebote → ya es el logotipo aure.
+      tl.to(introDot, { autoAlpha:1, scale:1, duration:0.6, ease:'power2.out' }, '>-0.3');
+
+      // respiro sobre el logo
+      tl.to({}, { duration:0.55 });
+
+      // 5 · Se levanta el intro y aparece el sitio (suave); el logo "queda" en el navbar
+      tl.addLabel('reveal');
+      tl.to(intro,   { yPercent:-100, duration:1.2,  ease:'power3.inOut' }, 'reveal');
+      tl.to(navLogo, { autoAlpha:1, duration:0.7 }, 'reveal+=0.4');
+      tl.to(heroEls, { autoAlpha:1, y:0, duration:1.0, stagger:0.13, ease:'power2.out' }, 'reveal+=0.45');
+
+      return tl;
+    }
+
+    function start(){
+      if (reduce){ showEndState(); return; }
+      play();
+    }
+
+    window.addEventListener('load', () => {
+      if (document.fonts && document.fonts.ready){
+        document.fonts.ready.then(start).catch(start);
+      } else {
+        start();
+      }
+    });
+  </script>
+</body>
+</html>
