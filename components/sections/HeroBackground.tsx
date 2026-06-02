@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, type PointerEvent, type ReactNode } from "react";
+import { HeroGrid } from "@/components/sections/HeroGrid";
 
 /**
  * Superficie del hero: degradado azul en movimiento (definido en globals.css
@@ -33,6 +34,7 @@ export function HeroBackground({ children }: { children: ReactNode }) {
       onPointerMove={handlePointerMove}
       className="hero-surface text-white"
     >
+      <HeroGrid />
       <div className="hero-glow" aria-hidden="true" />
       {children}
     </section>

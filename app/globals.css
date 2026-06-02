@@ -101,6 +101,23 @@
       transparent 60%
     );
   }
+
+  /* Cuadrícula blanca de baja opacidad (las líneas). Las celdas (HeroGrid) se
+     llenan y agrandan sutilmente cerca del cursor. Mantener 64px en sync con
+     CELL de HeroGrid.tsx. */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
 }
 
 @keyframes brand-gradient-pan {
