@@ -134,3 +134,86 @@
     animation: none;
   }
 }
+
+/* ============================================================
+   IntroSequence — animación de entrada (components/motion/IntroSequence.tsx).
+   Overlay azul que forma el logotipo y se desvanece. Tokens de marca.
+   ============================================================ */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200; /* por encima de navbar (50), skip-link (100), FAB (40) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-azul);
+  cursor: pointer; /* skip al click */
+  will-change: opacity;
+}
+
+.intro-seq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.06em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+  font-size: clamp(30px, 6.4vw, 66px);
+}
+
+.intro-line {
+  display: block;
+  overflow: hidden; /* máscara para el reveal */
+}
+.intro-inner {
+  display: inline-block;
+  will-change: transform;
+}
+/* vertical-align:top es clave: alinea inicial y resto por arriba (si quedan en
+   baseline, el inline-block con overflow recalcula su línea de base). */
+.intro-k {
+  display: inline-block;
+  vertical-align: top;
+  color: var(--color-blanco);
+}
+.intro-r {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--color-blanco);
+}
+.intro-dot {
+  display: none;
+  color: var(--color-dorado);
+}
+
+/* Colapsado: solo sobreviven las iniciales, en una fila = "aure". El truco de
+   display:contents hace que las iniciales sean hijas directas del flex (orden a-u-r-e). */
+.intro-overlay.collapsed .intro-r {
+  display: none;
+}
+.intro-overlay.collapsed .intro-line,
+.intro-overlay.collapsed .intro-inner {
+  display: contents;
+}
+.intro-overlay.collapsed .intro-seq {
+  flex-direction: row;
+  gap: 0;
+  align-items: baseline;
+  letter-spacing: -0.03em;
+}
+.intro-overlay.collapsed .intro-k,
+.intro-overlay.collapsed .intro-dot {
+  font-size: clamp(46px, 11vw, 108px);
+}
+.intro-overlay.collapsed .intro-dot {
+  display: inline;
+}
+
+/* Visitas siguientes / reduced-motion: el script inline del layout pone
+   .intro-seen en <html> ANTES del paint y el overlay no se muestra (sin flash). */
+.intro-seen .intro-overlay {
+  display: none;
+}
