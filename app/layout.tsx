@@ -1,0 +1,56 @@
+import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
+import { IBM_Plex_Sans } from "next/font/google";
+import "./globals.css";
+import { siteConfig } from "@/lib/site";
+import { Navbar } from "@/components/sections/Navbar";
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  display: "swap",
+  variable: "--font-ibm-plex-sans",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} · ${siteConfig.tagline}`,
+    template: `%s · ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    // TODO(SEO): imagen OG real (1200x630) cuando haya assets del cliente.
+  },
+  // TODO(SEO): twitter card, robots y verification en la pasada de SEO.
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1E2A47",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="es" className={ibmPlexSans.variable}>
+      <body className="font-sans antialiased">
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-gold focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-blue"
+        >
+          Saltar al contenido
+        </a>
+        <Navbar />
+        {children}
+      </body>
+    </html>
+  );
+}
