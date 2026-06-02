@@ -39,8 +39,9 @@ app/
   politicas/page.tsx
   api/contacto/route.ts   # stub del formulario
 components/
-  ui/                 # Button, Container, Section, Eyebrow, Input, Accordion
-  sections/           # Navbar, Hero, Badges, Proyectos, QuienesSomos, Equipo, SocialProof, Faqs, ContactForm, Footer, InstagramFeed
+  ui/                 # Button, Container, Section, Eyebrow, Input, Accordion, ImagePlaceholder
+  motion/             # SmoothScrollProvider, Reveal, TextReveal, Parallax, gsap.ts
+  sections/           # Navbar, Hero, Badges, Proyectos, QuienesSomos, Equipo, SocialProof, Faqs, ContactForm, Footer, InstagramFeed, VideoHero
 lib/
 public/               # assets (logo, favicons, fotos) — placeholders por ahora
 AURE_Brand_Spec.md
@@ -60,6 +61,17 @@ CLAUDE.md
 - **Accesibilidad:** HTML semántico, labels en inputs, foco visible, buen contraste. El dorado no se usa para texto de cuerpo (contraste bajo).
 - **Sin sombras ni efectos.** Profundidad por espacio. Separadores con borde fino (`#E5E9F0` en claro; `rgba(255,255,255,.1)` sobre azul).
 - **Radios chicos** (4–8px). Mobile-first; revisar 360 / 768 / 1280px.
+
+---
+
+## Motion
+
+Capa de animación con scroll suave, **sobria y de marca** (easings suaves, duraciones cortas, cero fuegos artificiales).
+
+- **Stack:** `gsap` + `@gsap/react` (`useGSAP`) + `ScrollTrigger`, y `lenis` (`lenis/react`). Sin `framer-motion`.
+- **Dónde vive:** `components/motion/` — `SmoothScrollProvider` (Lenis + sync con ScrollTrigger, montado en `layout`), `<Reveal>`, `<TextReveal>` (SplitText con fallback), `<Parallax>`, y `gsap.ts` (registra plugins una sola vez).
+- **`<VideoHero>`** (`components/sections/`): hero full-screen con video (muted/loop/playsInline/poster, lazy) + CTA siempre visible. Listo, hoy **NO montado** (la home usa el hero con grilla). El video real va en `public/video/`.
+- **`prefers-reduced-motion` (regla dura):** si está activo, NO se monta Lenis y las animaciones se saltean (`gsap.matchMedia`). Todos los componentes de motion son `"use client"` y no rompen SSR.
 
 ---
 
