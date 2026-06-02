@@ -1,6 +1,6 @@
 # AURE — Brand Spec
 
-**Arch & Urban Real Estate** · Real estate premium · Buenos Aires
+**Comercializadora inmobiliaria** · Buenos Aires
 
 > **Procedencia de este documento.** El repositorio se inicializó sin un
 > `AURE_Brand_Spec.md`. Este archivo se redactó a partir del **resumen de marca
@@ -16,9 +16,16 @@ Su contraparte en código son los tokens de `app/globals.css` (bloque `@theme`).
 
 ## 1. Esencia
 
-Sobria, plana, premium. Mucho aire. Sin sombras ni efectos. El sitio existe para
-la **captación**: que un inversor calificado agende una reunión. Todo conduce al
-formulario.
+Sobria, plana, **moderna y confiable**. Mucho aire. Sin sombras ni efectos.
+
+**Quién es AURE.** Una **comercializadora** inmobiliaria en Buenos Aires: vende
+desarrollos de **terceros** (sobre todo de pozo) a un público de **clase media**.
+**No es desarrolladora** ni ofrece **"arquitectura como servicio"**: el copy nunca
+debe dar a entender lo contrario.
+
+**Para qué existe el sitio.** Doble función: dar **respaldo/credibilidad** a quien
+no conoce a AURE y, sobre esa confianza, **captar contactos** (consulta, WhatsApp,
+reunión o visita). Todo conduce al contacto.
 
 Principios:
 

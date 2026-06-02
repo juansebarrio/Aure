@@ -1,7 +1,12 @@
 # CLAUDE.md
 
-Guía para trabajar en el sitio institucional de **AURE** (Arch & Urban Real
-Estate). Leé esto antes de tocar el código.
+Guía para trabajar en el sitio de **AURE**, una **comercializadora inmobiliaria**
+en Buenos Aires. Leé esto antes de tocar el código.
+
+**Posicionamiento (honestidad):** AURE **comercializa** desarrollos de **terceros**
+(sobre todo de pozo) para **clase media**. **No es desarrolladora** ni ofrece
+"arquitectura como servicio": el copy nunca debe sugerir lo contrario. El sitio da
+respaldo/credibilidad y capta contactos (consulta, WhatsApp, reunión, visita).
 
 ## Fuente de verdad de marca
 
@@ -46,7 +51,9 @@ components/
                       #             Input/Textarea, Accordion, ImagePlaceholder
   motion/             # capa de motion: SmoothScrollProvider, Reveal, TextReveal,
                       #             Parallax, gsap.ts (registro de plugins)
-  sections/           # bloques de la home: Navbar, Hero, VideoHero, ...
+  sections/           # bloques home: Navbar, Hero, Badges, Proyectos,
+                      #   QuienesSomos, Equipo, SocialProof, Faqs, ContactForm,
+                      #   InstagramFeed, Footer · VideoHero (motion, sin montar)
 lib/
   cn.ts               # helper de clases
   site.ts             # config del sitio, navegación, CTA (textos placeholder)
@@ -64,8 +71,9 @@ public/               # assets estáticos
   buen contraste (recordá: dorado no es texto de cuerpo).
 - **Performance:** `next/image` con ratios correctos (placeholders neutros por
   ahora), fuentes con `next/font`, sin librerías pesadas.
-- **Contenido:** español, tono sobrio/premium, **todo placeholder marcado como
-  `TODO`**. No asumir voseo ni tono informal (ver _Decisiones abiertas_ del spec).
+- **Contenido:** español rioplatense, tono **cercano, claro y honesto** (audiencia
+  clase media en Buenos Aires); voseo natural en CTAs está OK. **Todo placeholder
+  marcado como `TODO`**. Confirmar el registro definitivo con el cliente.
 - Commits chicos y descriptivos. **No deploy**: queda en local.
 
 ## Integraciones (STUB por ahora)
