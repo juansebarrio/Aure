@@ -13,12 +13,12 @@ import { cn } from "@/lib/cn";
 
 /**
  * Fondo del hero, HÍBRIDO (ver wireframe):
+ *  - Con `videoSrc`: video full-bleed (muted/loop/autoPlay/playsInline) sobre su
+ *    poster + overlay sobrio. Fuerza play() porque el autoplay no siempre arranca
+ *    cuando el <video> se monta dinámicamente.
  *  - Sin video: degradado azul en movimiento (.hero-surface) + cuadrícula
- *    (HeroGrid) + brillo que sigue al cursor. Es el fondo por defecto hoy.
- *  - Con `videoSrc`: video full-bleed (lazy, muted, loop) sobre poster + overlay
- *    sobrio. La grilla queda de respaldo cuando no hay video.
+ *    (HeroGrid) + brillo que sigue al cursor.
  * Respeta prefers-reduced-motion (no reproduce video; muestra el poster).
- * TODO(assets): pasar videoSrc/posterSrc cuando esté el video real del hero.
  */
 export function HeroBackground({
   children,
@@ -33,8 +33,8 @@ export function HeroBackground({
 }) {
   const ref = useRef<HTMLElement>(null);
   const frame = useRef<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(true);
-  const [canPlay, setCanPlay] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -43,6 +43,14 @@ export function HeroBackground({
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
   }, []);
+
+  const hasVideo = Boolean(videoSrc);
+  const showVideo = hasVideo && !reduced;
+
+  // Asegura el autoplay (muted) aunque el <video> se monte dinámicamente.
+  useEffect(() => {
+    if (showVideo) videoRef.current?.play().catch(() => {});
+  }, [showVideo]);
 
   function handlePointerMove(event: PointerEvent<HTMLElement>) {
     const el = ref.current;
@@ -58,9 +66,6 @@ export function HeroBackground({
     });
   }
 
-  const hasVideo = Boolean(videoSrc);
-  const showVideo = hasVideo && !reduced;
-
   return (
     <section
       ref={ref}
@@ -69,7 +74,20 @@ export function HeroBackground({
     >
       {hasVideo ? (
         <>
-          {posterSrc ? (
+          {showVideo ? (
+            <video
+              ref={videoRef}
+              muted
+              loop
+              autoPlay
+              playsInline
+              preload="auto"
+              poster={posterSrc}
+              className="absolute inset-0 -z-10 h-full w-full object-cover"
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          ) : posterSrc ? (
             <Image
               src={posterSrc}
               alt=""
@@ -79,25 +97,9 @@ export function HeroBackground({
               className="-z-10 object-cover"
             />
           ) : null}
-          {showVideo ? (
-            <video
-              muted
-              loop
-              autoPlay
-              playsInline
-              preload="none"
-              poster={posterSrc}
-              onCanPlay={() => setCanPlay(true)}
-              className={cn(
-                "absolute inset-0 -z-10 h-full w-full object-cover transition-opacity duration-700",
-                canPlay ? "opacity-100" : "opacity-0",
-              )}
-            >
-              <source src={videoSrc} type="video/mp4" />
-            </video>
-          ) : null}
-          {/* Overlay sobrio (azul con alpha) para legibilidad sobre el video. */}
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-azul/90 via-azul/70 to-azul/55" />
+          {/* Overlay sobrio: degradado a la derecha — texto legible a la izquierda,
+              el video se ve a la derecha. */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-azul/85 via-azul/55 to-azul/30" />
         </>
       ) : (
         <HeroGrid />
