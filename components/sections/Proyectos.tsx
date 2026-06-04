@@ -38,7 +38,7 @@ export function Proyectos() {
           <div className="max-w-2xl">
             <Eyebrow>Proyectos</Eyebrow>
             <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-              Desarrollos que comercializamos, no que desarrollamos
+              Desarrollos seleccionados
             </h2>
           </div>
           {/* TODO(ruta): link a /proyectos (listado completo). */}
