@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Nogoyá 2478">
+  <!-- TODO(assets): poster placeholder on-brand. El video arranca al entrar en viewport; esto evita el flash inicial. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E2A47" />
+      <stop offset="1" stop-color="#11182C" />
+    </linearGradient>
+    <radialGradient id="v" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0" stop-color="#1E2A47" stop-opacity="0" />
+      <stop offset="1" stop-color="#0D1322" stop-opacity="0.6" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)" />
+  <rect width="1600" height="1000" fill="url(#v)" />
+</svg>
