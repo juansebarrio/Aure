@@ -7,9 +7,9 @@ import { SocialProof } from "@/components/sections/SocialProof";
 import { Faqs } from "@/components/sections/Faqs";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { InstagramFeed } from "@/components/sections/InstagramFeed";
-// Hero alternativo con video (capa de motion). Listo pero NO montado: para
-// usarlo, reemplazar <Hero /> por <VideoHero /> (ver components/sections/VideoHero.tsx).
-// import { VideoHero } from "@/components/sections/VideoHero";
+// El Hero es híbrido (grilla animada de fondo + slot de video full-bleed). Para
+// sumar el video real, pasá videoSrc/posterSrc a <HeroBackground> en Hero.tsx.
+// (VideoHero queda como variante full-screen alternativa, sin montar.)
 
 export default function HomePage() {
   return (

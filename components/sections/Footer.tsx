@@ -16,7 +16,7 @@ export function Footer() {
     <footer className="border-t border-dorado bg-azul text-white">
       <Container className="py-16">
         <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <p className="text-xl font-medium tracking-tight">
               aure<span className="text-dorado">.</span>
             </p>
@@ -49,7 +49,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <h2 className="text-xs uppercase tracking-eyebrow text-dorado">
               Contacto
             </h2>
@@ -65,6 +65,14 @@ export function Footer() {
               </li>
               <li>{siteConfig.contact.phoneDisplay}</li>
               <li>{siteConfig.contact.addressLine}</li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-2">
+            <h2 className="text-xs uppercase tracking-eyebrow text-dorado">
+              Redes
+            </h2>
+            <ul className="mt-4 space-y-3 text-sm text-gris">
               <li>
                 <a
                   href={siteConfig.social.instagram}

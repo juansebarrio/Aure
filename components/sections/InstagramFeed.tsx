@@ -20,9 +20,9 @@ export function InstagramFeed() {
     <Section background="white">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
-          <Eyebrow>Instagram</Eyebrow>
+          <Eyebrow>Seguinos</Eyebrow>
           <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-            Nuestros desarrollos, en imágenes
+            @aure en Instagram
           </h2>
         </div>
         <a
@@ -31,7 +31,7 @@ export function InstagramFeed() {
           rel="noopener noreferrer"
           className="text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
         >
-          Ver perfil
+          Ver perfil →
         </a>
       </div>
 

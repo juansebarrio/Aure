@@ -1,6 +1,7 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
 
@@ -52,6 +53,9 @@ export function QuienesSomos() {
                 </div>
               ))}
             </dl>
+            <Button href="/#equipo" variant="secondary" className="mt-8">
+              Conocé al equipo
+            </Button>
           </Reveal>
         </div>
 

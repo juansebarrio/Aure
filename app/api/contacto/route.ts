@@ -31,6 +31,7 @@ export async function POST(request: Request) {
     nombre: body.nombre,
     email: body.email,
     telefono: body.telefono ?? "",
+    proyecto: body.proyecto ?? "",
     mensaje: body.mensaje,
     at: new Date().toISOString(),
   });
