@@ -10,6 +10,7 @@ export type ContactValues = {
   nombre: string;
   email: string;
   telefono: string;
+  proyecto: string;
   mensaje: string;
 };
 
