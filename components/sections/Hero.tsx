@@ -50,7 +50,7 @@ export function Hero() {
       />
 
       {/* Contenido — todo al fondo, chip pegado al titular */}
-      <div className="relative z-10 flex min-h-svh flex-col justify-end px-6 pb-28 pt-28 lg:px-16">
+      <div className="relative z-10 flex min-h-svh flex-col justify-end px-6 pb-28 lg:px-16">
         <div className="flex flex-col gap-4">
 
           {/* Eyebrow glass pill */}

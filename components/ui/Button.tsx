@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 type ButtonVariant = "primary" | "secondary" | "glass";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium uppercase tracking-[0.1em] transition-all duration-200 cursor-pointer disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-all duration-200 cursor-pointer disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-dorado text-azul hover:brightness-105 active:brightness-95",
