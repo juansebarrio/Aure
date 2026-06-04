@@ -40,9 +40,13 @@ export function QuienesSomos() {
               podamos cumplir.
             </p>
 
-            <dl className="mt-10 grid gap-6 border-t border-white/15 pt-8 sm:grid-cols-3">
+            {/* Glass cards para los valores */}
+            <dl className="mt-10 grid gap-3 border-t border-white/15 pt-8 sm:grid-cols-3">
               {valores.map((valor) => (
-                <div key={valor.titulo}>
+                <div
+                  key={valor.titulo}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                >
                   <div className="h-px w-8 bg-dorado" aria-hidden="true" />
                   <dt className="mt-4 text-sm font-medium text-white">
                     {valor.titulo}
@@ -53,7 +57,7 @@ export function QuienesSomos() {
                 </div>
               ))}
             </dl>
-            <Button href="/#equipo" variant="secondary" className="mt-8">
+            <Button href="/#equipo" variant="glass" className="mt-8">
               Conocé al equipo
             </Button>
           </Reveal>

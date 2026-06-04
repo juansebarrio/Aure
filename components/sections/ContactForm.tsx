@@ -109,12 +109,12 @@ export function ContactForm() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="mt-12 grid gap-6 lg:grid-cols-12 lg:gap-8">
         {/* Vía 1 — Formulario */}
         <form
           noValidate
           onSubmit={onSubmit}
-          className="rounded-brand border border-borde bg-white p-6 sm:p-8 lg:col-span-7"
+          className="rounded-2xl border border-borde bg-white p-6 sm:p-8 lg:col-span-7"
           aria-describedby="form-status"
         >
           <div className="grid gap-5 sm:grid-cols-2">
@@ -198,8 +198,8 @@ export function ContactForm() {
         </form>
 
         {/* Vías 2 y 3 — WhatsApp directo y reunión/visita */}
-        <div className="flex flex-col gap-6 lg:col-span-5">
-          <div className="rounded-brand border border-borde bg-white p-6">
+        <div className="flex flex-col gap-4 lg:col-span-5">
+          <div className="rounded-2xl border border-borde bg-white p-6">
             <h3 className="text-lg font-medium tracking-display">Por WhatsApp</h3>
             <p className="mt-2 text-sm leading-relaxed text-gris-texto">
               Respuesta directa, de lunes a sábado.
@@ -208,14 +208,14 @@ export function ContactForm() {
               href={waInfo}
               size="sm"
               variant="secondary"
-              className="mt-4"
+              className="mt-5"
               target="_blank"
               rel="noopener noreferrer"
             >
               Escribinos por WhatsApp
             </Button>
           </div>
-          <div className="rounded-brand border border-borde bg-white p-6">
+          <div className="rounded-2xl border border-borde bg-white p-6">
             <h3 className="text-lg font-medium tracking-display">
               Reunión o visita
             </h3>
@@ -227,7 +227,7 @@ export function ContactForm() {
               href={waVisita}
               size="sm"
               variant="secondary"
-              className="mt-4"
+              className="mt-5"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -1,7 +1,7 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
-/** TODO(contenido): reseñas reales. Cards sobrias (borde fino, sin sombras). */
+/** TODO(contenido): reseñas reales. */
 const testimonials = [
   {
     quote:
@@ -33,21 +33,18 @@ export function SocialProof() {
         </h2>
       </div>
 
-      {/* TODO(contenido): testimonios reales (+ eventual fila de logos/prensa). */}
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      <div className="mt-12 grid gap-5 lg:grid-cols-3">
         {testimonials.map((item, index) => (
           <figure
             key={index}
-            className="flex flex-col rounded-brand border border-borde bg-white p-8"
+            className="flex flex-col rounded-2xl border border-borde bg-white p-8"
           >
             <div className="h-px w-8 bg-dorado" aria-hidden="true" />
             <blockquote className="mt-6 grow text-base leading-relaxed text-azul">
               «{item.quote}»
             </blockquote>
-            <figcaption className="mt-6 text-sm">
-              <span className="block font-medium text-azul">
-                {item.name}
-              </span>
+            <figcaption className="mt-6 border-t border-borde pt-5 text-sm">
+              <span className="block font-medium text-azul">{item.name}</span>
               <span className="block text-gris-texto">{item.role}</span>
             </figcaption>
           </figure>

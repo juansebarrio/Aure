@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { navLinks, primaryCta, siteConfig } from "@/lib/site";
+import { cn } from "@/lib/cn";
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -49,10 +50,25 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [atTop, setAtTop] = useState(true);
   const close = () => setOpen(false);
 
+  useEffect(() => {
+    const onScroll = () => setAtTop(window.scrollY < 72);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-azul text-white">
+    <header
+      className={cn(
+        "sticky top-0 z-50 text-white transition-all duration-300",
+        atTop
+          ? "border-b border-white/10 bg-azul"
+          : "border-b border-white/10 bg-azul"
+      )}
+    >
       <Container className="flex h-16 items-center justify-between gap-4">
         <Wordmark onClick={close} />
 
@@ -80,7 +96,7 @@ export function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => setOpen((v) => !v)}
         >
           <MenuIcon open={open} />
         </button>
@@ -102,11 +118,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Button
-            href={primaryCta.href}
-            onClick={close}
-            className="mt-4 w-full"
-          >
+          <Button href={primaryCta.href} onClick={close} className="mt-4 w-full">
             {primaryCta.label}
           </Button>
         </Container>
