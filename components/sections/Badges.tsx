@@ -4,7 +4,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 /**
  * Respaldo (wireframe 03): franja honesta de datos — sin métricas infladas ni
- * trayectoria inventada — + logos de los desarrolladores con los que trabaja AURE.
+ * trayectoria inventada.
  * TODO(contenido): datos verificables reales.
  */
 const datos = [
@@ -52,24 +52,6 @@ export function Badges() {
             </li>
           ))}
         </ul>
-
-        {/* TODO(assets): logos reales de los desarrolladores con los que trabaja AURE. */}
-        <div className="mt-14 border-t border-borde pt-8">
-          <p className="text-[11px] uppercase tracking-eyebrow text-gris-texto">
-            Desarrolladores con los que trabajamos
-          </p>
-          <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <li
-                key={i}
-                aria-hidden="true"
-                className="flex h-12 items-center justify-center rounded-brand border border-borde text-[10px] uppercase tracking-eyebrow text-gris-texto"
-              >
-                Logo
-              </li>
-            ))}
-          </ul>
-        </div>
       </Reveal>
     </Section>
   );
