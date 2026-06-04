@@ -8,7 +8,7 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-all duration-200 cursor-pointer disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-dorado text-azul hover:brightness-105 active:brightness-95",
+  primary: "bg-dorado text-blanco hover:brightness-105 active:brightness-95",
   secondary: "border border-current bg-transparent text-current hover:bg-white/10",
   glass:
     "border border-white/15 bg-white/10 text-blanco backdrop-blur-sm hover:bg-white/20 active:bg-white/25",

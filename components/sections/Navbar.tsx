@@ -86,9 +86,12 @@ export function Navbar() {
 
           {/* CTA — desktop */}
           <div className="hidden md:block">
-            <Button href={primaryCta.href} size="sm">
+            <Link
+              href={primaryCta.href}
+              className="text-[11px] font-medium uppercase tracking-[0.1em] text-white underline underline-offset-4 transition-colors hover:text-dorado"
+            >
               {primaryCta.label}
-            </Button>
+            </Link>
           </div>
 
           {/* Hamburger — mobile */}
