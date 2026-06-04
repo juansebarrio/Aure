@@ -11,7 +11,11 @@ import { HeroBackground } from "@/components/sections/HeroBackground";
  */
 export function Hero() {
   return (
-    <HeroBackground className="flex min-h-svh items-center">
+    <HeroBackground
+      className="flex min-h-svh items-center"
+      videoSrc="/video/hero.mp4"
+      posterSrc="/video/poster.svg"
+    >
       <Container className="relative z-10 py-28">
         <div className="max-w-3xl">
           <Eyebrow>Comercialización inmobiliaria · Buenos Aires</Eyebrow>
