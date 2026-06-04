@@ -84,13 +84,31 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* CTA — desktop */}
-          <div className="hidden md:block">
+          {/* CTA — desktop (ver imagen): texto en blanco + flecha dorada,
+              precedido por un divisor fino. */}
+          <div className="hidden items-center gap-5 md:flex">
+            <span aria-hidden="true" className="h-5 w-px bg-white/20" />
             <Link
               href={primaryCta.href}
-              className="text-[11px] font-medium uppercase tracking-[0.1em] text-white underline underline-offset-4 transition-colors hover:text-dorado"
+              className="group inline-flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-80"
             >
               {primaryCta.label}
+              <svg
+                viewBox="0 0 20 12"
+                width="18"
+                height="11"
+                fill="none"
+                aria-hidden="true"
+                className="text-dorado transition-transform group-hover:translate-x-0.5"
+              >
+                <path
+                  d="M1 6h17M13 1l5 5-5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </Link>
           </div>
 
