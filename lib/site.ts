@@ -39,13 +39,12 @@ export const siteConfig = {
 export const navLinks = [
   { label: "Proyectos", href: "/#proyectos" },
   { label: "Nosotros", href: "/#nosotros" },
-  { label: "Preguntas", href: "/#faqs" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Contacto", href: "/#contacto" },
 ] as const;
 
-/** CTA primario reutilizable (lleva al formulario de contacto). */
+/** CTA primario reutilizable (lleva al formulario de contacto, siempre visible). */
 export const primaryCta = {
-  label: "Quiero más información",
+  label: "Quiero info",
   href: "/#contacto",
 } as const;
 
