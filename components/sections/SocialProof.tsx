@@ -29,7 +29,7 @@ export function SocialProof() {
       <div className="max-w-2xl">
         <Eyebrow>Confianza</Eyebrow>
         <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-          Lo que dicen nuestros clientes
+          Lo que dicen quienes ya compraron con nosotros
         </h2>
       </div>
 

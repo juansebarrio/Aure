@@ -10,9 +10,9 @@ import { Reveal } from "@/components/motion/Reveal";
 type Persona = { id: string; nombre: string; rol: string };
 
 const EQUIPO: Persona[] = [
-  { id: "1", nombre: "Nombre Apellido", rol: "Dirección comercial" },
-  { id: "2", nombre: "Nombre Apellido", rol: "Asesor/a inmobiliario/a" },
-  { id: "3", nombre: "Nombre Apellido", rol: "Asesor/a inmobiliario/a" },
+  { id: "1", nombre: "Nombre Apellido", rol: "Dirección" },
+  { id: "2", nombre: "Nombre Apellido", rol: "Asesor comercial" },
+  { id: "3", nombre: "Nombre Apellido", rol: "Asesora comercial" },
   { id: "4", nombre: "Nombre Apellido", rol: "Atención al cliente" },
 ];
 
@@ -23,10 +23,11 @@ export function Equipo() {
         <div className="max-w-2xl">
           <Eyebrow>Equipo</Eyebrow>
           <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-            Personas que te acompañan
+            Las personas detrás de cada operación
           </h2>
           <p className="mt-4 leading-relaxed text-gris-texto">
-            Un equipo cercano, con cara visible, en cada paso de la compra.
+            Caras reales para humanizar una inmobiliaria joven: un equipo cercano
+            en cada paso de la compra.
           </p>
         </div>
 

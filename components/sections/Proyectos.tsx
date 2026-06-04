@@ -4,14 +4,14 @@ import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * Grilla de proyectos que AURE COMERCIALIZA (desarrollos de TERCEROS, sobre todo
- * de pozo). Data-driven: para sumar proyectos, agregar al array (no hardcodear
- * card por card).
+ * Proyectos (wireframe 04) — sección PROTAGONISTA. Grilla editorial project-first
+ * de los desarrollos que AURE COMERCIALIZA (de TERCEROS, no propios). Data-driven:
+ * para sumar proyectos, agregar al array.
  *
- * TODO(contenido): reemplazar el mock por los proyectos reales (CMS o data) y
- * los `showroomHref` por los links reales al showroom 3D.
+ * TODO(contenido): proyectos reales (CMS/data) y los `showroomHref` reales.
+ * TODO(ruta): página /proyectos con el listado completo (link "Ver todos").
  */
-type Estado = "Pozo" | "En obra" | "Entrega";
+type Estado = "Pozo" | "En obra" | "Terminado";
 
 type Proyecto = {
   id: string;
@@ -22,25 +22,32 @@ type Proyecto = {
 };
 
 const PROYECTOS: Proyecto[] = [
-  { id: "1", nombre: "Proyecto I", zona: "Villa Urquiza, CABA", estado: "Pozo", showroomHref: "#" },
-  { id: "2", nombre: "Proyecto II", zona: "Caballito, CABA", estado: "En obra", showroomHref: "#" },
-  { id: "3", nombre: "Proyecto III", zona: "Tigre, GBA", estado: "Entrega", showroomHref: "#" },
+  { id: "1", nombre: "Proyecto I", zona: "Palermo, CABA", estado: "Pozo", showroomHref: "#" },
+  { id: "2", nombre: "Proyecto II", zona: "Villa Urquiza, CABA", estado: "En obra", showroomHref: "#" },
+  { id: "3", nombre: "Proyecto III", zona: "Caballito, CABA", estado: "Terminado", showroomHref: "#" },
+  { id: "4", nombre: "Proyecto IV", zona: "Núñez, CABA", estado: "Pozo", showroomHref: "#" },
+  { id: "5", nombre: "Proyecto V", zona: "Colegiales, CABA", estado: "En obra", showroomHref: "#" },
+  { id: "6", nombre: "Proyecto VI", zona: "Saavedra, CABA", estado: "Pozo", showroomHref: "#" },
 ];
 
 export function Proyectos() {
   return (
     <Section id="proyectos" background="gris-claro">
       <Reveal>
-        <div className="max-w-2xl">
-          <Eyebrow>Proyectos</Eyebrow>
-          <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-            Desarrollos que comercializamos
-          </h2>
-          {/* Honestidad: son proyectos de terceros, AURE no desarrolla. */}
-          <p className="mt-4 leading-relaxed text-gris-texto">
-            Proyectos de desarrolladores de confianza, seleccionados por AURE.
-            No los desarrollamos: los comercializamos y te acompañamos en la compra.
-          </p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <Eyebrow>Proyectos</Eyebrow>
+            <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
+              Desarrollos que comercializamos, no que desarrollamos
+            </h2>
+          </div>
+          {/* TODO(ruta): link a /proyectos (listado completo). */}
+          <a
+            href="#proyectos"
+            className="shrink-0 text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
+          >
+            Ver todos →
+          </a>
         </div>
 
         <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -66,7 +73,7 @@ export function Proyectos() {
                 className="mt-3 inline-block text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
                 aria-label={`Ver showroom 3D de ${proyecto.nombre}`}
               >
-                Ver showroom 3D
+                Showroom 3D →
               </a>
             </li>
           ))}
