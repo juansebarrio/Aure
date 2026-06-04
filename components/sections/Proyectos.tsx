@@ -33,12 +33,12 @@ const PROYECTOS: Proyecto[] = [
     id: "nogoya",
     nombre: "Nogoyá 2478",
     zona: "Villa del Parque, CABA",
-    // TODO(cliente): confirmar etapa (pozo / en obra / terminado).
-    estado: "En pozo",
+    estado: "Listo para escriturar",
     desarrolladora: "Nocito Constructora",
     descripcion:
       "Ubicado a metros de la Av. San Martín, conjuga diseño y una localización óptima. La cercanía a las facultades de Ciencias Veterinarias y Agronomía sostiene una demanda habitacional constante e impulsa el movimiento comercial de la zona. Ideal para quienes buscan una vida académica cercana y para familias que quieren apartarse de las áreas céntricas.",
     destacados: [
+      "Entrega inmediata, sin esperar obra",
       "A metros de la Av. San Martín",
       "Cerca de Veterinaria y Agronomía (UBA)",
       "Pensado para estudiantes y familias",
