@@ -1,18 +1,48 @@
 "use client";
 
-import { useRef, type PointerEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
+import Image from "next/image";
 import { HeroGrid } from "@/components/sections/HeroGrid";
+import { cn } from "@/lib/cn";
 
 /**
- * Superficie del hero: degradado azul en movimiento (definido en globals.css
- * como .hero-surface) + un brillo sutil que sigue al cursor.
- *
- * El seguimiento del cursor actualiza las CSS vars --hero-x / --hero-y, con
- * throttle por requestAnimationFrame para no recalcular en cada pointermove.
+ * Fondo del hero, HÍBRIDO (ver wireframe):
+ *  - Sin video: degradado azul en movimiento (.hero-surface) + cuadrícula
+ *    (HeroGrid) + brillo que sigue al cursor. Es el fondo por defecto hoy.
+ *  - Con `videoSrc`: video full-bleed (lazy, muted, loop) sobre poster + overlay
+ *    sobrio. La grilla queda de respaldo cuando no hay video.
+ * Respeta prefers-reduced-motion (no reproduce video; muestra el poster).
+ * TODO(assets): pasar videoSrc/posterSrc cuando esté el video real del hero.
  */
-export function HeroBackground({ children }: { children: ReactNode }) {
+export function HeroBackground({
+  children,
+  className,
+  videoSrc,
+  posterSrc,
+}: {
+  children: ReactNode;
+  className?: string;
+  videoSrc?: string;
+  posterSrc?: string;
+}) {
   const ref = useRef<HTMLElement>(null);
   const frame = useRef<number | null>(null);
+  const [reduced, setReduced] = useState(true);
+  const [canPlay, setCanPlay] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   function handlePointerMove(event: PointerEvent<HTMLElement>) {
     const el = ref.current;
@@ -28,13 +58,50 @@ export function HeroBackground({ children }: { children: ReactNode }) {
     });
   }
 
+  const hasVideo = Boolean(videoSrc);
+  const showVideo = hasVideo && !reduced;
+
   return (
     <section
       ref={ref}
       onPointerMove={handlePointerMove}
-      className="hero-surface text-white"
+      className={cn("hero-surface text-white", className)}
     >
-      <HeroGrid />
+      {hasVideo ? (
+        <>
+          {posterSrc ? (
+            <Image
+              src={posterSrc}
+              alt=""
+              fill
+              priority
+              unoptimized
+              className="-z-10 object-cover"
+            />
+          ) : null}
+          {showVideo ? (
+            <video
+              muted
+              loop
+              autoPlay
+              playsInline
+              preload="none"
+              poster={posterSrc}
+              onCanPlay={() => setCanPlay(true)}
+              className={cn(
+                "absolute inset-0 -z-10 h-full w-full object-cover transition-opacity duration-700",
+                canPlay ? "opacity-100" : "opacity-0",
+              )}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          ) : null}
+          {/* Overlay sobrio (azul con alpha) para legibilidad sobre el video. */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-azul/90 via-azul/70 to-azul/55" />
+        </>
+      ) : (
+        <HeroGrid />
+      )}
       <div className="hero-glow" aria-hidden="true" />
       {children}
     </section>
