@@ -3,9 +3,7 @@ import { cn } from "@/lib/cn";
 type PlaceholderTone = "gris-claro" | "ghost";
 
 const tones: Record<PlaceholderTone, string> = {
-  // Para superficies claras.
   "gris-claro": "bg-gris-claro border border-borde text-gris-texto",
-  // Para superficies azules (marco translúcido, sin sombras).
   ghost: "bg-white/[0.04] border border-white/15 text-gris",
 };
 
@@ -22,7 +20,6 @@ export function ImagePlaceholder({
   tone = "gris-claro",
   className,
 }: {
-  /** Clase de aspect-ratio (ej: "aspect-[4/5]", "aspect-square"). */
   aspect?: string;
   label?: string;
   tone?: PlaceholderTone;
@@ -32,7 +29,7 @@ export function ImagePlaceholder({
     <div
       aria-hidden="true"
       className={cn(
-        "flex w-full items-center justify-center overflow-hidden rounded-brand",
+        "flex w-full items-center justify-center overflow-hidden rounded-2xl",
         aspect,
         tones[tone],
         className,

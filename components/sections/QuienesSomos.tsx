@@ -1,19 +1,56 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
-import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
+
 import { TextReveal } from "@/components/motion/TextReveal";
+import type { ReactNode } from "react";
 
 /**
  * Institucional. Empresa JOVEN: no inventar trayectoria ni decir que desarrollan.
  * El respaldo viene de la selección de proyectos, la claridad y el acompañamiento.
  * TODO(contenido): texto institucional definitivo.
  */
-const valores = [
-  { titulo: "Selección", texto: "Trabajamos con desarrolladores de confianza." },
-  { titulo: "Claridad", texto: "Te explicamos todo, sin letra chica." },
-  { titulo: "Cercanía", texto: "Personas que te acompañan, no formularios." },
+type Valor = { titulo: string; texto: string; icon: ReactNode };
+
+const valores: Valor[] = [
+  {
+    titulo: "Selección",
+    texto: "Trabajamos con desarrolladores de confianza.",
+    icon: (
+      // Diamante — curado / premium
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M2.7 10.3l9 9a1 1 0 0 0 1.4 0l9-9a1 1 0 0 0 0-1.4l-4-4a1 1 0 0 0-.7-.3H6.4a1 1 0 0 0-.7.3l-3 4a1 1 0 0 0 0 1.4z" />
+        <path d="M6 4.6L12 12l6-7.4" />
+        <path d="M2.7 10.3L12 12l9.3-1.7" />
+      </svg>
+    ),
+  },
+  {
+    titulo: "Claridad",
+    texto: "Te explicamos todo, sin letra chica.",
+    icon: (
+      // Documento con tilde — transparencia / sin letra chica
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+        <path d="M14 2v6h6" />
+        <path d="M9 13l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    titulo: "Cercanía",
+    texto: "Personas que te acompañan, no formularios.",
+    icon: (
+      // Dos personas — equipo / acompañamiento
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="9" cy="7" r="3" />
+        <path d="M3 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2" />
+        <circle cx="18" cy="7" r="2.5" />
+        <path d="M21 21v-1.5a4 4 0 0 0-2.5-3.7" />
+      </svg>
+    ),
+  },
 ];
 
 export function QuienesSomos() {
@@ -40,10 +77,14 @@ export function QuienesSomos() {
               podamos cumplir.
             </p>
 
-            <dl className="mt-10 grid gap-6 border-t border-white/15 pt-8 sm:grid-cols-3">
+            {/* Glass cards para los valores */}
+            <dl className="mt-10 grid gap-3 border-t border-white/15 pt-8 sm:grid-cols-3">
               {valores.map((valor) => (
-                <div key={valor.titulo}>
-                  <div className="h-px w-8 bg-dorado" aria-hidden="true" />
+                <div
+                  key={valor.titulo}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                >
+                  <span className="text-dorado">{valor.icon}</span>
                   <dt className="mt-4 text-sm font-medium text-white">
                     {valor.titulo}
                   </dt>
@@ -53,9 +94,6 @@ export function QuienesSomos() {
                 </div>
               ))}
             </dl>
-            <Button href="/#equipo" variant="secondary" className="mt-8">
-              Conocé al equipo
-            </Button>
           </Reveal>
         </div>
 

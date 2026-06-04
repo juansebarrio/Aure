@@ -56,7 +56,7 @@ export function ProjectMedia({
   return (
     <div
       className={cn(
-        "w-full overflow-hidden rounded-brand border border-borde",
+        "w-full overflow-hidden rounded-2xl border border-borde",
         aspect,
       )}
     >
