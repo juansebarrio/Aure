@@ -46,6 +46,7 @@ export const siteConfig = {
 /** Navegación principal. Anclas con prefijo "/" para funcionar desde cualquier página. */
 export const navLinks = [
   { label: "Proyectos", href: "/#proyectos" },
+  { label: "Alquiler", href: "/alquiler" },
   { label: "Nosotros", href: "/#nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ] as const;
