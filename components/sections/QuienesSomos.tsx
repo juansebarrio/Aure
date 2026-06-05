@@ -21,7 +21,7 @@ const valores: Valor[] = [
       "Hacemos las cosas bien, con criterio y preparación. La confianza se construye trabajando, no prometiendo.",
     icon: (
       // Medalla — hacer las cosas bien
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="8" r="6" />
         <path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11" />
       </svg>
@@ -32,7 +32,7 @@ const valores: Valor[] = [
     texto: "Personas que escuchan y acompañan en cada paso, no formularios.",
     icon: (
       // Dos personas — acompañamiento
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="9" cy="7" r="3" />
         <path d="M3 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2" />
         <circle cx="18" cy="7" r="2.5" />
@@ -46,7 +46,7 @@ const valores: Valor[] = [
       "Entendemos el mercado desde adentro: lo comercial, lo constructivo, lo financiero y lo legal.",
     icon: (
       // Lámpara — conocimiento
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M9 18h6" />
         <path d="M10 22h4" />
         <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z" />
@@ -58,7 +58,7 @@ const valores: Valor[] = [
     texto: "Información clara y honesta, sin letra chica, en cada etapa.",
     icon: (
       // Ojo — transparencia
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
         <circle cx="12" cy="12" r="3" />
       </svg>
@@ -70,7 +70,7 @@ const valores: Valor[] = [
       "Una empresa joven con mentalidad de mejora continua y mejores herramientas.",
     icon: (
       // Flecha ascendente — mejora continua
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M23 6l-9.5 9.5-5-5L1 18" />
         <path d="M17 6h6v6" />
       </svg>
@@ -105,24 +105,6 @@ export function QuienesSomos() {
               Detrás de cada operación hay una decisión patrimonial importante, y
               la tratamos como tal.
             </p>
-
-            {/* Glass cards para los valores */}
-            <dl className="mt-10 grid gap-3 border-t border-white/15 pt-8 sm:grid-cols-2">
-              {valores.map((valor) => (
-                <div
-                  key={valor.titulo}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
-                >
-                  <span className="text-dorado">{valor.icon}</span>
-                  <dt className="mt-4 text-sm font-medium text-white">
-                    {valor.titulo}
-                  </dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-gris">
-                    {valor.texto}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </Reveal>
         </div>
 
@@ -136,6 +118,27 @@ export function QuienesSomos() {
           />
         </div>
       </div>
+
+      {/* Valores — fila secundaria debajo de la foto: tarjetas chicas, poco
+          protagonistas, 5 en una fila en desktop. */}
+      <Reveal>
+        <dl className="mt-14 grid grid-cols-2 gap-3 border-t border-white/10 pt-10 sm:grid-cols-3 lg:grid-cols-5">
+          {valores.map((valor) => (
+            <div
+              key={valor.titulo}
+              className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+            >
+              <span className="text-dorado">{valor.icon}</span>
+              <dt className="mt-3 text-[13px] font-medium text-white">
+                {valor.titulo}
+              </dt>
+              <dd className="mt-1 text-xs leading-relaxed text-gris">
+                {valor.texto}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
     </Section>
   );
 }
