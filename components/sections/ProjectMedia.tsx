@@ -64,8 +64,9 @@ export function ProjectMedia({
         ref={videoRef}
         muted
         loop
+        autoPlay
         playsInline
-        preload="metadata"
+        preload="auto"
         poster={posterSrc}
         aria-label={label}
         className="h-full w-full object-cover"

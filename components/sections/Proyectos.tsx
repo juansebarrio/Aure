@@ -89,17 +89,17 @@ export function Proyectos() {
           const flip = i % 2 === 1; // alterna el lado de la media (ritmo editorial)
           return (
             <Reveal key={proyecto.id}>
-              <article className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-                <div className={cn("lg:col-span-7", flip && "lg:order-2")}>
+              <article className="grid items-stretch gap-8 lg:grid-cols-12 lg:gap-12">
+                <div className={cn("lg:col-span-7 lg:h-full", flip && "lg:order-2")}>
                   <ProjectMedia
                     videoSrc={proyecto.media?.videoSrc}
                     posterSrc={proyecto.media?.posterSrc}
                     label={`Recorrido · ${proyecto.nombre}`}
-                    aspect="aspect-[16/10]"
+                    aspect="aspect-[16/10] lg:aspect-auto lg:h-full"
                   />
                 </div>
 
-                <div className={cn("lg:col-span-5", flip && "lg:order-1")}>
+                <div className={cn("flex flex-col lg:col-span-5 lg:h-full", flip && "lg:order-1")}>
                   <Eyebrow>{proyecto.estado}</Eyebrow>
                   <h3 className="mt-4 text-2xl font-medium tracking-display sm:text-3xl">
                     {proyecto.nombre}
@@ -130,7 +130,7 @@ export function Proyectos() {
                     </p>
                   ) : null}
 
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                  <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center sm:gap-4">
                     {tieneShowroom ? (
                       <>
                         <Button
