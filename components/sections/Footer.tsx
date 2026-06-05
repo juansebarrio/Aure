@@ -24,11 +24,24 @@ export function Footer() {
             <p className="mt-3 text-[11px] font-light uppercase tracking-[0.3em] text-gris">
               {siteConfig.submarca}
             </p>
-            {/* TODO(contenido): descripción breve definitiva. */}
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gris">
               Comercializamos desarrollos seleccionados en Buenos Aires, con
               acompañamiento real.
             </p>
+
+            {/* Sellos de cámaras del rubro. TODO(cliente): reemplazar por los logos reales. */}
+            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Cámaras del rubro">
+              {siteConfig.seals.map((seal) => (
+                <li key={seal.label}>
+                  <span
+                    title={seal.title}
+                    className="inline-flex items-center rounded-brand border border-white/15 px-2.5 py-1 text-[10px] font-medium uppercase tracking-eyebrow text-gris"
+                  >
+                    {seal.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <nav className="md:col-span-3" aria-label="Secciones">
@@ -53,7 +66,6 @@ export function Footer() {
             <h2 className="text-xs uppercase tracking-eyebrow text-dorado">
               Contacto
             </h2>
-            {/* TODO(contenido): datos de contacto reales. */}
             <ul className="mt-4 space-y-3 text-sm text-gris">
               <li>
                 <a
@@ -63,7 +75,14 @@ export function Footer() {
                   {siteConfig.contact.email}
                 </a>
               </li>
-              <li>{siteConfig.contact.phoneDisplay}</li>
+              <li>
+                <a
+                  href={siteConfig.contact.phoneHref}
+                  className="transition-colors hover:text-white"
+                >
+                  {siteConfig.contact.phoneDisplay}
+                </a>
+              </li>
               <li>{siteConfig.contact.addressLine}</li>
             </ul>
           </div>
@@ -81,6 +100,16 @@ export function Footer() {
                   className="transition-colors hover:text-white"
                 >
                   Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  Facebook
                 </a>
               </li>
             </ul>

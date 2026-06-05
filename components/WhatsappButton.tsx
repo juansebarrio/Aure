@@ -8,10 +8,7 @@ import { whatsappUrl } from "@/lib/whatsapp";
  * paleta). TODO(marca): confirmar si el cliente prefiere el verde oficial.
  */
 export function WhatsappButton() {
-  const href = whatsappUrl(
-    siteConfig.whatsapp,
-    "Hola, quiero más información sobre AURE.",
-  );
+  const href = whatsappUrl(siteConfig.whatsapp, siteConfig.whatsappMessage);
   if (!href) return null;
 
   return (
