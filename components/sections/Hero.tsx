@@ -9,14 +9,21 @@ export function Hero() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    const PLAYBACK_RATE = 0.8; // hero a 0,80x — más lento y sobrio
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const apply = () => {
+      video.playbackRate = PLAYBACK_RATE;
       if (mq.matches) video.pause();
       else video.play().catch(() => {});
     };
     apply();
+    // El autoplay puede arrancar antes del efecto; reafirmamos la velocidad al cargar.
+    video.addEventListener("loadedmetadata", apply);
     mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    return () => {
+      video.removeEventListener("loadedmetadata", apply);
+      mq.removeEventListener("change", apply);
+    };
   }, []);
 
   return (
