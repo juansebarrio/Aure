@@ -58,7 +58,7 @@ export function Hero() {
           <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/12 bg-white/8 px-4 py-1.5 backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-dorado" aria-hidden="true" />
             <p className="text-xs font-light uppercase tracking-eyebrow text-blanco/75">
-              Buenos Aires · Real Estate
+              Comercialización inmobiliaria · Buenos Aires
             </p>
           </div>
 
@@ -70,13 +70,13 @@ export function Hero() {
               className="font-medium leading-[0.88] tracking-display"
               style={{ fontSize: "clamp(2rem, 6vw, 6rem)" }}
             >
-              Invertí en
+              Comprá con claridad.
               <br />
-              lo que vale.
+              Decidí con respaldo.
             </h1>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Button href="/#contacto">Contacto</Button>
+              <Button href="/#contacto">Quiero info</Button>
               <Button href="/#proyectos" variant="glass">Ver proyectos</Button>
             </div>
           </div>
