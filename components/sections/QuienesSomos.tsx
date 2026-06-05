@@ -7,47 +7,72 @@ import { TextReveal } from "@/components/motion/TextReveal";
 import type { ReactNode } from "react";
 
 /**
- * Institucional. Empresa JOVEN: no inventar trayectoria ni decir que desarrollan.
- * El respaldo viene de la selección de proyectos, la claridad y el acompañamiento.
- * TODO(contenido): texto institucional definitivo.
+ * Institucional. El eje es el PROFESIONALISMO (la confianza como consecuencia),
+ * no el lujo. AURE comercializa desarrollos de terceros; no afirmamos que
+ * desarrolla (ver guardrail / FAQ 7).
+ * TODO(contenido): foto real del equipo / oficina.
  */
 type Valor = { titulo: string; texto: string; icon: ReactNode };
 
 const valores: Valor[] = [
   {
-    titulo: "Selección",
-    texto: "Trabajamos con desarrolladores de confianza.",
+    titulo: "Profesionalismo",
+    texto:
+      "Hacemos las cosas bien, con criterio y preparación. La confianza se construye trabajando, no prometiendo.",
     icon: (
-      // Diamante — curado / premium
+      // Medalla — hacer las cosas bien
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M2.7 10.3l9 9a1 1 0 0 0 1.4 0l9-9a1 1 0 0 0 0-1.4l-4-4a1 1 0 0 0-.7-.3H6.4a1 1 0 0 0-.7.3l-3 4a1 1 0 0 0 0 1.4z" />
-        <path d="M6 4.6L12 12l6-7.4" />
-        <path d="M2.7 10.3L12 12l9.3-1.7" />
-      </svg>
-    ),
-  },
-  {
-    titulo: "Claridad",
-    texto: "Te explicamos todo, sin letra chica.",
-    icon: (
-      // Documento con tilde — transparencia / sin letra chica
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
-        <path d="M14 2v6h6" />
-        <path d="M9 13l2 2 4-4" />
+        <circle cx="12" cy="8" r="6" />
+        <path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11" />
       </svg>
     ),
   },
   {
     titulo: "Cercanía",
-    texto: "Personas que te acompañan, no formularios.",
+    texto: "Personas que escuchan y acompañan en cada paso, no formularios.",
     icon: (
-      // Dos personas — equipo / acompañamiento
+      // Dos personas — acompañamiento
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="9" cy="7" r="3" />
         <path d="M3 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2" />
         <circle cx="18" cy="7" r="2.5" />
         <path d="M21 21v-1.5a4 4 0 0 0-2.5-3.7" />
+      </svg>
+    ),
+  },
+  {
+    titulo: "Conocimiento del negocio",
+    texto:
+      "Entendemos el mercado desde adentro: lo comercial, lo constructivo, lo financiero y lo legal.",
+    icon: (
+      // Lámpara — conocimiento
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z" />
+      </svg>
+    ),
+  },
+  {
+    titulo: "Transparencia",
+    texto: "Información clara y honesta, sin letra chica, en cada etapa.",
+    icon: (
+      // Ojo — transparencia
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+  },
+  {
+    titulo: "Evolución",
+    texto:
+      "Una empresa joven con mentalidad de mejora continua y mejores herramientas.",
+    icon: (
+      // Flecha ascendente — mejora continua
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M23 6l-9.5 9.5-5-5L1 18" />
+        <path d="M17 6h6v6" />
       </svg>
     ),
   },
@@ -63,22 +88,26 @@ export function QuienesSomos() {
             as="h2"
             className="mt-5 text-3xl font-medium tracking-display text-white sm:text-4xl"
           >
-            Una inmobiliaria joven que se toma en serio tu confianza
+            Una nueva generación de inmobiliarias
           </TextReveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg font-light leading-relaxed text-gris">
-              AURE es una comercializadora: seleccionamos y vendemos desarrollos
-              de terceros —sobre todo de pozo— en Buenos Aires. No desarrollamos:
-              nos dedicamos a que elijas bien y con respaldo.
+              AURE nace de años de experiencia en el mercado y de una convicción:
+              comprar una propiedad puede ser un proceso más claro, profesional y
+              humano. Vimos de cerca las falencias del sector —información
+              escasa, procesos opacos, una mirada puramente transaccional— y
+              construimos lo contrario.
             </p>
             <p className="mt-4 leading-relaxed text-gris">
-              Somos un equipo nuevo, con experiencia en el rubro, que apuesta a
-              una forma más clara y honesta de comprar. Sin promesas que no
-              podamos cumplir.
+              Somos una comercializadora: seleccionamos y vendemos desarrollos
+              —sobre todo de pozo— y te acompañamos en cada decisión. No vendemos
+              metros: te ayudamos a elegir bien, con respaldo y sin letra chica.
+              Detrás de cada operación hay una decisión patrimonial importante, y
+              la tratamos como tal.
             </p>
 
             {/* Glass cards para los valores */}
-            <dl className="mt-10 grid gap-3 border-t border-white/15 pt-8 sm:grid-cols-3">
+            <dl className="mt-10 grid gap-3 border-t border-white/15 pt-8 sm:grid-cols-2">
               {valores.map((valor) => (
                 <div
                   key={valor.titulo}
