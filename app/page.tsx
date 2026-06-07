@@ -1,7 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { Badges } from "@/components/sections/Badges";
 import { Proyectos } from "@/components/sections/Proyectos";
-import { Rentals } from "@/components/sections/Rentals";
+import { Portafolio } from "@/components/sections/Portafolio";
 import { QuienesSomos } from "@/components/sections/QuienesSomos";
 import { Equipo } from "@/components/sections/Equipo";
 import { SocialProof } from "@/components/sections/SocialProof";
@@ -17,9 +17,9 @@ export default function HomePage() {
     <main id="contenido">
       <Hero />
       <Badges />
-      <Proyectos />
-      <Rentals />
       <QuienesSomos />
+      <Proyectos />
+      <Portafolio />
       <Equipo />
       <SocialProof />
       <Faqs />
