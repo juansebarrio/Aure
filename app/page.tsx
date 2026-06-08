@@ -18,8 +18,8 @@ export default function HomePage() {
       <Hero />
       <Badges />
       <QuienesSomos />
-      <Proyectos />
       <Portafolio />
+      <Proyectos />
       <Equipo />
       <SocialProof />
       <Faqs />

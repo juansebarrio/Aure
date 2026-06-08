@@ -33,7 +33,7 @@ export function ProyectoVideo({
   }, []);
 
   return (
-    <div className="relative aspect-[5/2] w-full overflow-hidden bg-azul-profundo">
+    <div className="relative aspect-[2/1] w-full overflow-hidden rounded-2xl bg-azul-profundo">
       <video
         ref={videoRef}
         muted

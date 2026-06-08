@@ -40,23 +40,23 @@ const PROYECTOS: Proyecto[] = [
 
 export function Proyectos() {
   return (
-    <section id="proyectos" className="bg-gris-claro text-azul">
+    <section id="proyectos" className="bg-gris-claro pt-16 text-azul sm:pt-24">
       {/* Fichas de proyectos */}
       {PROYECTOS.map((proyecto) => {
         const tieneShowroom = proyecto.showroomHref !== "#";
         return (
-          <article key={proyecto.id} className="pb-16 sm:pb-4">
+          <article key={proyecto.id} className="pb-16 sm:pb-24">
 
-            {/* Video full-ancho con texto superpuesto */}
+            {/* Video al ancho del contenido */}
             {proyecto.media?.videoSrc && (
-              <ProyectoVideo
-                videoSrc={proyecto.media.videoSrc}
-                posterSrc={proyecto.media.posterSrc}
-                label={`Recorrido · ${proyecto.nombre}`}
-              >
-                {/* Chip superior */}
-                <div className="absolute left-0 right-0 top-0 pt-6 sm:pt-8">
-                  <div className="mx-auto max-w-6xl px-6 sm:px-8">
+              <div className="mx-auto max-w-6xl px-6 sm:px-8">
+                <ProyectoVideo
+                  videoSrc={proyecto.media.videoSrc}
+                  posterSrc={proyecto.media.posterSrc}
+                  label={`Recorrido · ${proyecto.nombre}`}
+                >
+                  {/* Chip superior */}
+                  <div className="absolute left-0 top-0 p-6 sm:p-8">
                     <div className="inline-flex w-fit items-center gap-2.5 rounded-full bg-white/60 px-4 py-1.5 backdrop-blur-sm">
                       <span className="h-1.5 w-1.5 rounded-full bg-dorado" aria-hidden="true" />
                       <p className="text-xs font-medium uppercase tracking-eyebrow text-azul">
@@ -64,11 +64,9 @@ export function Proyectos() {
                       </p>
                     </div>
                   </div>
-                </div>
 
-                {/* Texto inferior */}
-                <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-10">
-                  <div className="mx-auto max-w-6xl px-6 sm:px-8">
+                  {/* Texto inferior */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                     <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
                       {proyecto.estado}
                     </p>
@@ -77,8 +75,8 @@ export function Proyectos() {
                     </h3>
                     <p className="mt-1 text-base text-white/65">{proyecto.zona}</p>
                   </div>
-                </div>
-              </ProyectoVideo>
+                </ProyectoVideo>
+              </div>
             )}
 
             {/* Contenido debajo del video */}

@@ -43,10 +43,19 @@ export const siteConfig = {
   ],
 } as const;
 
-/** Navegación principal. Anclas con prefijo "/" para funcionar desde cualquier página. */
-export const navLinks = [
-  { label: "Portafolio", href: "/#portafolio" },
+/**
+ * Menú "Propiedades" (dropdown del navbar). Emprendimientos apunta por ahora a
+ * la sección Proyectos del home; las otras tres son páginas de listado.
+ */
+export const propiedadesMenu = [
+  { label: "Emprendimientos", href: "/#proyectos" },
+  { label: "Venta", href: "/venta" },
   { label: "Alquiler", href: "/alquiler" },
+  { label: "Alquiler temporario", href: "/alquiler-temporario" },
+] as const;
+
+/** Links sueltos del navbar (además del dropdown "Propiedades"). Anclas con "/". */
+export const navLinks = [
   { label: "Nosotros", href: "/#nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ] as const;

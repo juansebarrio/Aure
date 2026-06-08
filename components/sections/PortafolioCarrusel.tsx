@@ -99,7 +99,7 @@ export function PortafolioCarrusel({ items }: { items: CarruselItem[] }) {
   };
 
   return (
-    <div className="lg:col-span-8">
+    <div className="mx-auto max-w-6xl px-6 sm:px-8">
       {/* Wrapper relativo para posicionar flechas */}
       <div className="relative">
         {/* Flecha izquierda — solo cuando hay contenido para volver */}
@@ -169,6 +169,7 @@ export function PortafolioCarrusel({ items }: { items: CarruselItem[] }) {
                   <Button
                     href={item.href}
                     size="sm"
+                    variant="secondary"
                     {...(item.ctaExternal
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
