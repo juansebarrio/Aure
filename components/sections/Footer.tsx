@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { navLinks, siteConfig } from "@/lib/site";
+import { navLinks, propiedadesMenu, siteConfig } from "@/lib/site";
 
 const legalLinks = [
   { label: "Privacidad", href: "/politicas#privacidad" },
   { label: "Cookies", href: "/politicas#cookies" },
   { label: "Términos", href: "/politicas#terminos" },
 ];
+
+// Navegación del footer: secciones de propiedades + el resto.
+const footerNav = [...propiedadesMenu, ...navLinks];
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -49,7 +52,7 @@ export function Footer() {
               Navegación
             </h2>
             <ul className="mt-4 space-y-3 text-sm">
-              {navLinks.map((link) => (
+              {footerNav.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
