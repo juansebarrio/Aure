@@ -66,7 +66,7 @@ const PROYECTOS: Proyecto[] = [
   },
 ];
 
-export function Proyectos() {
+export function Proyectos({ showVerMas = true }: { showVerMas?: boolean }) {
   return (
     <Section id="proyectos" background="gris-claro">
       <Reveal>
@@ -154,6 +154,14 @@ export function Proyectos() {
           );
         })}
       </div>
+
+      {showVerMas ? (
+        <div className="mt-14 text-center">
+          <Button href="/emprendimientos" variant="secondary">
+            Ver más emprendimientos
+          </Button>
+        </div>
+      ) : null}
     </Section>
   );
 }

@@ -9,14 +9,15 @@ const selectCls =
   "h-11 rounded-brand border border-borde bg-white px-3 text-sm text-azul focus:border-dorado focus:outline-none";
 
 /**
- * Grilla de alquileres con filtros básicos (tipo, barrio, moneda), del lado del
- * cliente sobre los datos que llegan server-rendered (buenos para SEO).
+ * Grilla de propiedades con filtros básicos (tipo, barrio, moneda), del lado del
+ * cliente sobre datos que llegan server-rendered (buenos para SEO). Sirve para
+ * cualquier operación (venta, alquiler, alquiler temporario).
  *
  * TODO(tokko): con el feed real (muchas propiedades) conviene filtrar/paginar
- * del lado del servidor. El rango de precio se omite acá por la mezcla de
- * monedas (ARS/USD); se suma cuando se defina la normalización.
+ * del lado del servidor. El rango de precio se omite por la mezcla de monedas
+ * (ARS/USD); se suma cuando se defina la normalización.
  */
-export function RentalsBrowser({ properties }: { properties: Property[] }) {
+export function PropertiesBrowser({ properties }: { properties: Property[] }) {
   const [tipo, setTipo] = useState("");
   const [barrio, setBarrio] = useState("");
   const [moneda, setMoneda] = useState("");
