@@ -57,7 +57,7 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 const navLinkCls =
-  "text-[11px] font-medium uppercase tracking-[0.1em] text-white/55 transition-colors hover:text-white";
+  "text-[11px] font-medium uppercase leading-none tracking-[0.1em] text-white/55 transition-colors hover:text-white";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -125,7 +125,7 @@ export function Navbar() {
                   aria-expanded={propsOpen}
                   onClick={() => setPropsOpen((v) => !v)}
                   className={cn(
-                    "inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.1em] transition-colors",
+                    "inline-flex items-center gap-1.5 text-[11px] font-medium uppercase leading-none tracking-[0.1em] transition-colors",
                     propsOpen ? "text-white" : "text-white/55 hover:text-white",
                   )}
                 >
