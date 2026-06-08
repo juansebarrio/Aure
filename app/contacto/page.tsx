@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function ContactoPage() {
-  const wa = whatsappUrl(siteConfig.whatsapp);
+  const wa = whatsappUrl(siteConfig.whatsapp, siteConfig.whatsappMessage);
 
   return (
     <main id="contenido">
@@ -46,7 +46,12 @@ export default function ContactoPage() {
               Teléfono
             </dt>
             <dd className="mt-2 text-sm text-gris">
-              {siteConfig.contact.phoneDisplay}
+              <a
+                href={siteConfig.contact.phoneHref}
+                className="transition-colors hover:text-white"
+              >
+                {siteConfig.contact.phoneDisplay}
+              </a>
               {wa ? (
                 <>
                   {" · "}

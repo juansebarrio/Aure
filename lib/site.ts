@@ -1,15 +1,11 @@
 /**
- * Configuración central del sitio.
- * TODO(contenido): reemplazar todos los textos/links placeholder por el
- * contenido final aprobado por el cliente.
+ * Configuración central del sitio. Datos de contacto REALES (validados con el
+ * cliente). Este sitio reemplaza a aure.ar.
  *
- * TODO(registro): audiencia = clase media en Buenos Aires. Registro cercano,
- * claro y honesto; el voseo natural en CTAs ("Agendá una visita") es apropiado.
- * Confirmar el registro definitivo de toda la pieza.
- *
- * POSICIONAMIENTO: AURE es una COMERCIALIZADORA. Vende desarrollos de TERCEROS
- * (sobre todo de pozo). NO es desarrolladora ni ofrece "arquitectura como
- * servicio": el copy no debe dar a entender lo contrario.
+ * TODO(posicionamiento): aure.ar es una inmobiliaria full (incluye alquileres).
+ * El encuadre actual "comercializa desarrollos / no desarrolla" queda
+ * inconsistente con eso al sumar alquileres. NO reescribir el copy acá: se
+ * define con el cliente después de la reunión.
  */
 export const siteConfig = {
   name: "AURE",
@@ -17,27 +13,49 @@ export const siteConfig = {
   submarca: "Arch & Urban Real Estate",
   legalName: "AURE · Arch & Urban Real Estate",
   tagline: "Comercialización inmobiliaria · Buenos Aires",
-  // TODO(contenido): descripción final aprobada por el cliente.
   description:
     "AURE comercializa desarrollos inmobiliarios seleccionados en Buenos Aires, sobre todo de pozo. Te acompañamos con información clara y respaldo, de la primera consulta a la entrega.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  /** Número de WhatsApp: solo dígitos, formato internacional. Desde env. */
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "",
-  // TODO(contenido): datos de contacto reales del cliente.
+  // URL canónica. En producción se setea NEXT_PUBLIC_SITE_URL (dominio final
+  // https://www.aure.ar al migrar). Fallback a la URL real para que metadata /
+  // Open Graph NO apunten a localhost.
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aure.ar",
+  // WhatsApp: solo dígitos, formato internacional (con 9 para móvil AR).
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "5491130500088",
+  /** Mensaje precargado del WhatsApp (botón flotante + CTA de contacto). */
+  whatsappMessage: "Hola, quería hacer una consulta.",
   contact: {
-    email: "contacto@aure.example",
-    phoneDisplay: "+54 11 0000-0000",
-    addressLine: "Buenos Aires, Argentina",
+    email: "hola@aure.ar",
+    phoneDisplay: "11 3050-0088",
+    phoneHref: "tel:+541130500088",
+    // TODO(cliente): confirmar dirección. En el kick-off mencionaron Villa
+    // Urquiza; el sitio actual usa Quesada 5739. Usamos Quesada por ahora.
+    addressLine: "Quesada 5739, Dto. 4 — Ciudad de Buenos Aires",
   },
   social: {
-    // TODO(contenido): handle/URL real de Instagram.
-    instagram: "https://instagram.com/",
+    instagram: "https://www.instagram.com/aure.realty/",
+    facebook: "https://www.facebook.com/aure.propiedades",
   },
+  // Sellos de confianza (cámaras del rubro). TODO(cliente): confirmar el nombre
+  // completo y los links oficiales; reemplazar por los logos reales.
+  seals: [
+    { label: "CPI", title: "Sello CPI — cámara del rubro inmobiliario" },
+    { label: "LCNI", title: "Sello LCNI — cámara del rubro inmobiliario" },
+  ],
 } as const;
 
-/** Navegación principal. Anclas con prefijo "/" para funcionar desde cualquier página. */
+/**
+ * Menú "Propiedades" (dropdown del navbar). Emprendimientos apunta por ahora a
+ * la sección Proyectos del home; las otras tres son páginas de listado.
+ */
+export const propiedadesMenu = [
+  { label: "Emprendimientos", href: "/#proyectos" },
+  { label: "Venta", href: "/venta" },
+  { label: "Alquiler", href: "/alquiler" },
+  { label: "Alquiler temporario", href: "/alquiler-temporario" },
+] as const;
+
+/** Links sueltos del navbar (además del dropdown "Propiedades"). Anclas con "/". */
 export const navLinks = [
-  { label: "Proyectos", href: "/#proyectos" },
   { label: "Nosotros", href: "/#nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ] as const;

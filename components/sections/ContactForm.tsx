@@ -126,12 +126,11 @@ export function ContactForm() {
   const submitting = status === "submitting";
   const mailto = `mailto:${siteConfig.contact.email}`;
   const waInfo =
-    whatsappUrl(siteConfig.whatsapp, "Hola, quiero más información sobre AURE.") ??
-    mailto;
+    whatsappUrl(siteConfig.whatsapp, siteConfig.whatsappMessage) ?? mailto;
   const waVisita =
     whatsappUrl(
       siteConfig.whatsapp,
-      "Hola, quiero coordinar una visita o una reunión.",
+      "Hola, quería coordinar una reunión o una visita.",
     ) ?? mailto;
 
   /* ---- Canales de contacto ---- */
