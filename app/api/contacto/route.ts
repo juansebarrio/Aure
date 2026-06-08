@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import { validateContact, hasErrors, type ContactValues } from "@/lib/contact";
+import { sendLeadToTokko } from "@/lib/tokko-leads";
 
 /**
- * STUB del endpoint del formulario "Agendá una reunión".
- * Valida los campos y por ahora responde ok + loguea en servidor.
+ * Endpoint del formulario de contacto. Valida y envía el lead al CRM de Tokko
+ * (si hay TOKKO_API_KEY). Sin key, el form sigue funcionando igual (responde ok).
  *
- * TODO(integración): acá va el envío real cuando estén las claves —
- *   1) Mail interno al equipo con el lead (Resend).
- *   2) Mail de confirmación al contacto.
+ * TODO(integración): además del CRM, sumar mail interno + confirmación (Resend).
  *   Variables esperadas: RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL.
  */
 export async function POST(request: Request) {
@@ -26,13 +25,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors }, { status: 400 });
   }
 
-  // TODO(integración): reemplazar este log por el envío de mails (Resend).
-  console.info("[contacto] nuevo lead (stub):", {
+  // Enviar el lead al CRM de Tokko (no-op si no hay TOKKO_API_KEY). No rompe la
+  // respuesta al usuario si Tokko falla: el formulario responde ok igual.
+  const sentToCrm = await sendLeadToTokko({
+    nombre: body.nombre ?? "",
+    email: body.email ?? "",
+    telefono: body.telefono,
+    mensaje: body.mensaje ?? "",
+    proyecto: body.proyecto,
+  });
+
+  console.info("[contacto] nuevo lead:", {
     nombre: body.nombre,
     email: body.email,
     telefono: body.telefono ?? "",
     proyecto: body.proyecto ?? "",
-    mensaje: body.mensaje,
+    sentToCrm,
     at: new Date().toISOString(),
   });
 
