@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PropertyImage } from "@/components/properties/PropertyImage";
-import { formatPrice, type Property } from "@/lib/properties";
+import { formatPrice, isMensual, type Property } from "@/lib/properties";
 
 function metaLine(p: Property): string {
   return [p.tipo, `${p.ambientes} amb`, `${p.superficie} m²`].join(" · ");
@@ -34,8 +34,10 @@ export function PropertyCard({
       </div>
       <div className="p-5">
         <p className="text-lg font-medium tracking-display text-azul">
-          {formatPrice(property.precio, property.moneda)}{" "}
-          <span className="text-xs font-normal text-gris-texto">/ mes</span>
+          {formatPrice(property.precio, property.moneda)}
+          {isMensual(property.operacion) ? (
+            <span className="text-xs font-normal text-gris-texto"> / mes</span>
+          ) : null}
         </p>
         <h3 className="mt-1 truncate text-sm font-medium text-azul">
           {property.direccion}

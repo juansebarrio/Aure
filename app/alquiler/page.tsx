@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { RentalsBrowser } from "@/components/properties/RentalsBrowser";
-import { getRentals } from "@/lib/properties";
+import { getProperties } from "@/lib/properties";
 
 export const metadata: Metadata = {
   title: "Propiedades en alquiler",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const revalidate = 1800;
 
 export default async function AlquilerPage() {
-  const rentals = await getRentals();
+  const rentals = await getProperties("Alquiler");
 
   return (
     <main id="contenido">

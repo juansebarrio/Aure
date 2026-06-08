@@ -1,8 +1,9 @@
-import type { Property } from "./properties";
+import type { Operacion, Property } from "./properties";
 
 /**
  * MOCK — propiedades FICTICIAS para desarrollo/revisión. NO son reales.
  * Direcciones tipo "Calle Ejemplo 123"; barrios y precios verosímiles de CABA.
+ * Cubre las 3 operaciones (Venta, Alquiler, Alquiler temporario).
  *
  * GUARDRAIL: reemplazar por el feed real de Tokko antes de publicar. No
  * presentar estos datos como reales en producción.
@@ -13,7 +14,8 @@ const FOTOS: Property["fotos"] = [
   { url: "/propiedades/placeholder-3.svg", alt: "Imagen de muestra" },
 ];
 
-const RENTALS: Property[] = [
+const PROPERTIES: Property[] = [
+  // ---- Alquiler ----
   {
     id: "alq-01",
     titulo: "Departamento 2 ambientes en Palermo",
@@ -159,12 +161,129 @@ const RENTALS: Property[] = [
       "Local a la calle con vidriera, sobre avenida de alto tránsito. Apto múltiples rubros. (Datos de muestra.)",
     fotos: FOTOS,
   },
+
+  // ---- Venta ----
+  {
+    id: "ven-01",
+    titulo: "Departamento 2 ambientes en Palermo",
+    direccion: "Calle Ejemplo 2100",
+    barrio: "Palermo",
+    operacion: "Venta",
+    tipo: "Departamento",
+    precio: 145000,
+    moneda: "USD",
+    expensas: 90000,
+    ambientes: 2,
+    dormitorios: 1,
+    banos: 1,
+    superficie: 52,
+    cochera: false,
+    descripcion:
+      "Dos ambientes a estrenar, con balcón aterrazado y excelente luz. Apto crédito. (Datos de muestra.)",
+    fotos: FOTOS,
+  },
+  {
+    id: "ven-02",
+    titulo: "Departamento 3 ambientes en Caballito",
+    direccion: "Av. Demo 800",
+    barrio: "Caballito",
+    operacion: "Venta",
+    tipo: "Departamento",
+    precio: 198000,
+    moneda: "USD",
+    expensas: 110000,
+    ambientes: 3,
+    dormitorios: 2,
+    banos: 2,
+    superficie: 78,
+    cochera: true,
+    descripcion:
+      "Tres ambientes con cochera y baulera, en edificio con amenities. Muy buena distribución. (Datos de muestra.)",
+    fotos: FOTOS,
+  },
+  {
+    id: "ven-03",
+    titulo: "Casa 5 ambientes en Saavedra",
+    direccion: "Calle Ficticia 1200",
+    barrio: "Saavedra",
+    operacion: "Venta",
+    tipo: "Casa",
+    precio: 320000,
+    moneda: "USD",
+    ambientes: 5,
+    dormitorios: 4,
+    banos: 3,
+    superficie: 210,
+    cochera: true,
+    descripcion:
+      "Casa en tres niveles con jardín, quincho y cochera doble. Barrio residencial y arbolado. (Datos de muestra.)",
+    fotos: FOTOS,
+  },
+
+  // ---- Alquiler temporario ----
+  {
+    id: "tmp-01",
+    titulo: "Monoambiente amoblado en Recoleta",
+    direccion: "Calle Ejemplo 980",
+    barrio: "Recoleta",
+    operacion: "Alquiler temporario",
+    tipo: "Departamento",
+    precio: 700,
+    moneda: "USD",
+    ambientes: 1,
+    banos: 1,
+    superficie: 35,
+    cochera: false,
+    descripcion:
+      "Monoambiente amoblado y equipado, listo para entrar. Ideal estadías cortas. (Datos de muestra.)",
+    fotos: FOTOS,
+  },
+  {
+    id: "tmp-02",
+    titulo: "Departamento 2 ambientes amoblado en Palermo",
+    direccion: "Av. Modelo 450",
+    barrio: "Palermo",
+    operacion: "Alquiler temporario",
+    tipo: "Departamento",
+    precio: 1100,
+    moneda: "USD",
+    ambientes: 2,
+    dormitorios: 1,
+    banos: 1,
+    superficie: 55,
+    cochera: false,
+    descripcion:
+      "Dos ambientes amoblado con todo incluido, en zona gastronómica. Servicios y wifi. (Datos de muestra.)",
+    fotos: FOTOS,
+  },
+  {
+    id: "tmp-03",
+    titulo: "Departamento 2 ambientes amoblado en Belgrano",
+    direccion: "Calle Ejemplo 333",
+    barrio: "Belgrano",
+    operacion: "Alquiler temporario",
+    tipo: "Departamento",
+    precio: 950,
+    moneda: "USD",
+    ambientes: 2,
+    dormitorios: 1,
+    banos: 1,
+    superficie: 50,
+    cochera: false,
+    descripcion:
+      "Amoblado, luminoso y bien ubicado, a metros del subte. Listo para mudarte. (Datos de muestra.)",
+    fotos: FOTOS,
+  },
 ];
 
-export async function getRentalsMock(): Promise<Property[]> {
-  return RENTALS;
+export async function getPropertiesMock(
+  operacion?: Operacion,
+): Promise<Property[]> {
+  return operacion
+    ? PROPERTIES.filter((p) => p.operacion === operacion)
+    : PROPERTIES;
 }
 
 export async function getPropertyMock(id: string): Promise<Property | null> {
-  return RENTALS.find((p) => p.id === id) ?? null;
+  return PROPERTIES.find((p) => p.id === id) ?? null;
 }

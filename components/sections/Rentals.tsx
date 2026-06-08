@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { PropertyCard } from "@/components/properties/PropertyCard";
-import { getRentals } from "@/lib/properties";
+import { getProperties } from "@/lib/properties";
 
 /**
  * Home — sección "En alquiler": selección de propiedades en alquiler.
@@ -11,7 +11,7 @@ import { getRentals } from "@/lib/properties";
  * Si no hay datos, no renderiza la sección (estado vacío prolijo en el home).
  */
 export async function Rentals() {
-  const rentals = (await getRentals()).slice(0, 3);
+  const rentals = (await getProperties("Alquiler")).slice(0, 3);
   if (rentals.length === 0) return null;
 
   return (

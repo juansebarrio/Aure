@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { PropertyImage } from "@/components/properties/PropertyImage";
-import { getProperty, getRentals, formatPrice } from "@/lib/properties";
+import { getProperty, getProperties, formatPrice, isMensual } from "@/lib/properties";
 import { siteConfig } from "@/lib/site";
 import { whatsappUrl } from "@/lib/whatsapp";
 
@@ -14,8 +14,8 @@ type Params = { id: string };
 // Prerendera las propiedades actuales (mock hoy, feed real al conectar Tokko).
 // Las que no estén prerenderadas se generan on-demand (ISR).
 export async function generateStaticParams(): Promise<Params[]> {
-  const rentals = await getRentals();
-  return rentals.map((p) => ({ id: p.id }));
+  const properties = await getProperties();
+  return properties.map((p) => ({ id: p.id }));
 }
 
 export const revalidate = 1800; // ISR 30 min
@@ -159,8 +159,10 @@ export default async function PropiedadPage({
           <aside className="lg:col-span-1">
             <div className="rounded-2xl border border-borde bg-white p-6 lg:sticky lg:top-28">
               <p className="text-2xl font-medium tracking-display text-azul">
-                {formatPrice(property.precio, property.moneda)}{" "}
-                <span className="text-sm font-normal text-gris-texto">/ mes</span>
+                {formatPrice(property.precio, property.moneda)}
+                {isMensual(property.operacion) ? (
+                  <span className="text-sm font-normal text-gris-texto"> / mes</span>
+                ) : null}
               </p>
               {property.expensas != null ? (
                 <p className="mt-1 text-sm text-gris-texto">

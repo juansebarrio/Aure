@@ -1,16 +1,19 @@
 /**
  * Capa de datos de propiedades — UNA interfaz para toda la UI.
  *
- * La UI consume SOLO `getRentals()` / `getProperty()`; nunca la fuente directa.
- * El adaptador se elige por entorno:
+ * La UI consume SOLO `getProperties()` / `getProperty()`; nunca la fuente
+ * directa. El adaptador se elige por entorno:
  *   - `TOKKO_API_KEY` presente → Tokko (real, server-side)  [TODO: implementar]
  *   - sin `TOKKO_API_KEY`      → Mock (datos ficticios, dev)
- * Así, conectar Tokko la semana próxima es solo cargar la key: no se toca la UI.
+ * Así, conectar Tokko es solo cargar la key: no se toca la UI.
+ *
+ * NOTA: "Emprendimientos" (desarrollos) es OTRA entidad en Tokko, no una
+ * operación de propiedad — se maneja aparte (hoy: sección Proyectos).
  *
  * GUARDRAIL: el mock es SOLO para desarrollo/revisión. No se publica: hay que
  * conectar el feed real de Tokko antes de reemplazar aure.ar.
  */
-export type Operacion = "Alquiler" | "Venta";
+export type Operacion = "Venta" | "Alquiler" | "Alquiler temporario";
 
 export type TipoPropiedad =
   | "Departamento"
@@ -50,19 +53,21 @@ export type Property = {
 const useTokko = Boolean(process.env.TOKKO_API_KEY);
 
 /**
- * Todas las propiedades en alquiler. Si la fuente falla o no hay datos,
- * devuelve [] (la UI muestra un estado vacío prolijo, sin romper el build).
+ * Propiedades, opcionalmente filtradas por operación. Si la fuente falla o no
+ * hay datos, devuelve [] (la UI muestra un estado vacío prolijo).
  */
-export async function getRentals(): Promise<Property[]> {
+export async function getProperties(
+  operacion?: Operacion,
+): Promise<Property[]> {
   try {
     if (useTokko) {
-      const { getRentalsTokko } = await import("./properties.tokko");
-      return await getRentalsTokko();
+      const { getPropertiesTokko } = await import("./properties.tokko");
+      return await getPropertiesTokko(operacion);
     }
-    const { getRentalsMock } = await import("./properties.mock");
-    return await getRentalsMock();
+    const { getPropertiesMock } = await import("./properties.mock");
+    return await getPropertiesMock(operacion);
   } catch (error) {
-    console.error("[properties] getRentals falló:", error);
+    console.error("[properties] getProperties falló:", error);
     return [];
   }
 }
@@ -86,4 +91,9 @@ export async function getProperty(id: string): Promise<Property | null> {
 export function formatPrice(precio: number, moneda: Moneda): string {
   const n = new Intl.NumberFormat("es-AR").format(precio);
   return moneda === "USD" ? `USD ${n}` : `$ ${n}`;
+}
+
+/** Sufijo de precio: alquileres son mensuales; la venta no lleva "/ mes". */
+export function isMensual(operacion: Operacion): boolean {
+  return operacion !== "Venta";
 }
