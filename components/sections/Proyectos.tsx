@@ -38,7 +38,7 @@ const PROYECTOS: Proyecto[] = [
   },
 ];
 
-export function Proyectos() {
+export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boolean }) {
   return (
     <section id="proyectos" className="bg-gris-claro pt-16 text-azul sm:pt-24">
       {/* Fichas de proyectos */}
