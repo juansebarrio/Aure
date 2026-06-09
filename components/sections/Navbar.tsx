@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { navLinks, propiedadesMenu, primaryCta, siteConfig } from "@/lib/site";
-import { Isotipo } from "@/components/ui/Isotipo";
+import { Isotipo } from "@/components/brand/Isotipo";
 import { cn } from "@/lib/cn";
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -113,9 +113,9 @@ export function Navbar() {
               aria-label={`${siteConfig.name} — ${siteConfig.submarca}`}
               className="flex items-center gap-2 text-white"
             >
-              <Isotipo className="h-6 w-6 shrink-0" />
+              <Isotipo className="h-6 w-auto shrink-0" />
               <span className="font-logo text-lg font-semibold tracking-tight">
-                aure.
+                aure<span className="text-dorado">.</span>
               </span>
             </Link>
 
