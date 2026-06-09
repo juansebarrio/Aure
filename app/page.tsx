@@ -8,9 +8,8 @@ import { SocialProof } from "@/components/sections/SocialProof";
 import { Faqs } from "@/components/sections/Faqs";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { InstagramFeed } from "@/components/sections/InstagramFeed";
-// El Hero es híbrido (grilla animada de fondo + slot de video full-bleed). Para
-// sumar el video real, pasá videoSrc/posterSrc a <HeroBackground> en Hero.tsx.
-// (VideoHero queda como variante full-screen alternativa, sin montar.)
+// El Hero es full-screen con video de fondo (public/video/hero-nogoya.mp4) +
+// scrim de legibilidad y CTAs siempre visibles.
 
 export default function HomePage() {
   return (

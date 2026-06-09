@@ -93,9 +93,14 @@ export function formatPrice(precio: number, moneda: Moneda): string {
   return moneda === "USD" ? `USD ${n}` : `$ ${n}`;
 }
 
-/** Sufijo de precio: alquileres son mensuales; la venta no lleva "/ mes". */
+/**
+ * Sufijo de precio "/ mes": solo el alquiler estándar es mensual. La venta no
+ * lleva sufijo, y el alquiler temporario se cotiza por período variable
+ * (noche/estadía), así que tampoco lo afirmamos como mensual.
+ * TODO(cliente): confirmar cómo mostrar el precio del alquiler temporario.
+ */
 export function isMensual(operacion: Operacion): boolean {
-  return operacion !== "Venta";
+  return operacion === "Alquiler";
 }
 
 /** Copy del header de /propiedades según la operación filtrada (vista unificada). */

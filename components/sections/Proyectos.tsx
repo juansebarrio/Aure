@@ -38,7 +38,7 @@ const PROYECTOS: Proyecto[] = [
   },
 ];
 
-export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boolean }) {
+export function Proyectos() {
   return (
     <section id="proyectos" className="bg-gris-claro pt-16 text-azul sm:pt-24">
       {/* Fichas de proyectos */}
@@ -70,9 +70,9 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                     <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
                       {proyecto.estado}
                     </p>
-                    <h3 className="mt-2 text-4xl font-medium leading-tight tracking-display text-white sm:text-5xl">
+                    <h2 className="mt-2 text-4xl font-medium leading-tight tracking-display text-white sm:text-5xl">
                       {proyecto.nombre}
-                    </h3>
+                    </h2>
                     <p className="mt-1 text-base text-white/65">{proyecto.zona}</p>
                   </div>
                 </ProyectoVideo>

@@ -23,7 +23,7 @@
   /* Solo para estados de error de formularios. TODO(marca): confirmar. */
   --color-danger: #b42318;
 
-  /* Azul más oscuro para el degradado del hero (motion; no es de marca). */
+  /* Azul más oscuro para fondos de video y scrims del hero (no es de marca). */
   --color-azul-profundo: #11182c;
 
   /* --- Tipografía --- */
@@ -74,64 +74,27 @@
 }
 
 @layer components {
-  /* Hero: superficie azul con un degradado MUY sutil en movimiento + un brillo
-     que reacciona al cursor. Excepción puntual a la regla "plana", para el hero. */
-  .hero-surface {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-azul);
+  /* Scrim inferior para legibilidad del texto sobre los videos (hero / fichas
+     de proyecto). Usa el token azul-profundo con alpha vía color-mix, así no
+     queda color hardcodeado en el JSX. */
+  .video-scrim {
     background-image: linear-gradient(
-      135deg,
-      var(--color-azul) 0%,
-      var(--color-azul-profundo) 50%,
-      var(--color-azul) 100%
-    );
-    background-size: 200% 200%;
-    animation: brand-gradient-pan 22s ease-in-out infinite;
-  }
-
-  /* Brillo sutil que sigue al cursor (posición vía --hero-x / --hero-y). */
-  .hero-glow {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(
-      34rem 34rem at var(--hero-x, 50%) var(--hero-y, 28%),
-      rgba(255, 255, 255, 0.08),
-      transparent 60%
+      to top,
+      color-mix(in srgb, var(--color-azul-profundo) 92%, transparent) 0%,
+      color-mix(in srgb, var(--color-azul-profundo) 55%, transparent) 28%,
+      color-mix(in srgb, var(--color-azul-profundo) 10%, transparent) 60%,
+      transparent 100%
     );
   }
 
-  /* Cuadrícula blanca de baja opacidad (líneas). Las celdas (HeroGrid) se
-     llenan y agrandan cerca del cursor. Mantener 64px en sync con HeroGrid.tsx. */
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
+  /* Variante más suave (videos de proyecto). */
+  .video-scrim-soft {
     background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.05) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 64px 64px;
-  }
-}
-
-@keyframes brand-gradient-pan {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-surface {
-    animation: none;
+      to top,
+      color-mix(in srgb, var(--color-azul-profundo) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-azul-profundo) 40%, transparent) 35%,
+      transparent 65%
+    );
   }
 }
 

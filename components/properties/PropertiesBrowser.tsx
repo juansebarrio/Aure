@@ -38,13 +38,21 @@ export function PropertiesBrowser({
 
   const copy = operacionCopy(operacion);
 
+  // Las opciones de tipo/zona se derivan de las propiedades de la operación
+  // elegida: así no se ofrecen combinaciones (p. ej. una zona que solo existe en
+  // alquiler) que devolverían cero resultados al estar en Venta.
+  const forFacets = useMemo(
+    () =>
+      operacion ? properties.filter((p) => p.operacion === operacion) : properties,
+    [properties, operacion],
+  );
   const tipos = useMemo(
-    () => Array.from(new Set(properties.map((p) => p.tipo))).sort(),
-    [properties],
+    () => Array.from(new Set(forFacets.map((p) => p.tipo))).sort(),
+    [forFacets],
   );
   const barrios = useMemo(
-    () => Array.from(new Set(properties.map((p) => p.barrio))).sort(),
-    [properties],
+    () => Array.from(new Set(forFacets.map((p) => p.barrio))).sort(),
+    [forFacets],
   );
 
   const desde = precioDesde ? Number(precioDesde) : null;
@@ -71,6 +79,10 @@ export function PropertiesBrowser({
 
   // La operación va a la URL (single source of truth): título + cards en sync.
   function cambiarOperacion(value: string) {
+    // Tipo y zona dependen de la operación: al cambiarla los reseteamos para no
+    // arrastrar un filtro que ya no aplica (dejaría la grilla vacía).
+    setTipo("");
+    setBarrio("");
     router.replace(
       value ? `/propiedades?operacion=${encodeURIComponent(value)}` : "/propiedades",
       { scroll: false },

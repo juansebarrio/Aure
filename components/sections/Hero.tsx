@@ -42,14 +42,7 @@ export function Hero() {
       </video>
 
       {/* Vignette: solo pesa abajo donde está el texto; el video respira arriba */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(17,24,44,0.92) 0%, rgba(17,24,44,0.55) 28%, rgba(0,0,0,0.10) 60%, transparent 100%)",
-        }}
-      />
+      <div aria-hidden="true" className="video-scrim absolute inset-0 z-0" />
 
       {/* Contenido — todo al fondo, chip pegado al titular */}
       <div className="relative z-10 flex min-h-svh flex-col justify-end px-6 pb-28 lg:px-16">
