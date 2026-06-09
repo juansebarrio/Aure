@@ -52,11 +52,15 @@ export const propiedadesMenu = [
   { label: "Venta", href: "/propiedades?operacion=Venta" },
   { label: "Alquiler", href: "/propiedades?operacion=Alquiler" },
   { label: "Alquiler temporario", href: "/propiedades?operacion=Alquiler%20temporario" },
-  { label: "Emprendimientos", href: "/emprendimientos" },
 ] as const;
 
-/** Links sueltos del navbar (además del dropdown "Propiedades"). Anclas con "/". */
+/**
+ * Links sueltos del navbar (además del dropdown "Propiedades"). Emprendimientos
+ * es una sección aparte (otra entidad), por eso va como ítem propio, no en el
+ * dropdown. Anclas con "/" para funcionar desde cualquier página.
+ */
 export const navLinks = [
+  { label: "Emprendimientos", href: "/emprendimientos" },
   { label: "Nosotros", href: "/#nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ] as const;
