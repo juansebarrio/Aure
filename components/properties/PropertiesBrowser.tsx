@@ -23,11 +23,13 @@ const OPERACIONES: Operacion[] = ["Venta", "Alquiler", "Alquiler temporario"];
 export function PropertiesBrowser({
   properties,
   showOperationFilter = false,
+  initialOperacion = "",
 }: {
   properties: Property[];
   showOperationFilter?: boolean;
+  initialOperacion?: string;
 }) {
-  const [operacion, setOperacion] = useState("");
+  const [operacion, setOperacion] = useState(initialOperacion);
   const [tipo, setTipo] = useState("");
   const [barrio, setBarrio] = useState("");
   const [moneda, setMoneda] = useState("");

@@ -88,10 +88,10 @@ export default async function PropiedadPage({
     <main id="contenido">
       <Container className="pb-20 pt-28 sm:pt-36">
         <Link
-          href="/alquiler"
+          href={`/propiedades?operacion=${encodeURIComponent(property.operacion)}`}
           className="text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
         >
-          ← Volver a alquileres
+          ← Volver a propiedades
         </Link>
 
         {/* Galería */}
