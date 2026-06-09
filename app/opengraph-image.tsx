@@ -7,9 +7,9 @@ export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Isotipo (cuña cálida + círculo dorado) como SVG data URI.
+// Isotipo (geometría del manual) como SVG data URI: pala crema + círculo dorado.
 const MARK =
-  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='36' cy='70' r='14.5' fill='%23c0a872'/><polygon points='48,8 67,8 79,92 60,92' fill='%23ebeae8'/></svg>";
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 342'><circle cx='57' cy='285' r='57' fill='%23c0a872'/><path d='M130 0 L300 342 L185 342 L72 112 Z' fill='%23ebeae8'/></svg>";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -26,7 +26,7 @@ export default function OpengraphImage() {
           color: "#ffffff",
         }}
       >
-        <img width="116" height="116" src={MARK} alt="" />
+        <img width="102" height="116" src={MARK} alt="" />
         <div style={{ display: "flex", alignItems: "flex-end", marginTop: 28 }}>
           <span style={{ fontSize: 120, fontWeight: 600, letterSpacing: "-0.02em" }}>
             aure.

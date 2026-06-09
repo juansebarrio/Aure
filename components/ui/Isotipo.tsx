@@ -1,19 +1,16 @@
+import type { SVGProps } from "react";
+
 /**
- * Isotipo de AURE (Aure_V1.pdf): "A" abstracta = cuña inclinada + círculo.
- * La cuña usa `currentColor` (hereda el color del texto: azul sobre claro,
- * blanco sobre azul); el círculo va siempre en dorado (el acento de marca lo
- * lleva el isotipo, por eso el punto del wordmark va en el color del texto).
+ * Isotipo de AURE (Aure_V1.pdf): la "A" abstracta = pala + círculo.
+ * Geometría EXACTA provista por el cliente (extraída del manual). La pala usa
+ * `currentColor` (hereda el color del texto: azul sobre claro, crema sobre
+ * azul); el círculo queda siempre dorado.
  */
-export function Isotipo({ className }: { className?: string }) {
+export function Isotipo(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg
-      viewBox="0 0 100 100"
-      className={className}
-      aria-hidden="true"
-      focusable="false"
-    >
-      <circle cx="36" cy="70" r="14.5" className="fill-dorado" />
-      <polygon points="48,8 67,8 79,92 60,92" fill="currentColor" />
+    <svg viewBox="0 0 300 342" role="img" aria-label="aure" fill="none" {...props}>
+      <circle cx="57" cy="285" r="57" fill="#C0A872" />
+      <path d="M130 0 L300 342 L185 342 L72 112 Z" fill="currentColor" />
     </svg>
   );
 }

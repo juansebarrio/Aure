@@ -1,6 +1,8 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AURE">
-  <!-- Isotipo AURE (Aure_V1.pdf): cuña + círculo dorado sobre azul de marca. -->
-  <rect width="64" height="64" rx="12" fill="#212a45" />
-  <circle cx="25" cy="42" r="7.5" fill="#c0a872" />
-  <polygon points="32,12 42,12 48,52 38,52" fill="#ffffff" />
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AURE">
+  <!-- Favicon AURE: isotipo (geometría del manual) sobre azul de marca. -->
+  <rect width="512" height="512" rx="115" fill="#212a45" />
+  <g transform="translate(120 101) scale(0.906)">
+    <circle cx="57" cy="285" r="57" fill="#C0A872" />
+    <path d="M130 0 L300 342 L185 342 L72 112 Z" fill="#EBEAE8" />
+  </g>
 </svg>
