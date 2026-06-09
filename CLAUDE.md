@@ -2,16 +2,17 @@
 
 Proyecto de **JS80** para el cliente **AURE · Arch & Urban Real Estate**, una **comercializadora inmobiliaria** moderna en Buenos Aires (vende desarrollos de terceros —sobre todo de pozo— a un público de clase media; no es desarrolladora). El sitio tiene doble función: dar **respaldo y credibilidad** a quien no los conoce y, sobre esa confianza, **captar contactos** (consulta, WhatsApp, reunión o visita).
 
-Este archivo son las convenciones del proyecto. Léelo siempre. Para todo lo visual, la referencia es `AURE_Brand_Spec.md`.
+Este archivo son las convenciones del proyecto. Léelo siempre. Para todo lo visual, la referencia es **`Aure_V1.pdf`** (identidad 2026, raíz del repo); `AURE_Brand_Spec.md` queda como guía de principios/espíritu.
 
 ---
 
 ## Marca = fuente de verdad
 
-`AURE_Brand_Spec.md` (raíz del repo) manda sobre cualquier decisión visual. Léelo antes de tocar estilos. Resumen de lo crítico:
+**`Aure_V1.pdf`** (identidad 2026) manda sobre cualquier decisión visual. Resumen de lo crítico:
 
-- **Colores:** azul `#1E2A47` (superficie de marca), dorado `#C6A86B` (acento y CTA, **nunca** texto de cuerpo), blanco `#FFFFFF`, gris `#AFC0D9` (texto secundario sobre azul). Neutrales de UI: gris-claro `#F4F6FA`, gris-texto `#6B7280`, borde `#E5E9F0`.
-- **Tipografía:** IBM Plex Sans, pesos 300/400/500. Titulares peso 500, tracking `-0.02em`. Eyebrows en MAYÚSCULA, tracking `0.3em`, dorado. Cuerpo 300/400.
+- **Colores:** azul `#212a45` (superficie de marca), dorado `#c0a872` (acento — lo lleva el isotipo; **nunca** texto de cuerpo), blanco `#FFFFFF`, gris `#b3bacc` (texto secundario sobre azul). Neutrales de UI: gris-claro cálido `#ebeae8`, gris-texto `#878787`, borde `#e4e1db`.
+- **Tipografía:** **Outfit** (titulares, bajadas y cuerpos — todo el sitio), pesos 300/400/500. **IBM Plex Sans** SOLO el logotipo "aure." (utilidad `font-logo`). Titulares tracking `-0.02em`; eyebrows en MAYÚSCULA, tracking `0.3em`.
+- **Logo:** imagotipo = isotipo (la "A" abstracta: cuña + círculo dorado) + wordmark "aure." con el punto en el color del texto (el dorado lo aporta el isotipo). Componente `components/ui/Isotipo.tsx`.
 - **CTA primario:** fondo dorado + texto azul.
 - **Estética:** sobria, plana, mucho aire, sin sombras ni efectos. Fondos azul o claro, nunca grises sucios. Separadores con borde fino.
 
@@ -21,7 +22,7 @@ Este archivo son las convenciones del proyecto. Léelo siempre. Para todo lo vis
 
 - **Next.js 15** (App Router) + **TypeScript** strict
 - **Tailwind v4** — tokens de marca en `app/globals.css` con bloque `@theme`
-- **IBM Plex Sans** vía `next/font/google` (pesos 300/400/500)
+- **Outfit** (sitio) + **IBM Plex Sans** (solo el logotipo) vía `next/font/google`
 - **pnpm** como package manager
 - **Vercel** para deploy (futuro; por ahora todo local)
 - Componentes: primitivos propios livianos estilados con los tokens. Sin librerías de UI con estética genérica. Para accesibilidad (accordion, dialog) se permite Radix headless, restyleado 100% a la marca.

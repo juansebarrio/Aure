@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Isotipo } from "@/components/ui/Isotipo";
 import { navLinks, propiedadesMenu, siteConfig } from "@/lib/site";
 
 const legalLinks = [
@@ -20,9 +21,12 @@ export function Footer() {
       <Container className="py-16">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="text-xl font-medium tracking-tight">
-              aure<span className="text-dorado">.</span>
-            </p>
+            <div className="flex items-center gap-2.5 text-white">
+              <Isotipo className="h-7 w-7 shrink-0" />
+              <p className="font-logo text-xl font-semibold tracking-tight">
+                aure.
+              </p>
+            </div>
             {/* Submarca (spec §5): MAYÚSCULA, peso 300, tracking amplio, gris. */}
             <p className="mt-3 text-[11px] font-light uppercase tracking-[0.3em] text-gris">
               {siteConfig.submarca}

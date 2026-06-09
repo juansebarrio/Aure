@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { navLinks, propiedadesMenu, primaryCta, siteConfig } from "@/lib/site";
+import { Isotipo } from "@/components/ui/Isotipo";
 import { cn } from "@/lib/cn";
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -105,14 +106,17 @@ export function Navbar() {
           )}
         >
           <div className="flex h-14 items-center justify-between gap-4 px-6">
-            {/* Wordmark */}
+            {/* Imagotipo: isotipo (el dorado lo lleva la "A") + wordmark "aure." */}
             <Link
               href="/"
               onClick={close}
-              className="text-lg font-medium tracking-tight text-white"
+              aria-label={`${siteConfig.name} — ${siteConfig.submarca}`}
+              className="flex items-center gap-2 text-white"
             >
-              aure<span className="text-dorado">.</span>
-              <span className="sr-only"> — {siteConfig.submarca}</span>
+              <Isotipo className="h-6 w-6 shrink-0" />
+              <span className="font-logo text-lg font-semibold tracking-tight">
+                aure.
+              </span>
             </Link>
 
             {/* Nav — desktop */}

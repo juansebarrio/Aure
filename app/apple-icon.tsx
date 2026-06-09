@@ -1,9 +1,12 @@
 import { ImageResponse } from "next/og";
 
-// Apple touch icon generado (180x180), on-brand: isotipo "a." sobre azul.
-// TODO(assets): reemplazar por el set de favicons oficial del cliente (spec §5).
+// Apple touch icon generado (180x180): isotipo AURE sobre azul (Aure_V1.pdf).
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
+
+// Isotipo como SVG (data URI): cuña blanca + círculo dorado.
+const MARK =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='36' cy='70' r='14.5' fill='%23c0a872'/><polygon points='48,8 67,8 79,92 60,92' fill='%23ffffff'/></svg>";
 
 export default function AppleIcon() {
   return new ImageResponse(
@@ -15,22 +18,10 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#1E2A47",
+          backgroundColor: "#212a45",
         }}
       >
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
-          <span
-            style={{
-              fontSize: 104,
-              fontWeight: 500,
-              color: "#FFFFFF",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            a
-          </span>
-          <span style={{ fontSize: 104, fontWeight: 500, color: "#C6A86B" }}>.</span>
-        </div>
+        <img width="104" height="104" src={MARK} alt="AURE" />
       </div>
     ),
     { ...size },
