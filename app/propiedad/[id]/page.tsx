@@ -29,8 +29,13 @@ export async function generateMetadata({
   const property = await getProperty(id);
   if (!property) return { title: "Propiedad no encontrada" };
 
-  const title = `${property.titulo} — ${formatPrice(property.precio, property.moneda)}/mes`;
-  const ogImage = property.fotos[0]?.url;
+  const suffix = isMensual(property.operacion) ? "/mes" : "";
+  const title = `${property.titulo} — ${formatPrice(property.precio, property.moneda)}${suffix}`;
+  // OG: las redes no renderizan SVG (los placeholders del mock lo son). Solo
+  // mandamos la primera foto si es un raster (las fotos reales de Tokko lo son).
+  const firstPhoto = property.fotos[0]?.url;
+  const ogImage =
+    firstPhoto && !firstPhoto.toLowerCase().endsWith(".svg") ? firstPhoto : undefined;
   return {
     title,
     description: property.descripcion,

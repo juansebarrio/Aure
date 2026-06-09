@@ -29,7 +29,7 @@ export default function EmprendimientosPage() {
         </Container>
       </section>
 
-      <Proyectos showVerMas={false} />
+      <Proyectos />
     </main>
   );
 }
