@@ -49,10 +49,10 @@ export const siteConfig = {
  */
 export const propiedadesMenu = [
   { label: "Todas las propiedades", href: "/propiedades" },
-  { label: "Emprendimientos", href: "/#proyectos" },
-  { label: "Venta", href: "/venta" },
-  { label: "Alquiler", href: "/alquiler" },
-  { label: "Alquiler temporario", href: "/alquiler-temporario" },
+  { label: "Venta", href: "/propiedades?operacion=Venta" },
+  { label: "Alquiler", href: "/propiedades?operacion=Alquiler" },
+  { label: "Alquiler temporario", href: "/propiedades?operacion=Alquiler%20temporario" },
+  { label: "Emprendimientos", href: "/emprendimientos" },
 ] as const;
 
 /** Links sueltos del navbar (además del dropdown "Propiedades"). Anclas con "/". */

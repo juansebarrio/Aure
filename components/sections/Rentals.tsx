@@ -29,7 +29,7 @@ export async function Rentals() {
             </p>
           </div>
           <Link
-            href="/alquiler"
+            href="/propiedades?operacion=Alquiler"
             className="shrink-0 text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
           >
             Ver todas →
