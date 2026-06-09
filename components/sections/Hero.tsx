@@ -36,8 +36,9 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 z-0 h-full w-full object-cover"
       >
-        {/* Probando video nuevo (hero-v2). Para volver al anterior: /video/hero.mp4 (sigue en el repo). */}
-        <source src="/video/hero-v2.mp4" type="video/mp4" />
+        {/* Video del hero: Nogoyá. Anteriores en el repo por si hay que volver:
+            /video/hero-v2.mp4 y /video/hero.mp4. */}
+        <source src="/video/hero-nogoya.mp4" type="video/mp4" />
       </video>
 
       {/* Vignette: solo pesa abajo donde está el texto; el video respira arriba */}
