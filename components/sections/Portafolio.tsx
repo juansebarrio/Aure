@@ -22,9 +22,8 @@ const DESARROLLOS: CarruselItem[] = [
     titulo: "Nogoyá 2478",
     descripcion:
       "Villa del Parque, CABA · Entrega inmediata a metros de la Av. San Martín. Cerca de Veterinaria y Agronomía (UBA).",
-    href: "https://portal.winbuild.app/Mario%20Yennaccaro/nogoya",
-    cta: "Ver showroom 3D",
-    ctaExternal: true,
+    href: "/emprendimiento/nogoya",
+    cta: "Ver ficha completa",
   },
   {
     id: "proximo-desarrollo",
