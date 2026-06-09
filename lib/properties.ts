@@ -97,3 +97,41 @@ export function formatPrice(precio: number, moneda: Moneda): string {
 export function isMensual(operacion: Operacion): boolean {
   return operacion !== "Venta";
 }
+
+/** Copy del header de /propiedades según la operación filtrada (vista unificada). */
+export function operacionCopy(operacion: Operacion | ""): {
+  eyebrow: string;
+  titulo: string;
+  descripcion: string;
+} {
+  switch (operacion) {
+    case "Venta":
+      return {
+        eyebrow: "Venta",
+        titulo: "Propiedades en venta",
+        descripcion:
+          "Propiedades en venta en Buenos Aires. Filtrá por tipo, zona, moneda y rango de precio.",
+      };
+    case "Alquiler":
+      return {
+        eyebrow: "Alquiler",
+        titulo: "Propiedades en alquiler",
+        descripcion:
+          "Propiedades en alquiler en Buenos Aires. Filtrá por tipo, zona, moneda y rango de precio.",
+      };
+    case "Alquiler temporario":
+      return {
+        eyebrow: "Alquiler temporario",
+        titulo: "Alquiler temporario",
+        descripcion:
+          "Departamentos amoblados para estadías cortas en Buenos Aires. Filtrá por tipo, zona, moneda y rango de precio.",
+      };
+    default:
+      return {
+        eyebrow: "Propiedades",
+        titulo: "Todas las propiedades",
+        descripcion:
+          "Venta, alquiler y alquiler temporario en Buenos Aires. Filtrá por operación, tipo, zona, moneda y rango de precio.",
+      };
+  }
+}
