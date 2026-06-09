@@ -1,19 +1,6 @@
-import { Section } from "@/components/ui/Section";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/motion/Reveal";
-import { ProjectMedia } from "@/components/sections/ProjectMedia";
-import { cn } from "@/lib/cn";
+import { ProyectoVideo } from "@/components/sections/ProyectoVideo";
 
-/**
- * Proyectos (wireframe 04) — sección PROTAGONISTA, en formato FICHA. AURE es
- * comercializadora: muestra POCOS desarrollos de TERCEROS, bien presentados,
- * con su showroom 3D. Data-driven: para sumar/editar un proyecto, tocar el
- * array. El primero es real (Nogoyá 2478); el segundo es placeholder.
- *
- * TODO(cliente): segundo proyecto real (hoy placeholder) y confirmar la etapa
- * de obra de cada desarrollo.
- */
 type Proyecto = {
   id: string;
   nombre: string;
@@ -49,88 +36,59 @@ const PROYECTOS: Proyecto[] = [
       posterSrc: "/proyectos/nogoya-poster.svg",
     },
   },
-  {
-    // TODO(cliente): reemplazar por el segundo desarrollo real (info + showroom + media).
-    id: "proximo",
-    nombre: "Próximo desarrollo",
-    zona: "Buenos Aires",
-    estado: "Próximamente",
-    descripcion:
-      "Sumamos desarrollos de forma curada: pocos, bien elegidos. Dejanos tus datos y te avisamos apenas se publique el próximo, con la misma información clara y el mismo acompañamiento de principio a fin.",
-    destacados: [
-      "Selección curada de desarrollos",
-      "Información clara desde el primer día",
-      "Showroom 3D al publicarse",
-    ],
-    showroomHref: "#",
-  },
 ];
 
-export function Proyectos({ showVerMas = true }: { showVerMas?: boolean }) {
+export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boolean }) {
   return (
-    <Section id="proyectos" background="gris-claro">
-      <Reveal>
-        <div className="max-w-2xl">
-          <Eyebrow>Proyectos</Eyebrow>
-          <h2 className="mt-5 text-3xl font-medium tracking-display sm:text-4xl">
-            Desarrollos seleccionados
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-gris-texto">
-            Pocos proyectos, bien elegidos. Comercializamos desarrollos de
-            terceros con información clara y showroom 3D para que los recorras
-            antes de decidir.
-          </p>
-        </div>
-      </Reveal>
+    <section id="proyectos" className="bg-gris-claro pt-16 text-azul sm:pt-24">
+      {/* Fichas de proyectos */}
+      {PROYECTOS.map((proyecto) => {
+        const tieneShowroom = proyecto.showroomHref !== "#";
+        return (
+          <article key={proyecto.id} className="pb-16 sm:pb-24">
 
-      <div className="mt-14 space-y-16 sm:space-y-24">
-        {PROYECTOS.map((proyecto, i) => {
-          const tieneShowroom = proyecto.showroomHref !== "#";
-          const flip = i % 2 === 1; // alterna el lado de la media (ritmo editorial)
-          return (
-            <Reveal key={proyecto.id}>
-              <article className="grid items-stretch gap-8 lg:grid-cols-12 lg:gap-12">
-                <div className={cn("lg:col-span-7 lg:h-full", flip && "lg:order-2")}>
-                  <ProjectMedia
-                    videoSrc={proyecto.media?.videoSrc}
-                    posterSrc={proyecto.media?.posterSrc}
-                    label={`Recorrido · ${proyecto.nombre}`}
-                    aspect="aspect-[16/10] lg:aspect-auto lg:h-full"
-                  />
-                </div>
+            {/* Video al ancho del contenido */}
+            {proyecto.media?.videoSrc && (
+              <div className="mx-auto max-w-6xl px-6 sm:px-8">
+                <ProyectoVideo
+                  videoSrc={proyecto.media.videoSrc}
+                  posterSrc={proyecto.media.posterSrc}
+                  label={`Recorrido · ${proyecto.nombre}`}
+                >
+                  {/* Chip superior */}
+                  <div className="absolute left-0 top-0 p-6 sm:p-8">
+                    <div className="inline-flex w-fit items-center gap-2.5 rounded-full bg-white/60 px-4 py-1.5 backdrop-blur-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-dorado" aria-hidden="true" />
+                      <p className="text-xs font-medium uppercase tracking-eyebrow text-azul">
+                        Proyecto destacado
+                      </p>
+                    </div>
+                  </div>
 
-                <div className={cn("flex flex-col lg:col-span-5 lg:h-full", flip && "lg:order-1")}>
-                  <Eyebrow>{proyecto.estado}</Eyebrow>
-                  <h3 className="mt-4 text-2xl font-medium tracking-display sm:text-3xl">
-                    {proyecto.nombre}
-                  </h3>
-                  <p className="mt-1 text-sm text-gris-texto">{proyecto.zona}</p>
+                  {/* Texto inferior */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
+                      {proyecto.estado}
+                    </p>
+                    <h3 className="mt-2 text-4xl font-medium leading-tight tracking-display text-white sm:text-5xl">
+                      {proyecto.nombre}
+                    </h3>
+                    <p className="mt-1 text-base text-white/65">{proyecto.zona}</p>
+                  </div>
+                </ProyectoVideo>
+              </div>
+            )}
 
-                  <p className="mt-5 text-base leading-relaxed text-gris-texto">
+            {/* Contenido debajo del video */}
+            <div className="mx-auto max-w-6xl px-6 pt-10 sm:px-8 sm:pt-14">
+              <div className="grid gap-10 lg:grid-cols-12">
+
+                {/* Descripción + botones */}
+                <div className="lg:col-span-7">
+                  <p className="text-base leading-relaxed text-gris-texto">
                     {proyecto.descripcion}
                   </p>
-
-                  <ul className="mt-6 space-y-2.5">
-                    {proyecto.destacados.map((d) => (
-                      <li key={d} className="flex gap-3 text-sm text-azul">
-                        <span
-                          aria-hidden="true"
-                          className="mt-2 h-1 w-1 shrink-0 rounded-full bg-dorado"
-                        />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Honestidad: el desarrollo es de un tercero; AURE comercializa. */}
-                  {proyecto.desarrolladora ? (
-                    <p className="mt-6 text-[11px] uppercase tracking-eyebrow text-gris-texto">
-                      Desarrolla ·{" "}
-                      <span className="text-azul">{proyecto.desarrolladora}</span>
-                    </p>
-                  ) : null}
-
-                  <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center sm:gap-4">
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                     {tieneShowroom ? (
                       <>
                         <Button
@@ -149,19 +107,35 @@ export function Proyectos({ showVerMas = true }: { showVerMas?: boolean }) {
                     )}
                   </div>
                 </div>
-              </article>
-            </Reveal>
-          );
-        })}
-      </div>
 
-      {showVerMas ? (
-        <div className="mt-14 text-center">
-          <Button href="/emprendimientos" variant="secondary">
-            Ver más emprendimientos
-          </Button>
-        </div>
-      ) : null}
-    </Section>
+                {/* Destacados + desarrolladora */}
+                <div className="lg:col-span-5">
+                  {/* Honestidad: el desarrollo es de un tercero; AURE comercializa. */}
+                  {proyecto.desarrolladora && (
+                    <p className="mb-5 text-[11px] uppercase tracking-eyebrow text-gris-texto">
+                      Desarrolla ·{" "}
+                      <span className="text-azul">{proyecto.desarrolladora}</span>
+                    </p>
+                  )}
+
+                  <ul className="space-y-3">
+                    {proyecto.destacados.map((d) => (
+                      <li key={d} className="flex gap-3 text-sm text-azul">
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 h-1 w-1 shrink-0 rounded-full bg-dorado"
+                        />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </section>
   );
 }
