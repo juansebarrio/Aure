@@ -48,6 +48,7 @@ export const siteConfig = {
  * la sección Proyectos del home; las otras tres son páginas de listado.
  */
 export const propiedadesMenu = [
+  { label: "Todas las propiedades", href: "/propiedades" },
   { label: "Emprendimientos", href: "/#proyectos" },
   { label: "Venta", href: "/venta" },
   { label: "Alquiler", href: "/alquiler" },
