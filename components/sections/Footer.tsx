@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/brand/Logo";
 import { navLinks, propiedadesMenu, siteConfig } from "@/lib/site";
 
 const legalLinks = [
@@ -20,13 +21,7 @@ export function Footer() {
       <Container className="py-16">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="text-xl font-medium tracking-tight">
-              aure<span className="text-dorado">.</span>
-            </p>
-            {/* Submarca (spec §5): MAYÚSCULA, peso 300, tracking amplio, gris. */}
-            <p className="mt-3 text-[11px] font-light uppercase tracking-[0.3em] text-gris">
-              {siteConfig.submarca}
-            </p>
+            <Logo variant="imagotipo" mode="dark" className="h-12 w-auto" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gris">
               Comercializamos desarrollos seleccionados en Buenos Aires, con
               acompañamiento real.

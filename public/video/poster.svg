@@ -2,11 +2,11 @@
   <!-- TODO(assets): poster placeholder on-brand. Reemplazar por el frame real del video. -->
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1E2A47" />
-      <stop offset="1" stop-color="#11182C" />
+      <stop offset="0" stop-color="#212a45" />
+      <stop offset="1" stop-color="#161c2f" />
     </linearGradient>
     <radialGradient id="v" cx="0.5" cy="0.4" r="0.75">
-      <stop offset="0" stop-color="#1E2A47" stop-opacity="0" />
+      <stop offset="0" stop-color="#212a45" stop-opacity="0" />
       <stop offset="1" stop-color="#0D1322" stop-opacity="0.65" />
     </radialGradient>
   </defs>

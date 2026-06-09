@@ -1,11 +1,18 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { siteConfig } from "@/lib/site";
 
-// Imagen Open Graph generada (1200x630), on-brand.
-// TODO(assets): refinar con la fuente IBM Plex Sans y/o el asset definitivo.
+// Imagen Open Graph generada (1200x630): imagotipo oficial (Aure_V1.pdf) + tagline.
 export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+// Imagotipo negativo oficial (PNG) embebido como data URI para Satori.
+const logo = readFileSync(
+  join(process.cwd(), "public/brand/aure-imagotipo-negativo.png"),
+);
+const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -18,18 +25,11 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "96px",
-          backgroundColor: "#1E2A47",
-          color: "#FFFFFF",
+          backgroundColor: "#212a45",
         }}
       >
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
-          <span style={{ fontSize: 120, fontWeight: 500, letterSpacing: "-0.02em" }}>
-            aure
-          </span>
-          <span style={{ fontSize: 120, fontWeight: 500, color: "#C6A86B" }}>.</span>
-        </div>
-        <div style={{ width: 96, height: 4, backgroundColor: "#C6A86B", marginTop: 40 }} />
-        <span style={{ fontSize: 40, color: "#AFC0D9", marginTop: 40 }}>
+        <img width="600" height="220" src={logoSrc} alt="" />
+        <span style={{ fontSize: 38, color: "#b3bacc", marginTop: 48 }}>
           {siteConfig.tagline}
         </span>
       </div>
