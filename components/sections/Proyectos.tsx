@@ -1,61 +1,29 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ProyectoVideo } from "@/components/sections/ProyectoVideo";
+import { EMPRENDIMIENTOS } from "@/lib/emprendimientos";
 
-type Proyecto = {
-  id: string;
-  nombre: string;
-  zona: string;
-  estado: string;
-  /** Desarrollador (tercero). AURE comercializa, no desarrolla. */
-  desarrolladora?: string;
-  descripcion: string;
-  destacados: string[];
-  /** Showroom 3D externo (winbuild). "#" cuando todavía no hay. */
-  showroomHref: string;
-  media?: { videoSrc?: string; posterSrc?: string };
-};
-
-const PROYECTOS: Proyecto[] = [
-  {
-    id: "nogoya",
-    nombre: "Nogoyá 2478",
-    zona: "Villa del Parque, CABA",
-    estado: "Listo para escriturar",
-    desarrolladora: "Nocito Constructora",
-    descripcion:
-      "Ubicado a metros de la Av. San Martín, conjuga diseño y una localización óptima. La cercanía a las facultades de Ciencias Veterinarias y Agronomía sostiene una demanda habitacional constante e impulsa el movimiento comercial de la zona. Ideal para quienes buscan una vida académica cercana y para familias que quieren apartarse de las áreas céntricas.",
-    destacados: [
-      "Entrega inmediata, sin esperar obra",
-      "A metros de la Av. San Martín",
-      "Cerca de Veterinaria y Agronomía (UBA)",
-      "Pensado para estudiantes y familias",
-    ],
-    showroomHref: "https://portal.winbuild.app/Mario%20Yennaccaro/nogoya",
-    media: {
-      videoSrc: "/proyectos/nogoya.mp4",
-      posterSrc: "/proyectos/nogoya-poster.svg",
-    },
-  },
-];
-
+/**
+ * Sección de emprendimientos (home y /emprendimientos). Cada emprendimiento
+ * linkea a su página propia (/emprendimiento/[id]), donde está el showroom 3D
+ * embebido. Data en lib/emprendimientos.ts.
+ */
 export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boolean }) {
   return (
     <section id="proyectos" className="bg-gris-claro pt-16 text-azul sm:pt-24">
-      {/* Fichas de proyectos */}
-      {PROYECTOS.map((proyecto) => {
-        const tieneShowroom = proyecto.showroomHref !== "#";
+      {EMPRENDIMIENTOS.map((emp) => {
+        const href = `/emprendimiento/${emp.id}`;
+        const ctaLabel = emp.showroomEmbedUrl ? "Ver showroom 3D" : "Ver emprendimiento";
         return (
-          <article key={proyecto.id} className="pb-16 sm:pb-24">
-
-            {/* Video al ancho del contenido */}
-            {proyecto.media?.videoSrc && (
+          <article key={emp.id} className="pb-16 sm:pb-24">
+            {emp.media?.videoSrc ? (
+              // Con video: feature full-width con el título overlay.
               <div className="mx-auto max-w-6xl px-6 sm:px-8">
                 <ProyectoVideo
-                  videoSrc={proyecto.media.videoSrc}
-                  posterSrc={proyecto.media.posterSrc}
-                  label={`Recorrido · ${proyecto.nombre}`}
+                  videoSrc={emp.media.videoSrc}
+                  posterSrc={emp.media.posterSrc}
+                  label={`Recorrido · ${emp.nombre}`}
                 >
-                  {/* Chip superior */}
                   <div className="absolute left-0 top-0 p-6 sm:p-8">
                     <div className="inline-flex w-fit items-center gap-2.5 rounded-full bg-white/60 px-4 py-1.5 backdrop-blur-sm">
                       <span className="h-1.5 w-1.5 rounded-full bg-dorado" aria-hidden="true" />
@@ -64,62 +32,54 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                       </p>
                     </div>
                   </div>
-
-                  {/* Texto inferior */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                     <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
-                      {proyecto.estado}
+                      {emp.estado}
                     </p>
                     <h3 className="mt-2 text-4xl font-medium leading-tight tracking-display text-white sm:text-5xl">
-                      {proyecto.nombre}
+                      {emp.nombre}
                     </h3>
-                    <p className="mt-1 text-base text-white/65">{proyecto.zona}</p>
+                    <p className="mt-1 text-base text-white/65">{emp.zona}</p>
                   </div>
                 </ProyectoVideo>
               </div>
+            ) : (
+              // Sin video (placeholder): encabezado simple.
+              <div className="mx-auto max-w-6xl px-6 sm:px-8">
+                <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
+                  {emp.estado}
+                </p>
+                <h3 className="mt-2 text-3xl font-medium tracking-display sm:text-4xl">
+                  {emp.nombre}
+                </h3>
+                <p className="mt-1 text-base text-gris-texto">{emp.zona}</p>
+              </div>
             )}
 
-            {/* Contenido debajo del video */}
             <div className="mx-auto max-w-6xl px-6 pt-10 sm:px-8 sm:pt-14">
               <div className="grid gap-10 lg:grid-cols-12">
-
-                {/* Descripción + botones */}
                 <div className="lg:col-span-7">
                   <p className="text-base leading-relaxed text-gris-texto">
-                    {proyecto.descripcion}
+                    {emp.descripcion}
                   </p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                    {tieneShowroom ? (
-                      <>
-                        <Button
-                          href={proyecto.showroomHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Ver showroom 3D
-                        </Button>
-                        <Button href="/#contacto" variant="secondary">
-                          Consultar
-                        </Button>
-                      </>
-                    ) : (
-                      <Button href="/#contacto">Quiero que me avisen</Button>
-                    )}
+                    <Button href={href}>{ctaLabel}</Button>
+                    <Button href="/#contacto" variant="secondary">
+                      Consultar
+                    </Button>
                   </div>
                 </div>
 
-                {/* Destacados + desarrolladora */}
                 <div className="lg:col-span-5">
                   {/* Honestidad: el desarrollo es de un tercero; AURE comercializa. */}
-                  {proyecto.desarrolladora && (
+                  {emp.desarrolladora && (
                     <p className="mb-5 text-[11px] uppercase tracking-eyebrow text-gris-texto">
                       Desarrolla ·{" "}
-                      <span className="text-azul">{proyecto.desarrolladora}</span>
+                      <span className="text-azul">{emp.desarrolladora}</span>
                     </p>
                   )}
-
                   <ul className="space-y-3">
-                    {proyecto.destacados.map((d) => (
+                    {emp.destacados.map((d) => (
                       <li key={d} className="flex gap-3 text-sm text-azul">
                         <span
                           aria-hidden="true"
@@ -129,8 +89,16 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                       </li>
                     ))}
                   </ul>
+                  {/* El link de "Ver showroom 3D" lleva a la página del emprendimiento. */}
+                  <p className="mt-6">
+                    <Link
+                      href={href}
+                      className="text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
+                    >
+                      Ver ficha completa →
+                    </Link>
+                  </p>
                 </div>
-
               </div>
             </div>
           </article>
