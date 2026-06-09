@@ -49,14 +49,7 @@ export function ProyectoVideo({
       </video>
 
       {/* Gradiente inferior para legibilidad del texto */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(17,24,44,0.90) 0%, rgba(17,24,44,0.40) 35%, transparent 65%)",
-        }}
-      />
+      <div aria-hidden="true" className="video-scrim-soft absolute inset-0" />
 
       {children}
     </div>

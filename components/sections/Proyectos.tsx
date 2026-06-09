@@ -1,19 +1,17 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ProyectoVideo } from "@/components/sections/ProyectoVideo";
 import { EMPRENDIMIENTOS } from "@/lib/emprendimientos";
 
 /**
  * Sección de emprendimientos (home y /emprendimientos). Cada emprendimiento
- * linkea a su página propia (/emprendimiento/[id]), donde está el showroom 3D
+ * linkea a su FICHA COMPLETA (/emprendimiento/[id]), donde está el showroom 3D
  * embebido. Data en lib/emprendimientos.ts.
  */
-export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boolean }) {
+export function Proyectos() {
   return (
     <section id="proyectos" className="bg-gris-claro pt-16 text-azul sm:pt-24">
       {EMPRENDIMIENTOS.map((emp) => {
         const href = `/emprendimiento/${emp.id}`;
-        const ctaLabel = emp.showroomEmbedUrl ? "Ver showroom 3D" : "Ver emprendimiento";
         return (
           <article key={emp.id} className="pb-16 sm:pb-24">
             {emp.media?.videoSrc ? (
@@ -36,9 +34,9 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                     <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
                       {emp.estado}
                     </p>
-                    <h3 className="mt-2 text-4xl font-medium leading-tight tracking-display text-white sm:text-5xl">
+                    <h2 className="mt-2 text-4xl font-medium leading-tight tracking-display text-white sm:text-5xl">
                       {emp.nombre}
-                    </h3>
+                    </h2>
                     <p className="mt-1 text-base text-white/65">{emp.zona}</p>
                   </div>
                 </ProyectoVideo>
@@ -49,9 +47,9 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                 <p className="text-[11px] font-medium uppercase tracking-eyebrow text-dorado">
                   {emp.estado}
                 </p>
-                <h3 className="mt-2 text-3xl font-medium tracking-display sm:text-4xl">
+                <h2 className="mt-2 text-3xl font-medium tracking-display sm:text-4xl">
                   {emp.nombre}
-                </h3>
+                </h2>
                 <p className="mt-1 text-base text-gris-texto">{emp.zona}</p>
               </div>
             )}
@@ -63,7 +61,8 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                     {emp.descripcion}
                   </p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                    <Button href={href}>{ctaLabel}</Button>
+                    {/* El showroom 3D va embebido en la ficha completa. */}
+                    <Button href={href}>Ver ficha completa</Button>
                     <Button href="/#contacto" variant="secondary">
                       Consultar
                     </Button>
@@ -89,15 +88,6 @@ export function Proyectos({ showVerMas: _showVerMas = true }: { showVerMas?: boo
                       </li>
                     ))}
                   </ul>
-                  {/* El link de "Ver showroom 3D" lleva a la página del emprendimiento. */}
-                  <p className="mt-6">
-                    <Link
-                      href={href}
-                      className="text-sm font-medium text-azul underline underline-offset-4 transition-opacity hover:opacity-70"
-                    >
-                      Ver ficha completa →
-                    </Link>
-                  </p>
                 </div>
               </div>
             </div>

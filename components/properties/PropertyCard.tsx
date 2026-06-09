@@ -7,7 +7,7 @@ function metaLine(p: Property): string {
 }
 
 /**
- * Card de propiedad (reutilizable: home "En alquiler" y grilla /alquiler).
+ * Card de propiedad usada en la grilla de /propiedades (PropertiesBrowser).
  * Linkea al detalle /propiedad/[id]. Plano, sin sombras.
  */
 export function PropertyCard({

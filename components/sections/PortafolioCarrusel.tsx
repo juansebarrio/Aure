@@ -107,15 +107,16 @@ export function PortafolioCarrusel({ items }: { items: CarruselItem[] }) {
           <ArrowBtn
             dir="left"
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+            className="absolute left-0 top-1/2 z-10 -translate-y-1/2"
           />
         )}
 
-        {/* Flecha derecha — siempre visible, centrada verticalmente */}
+        {/* Flecha derecha — siempre visible, centrada verticalmente. Dentro del
+            contenedor (no se sale en mobile/tablet ni genera scroll horizontal). */}
         <ArrowBtn
           dir="right"
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 z-10 translate-x-[calc(100%+40px)] -translate-y-1/2"
+          className="absolute right-0 top-1/2 z-10 -translate-y-1/2"
         />
 
       {/* Carrusel scrollable */}

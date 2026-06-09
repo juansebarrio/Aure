@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
         destination: "/propiedades?operacion=Alquiler%20temporario",
         permanent: false,
       },
+      // /contacto se unificó en la sección #contacto del home (nav y footer ya
+      // apuntan ahí). Mantenemos la URL viva con un redirect en vez de duplicar
+      // la página.
+      { source: "/contacto", destination: "/#contacto", permanent: false },
     ];
   },
 };
