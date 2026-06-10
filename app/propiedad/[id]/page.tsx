@@ -5,9 +5,17 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { PropertyImage } from "@/components/properties/PropertyImage";
-import { getProperty, getProperties, formatPrice, isMensual } from "@/lib/properties";
+import {
+  getProperty,
+  getProperties,
+  formatPrice,
+  isMensual,
+  isLiveData,
+} from "@/lib/properties";
 import { siteConfig } from "@/lib/site";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd, propertyLd } from "@/lib/structured-data";
 
 type Params = { id: string };
 
@@ -91,6 +99,16 @@ export default async function PropiedadPage({
 
   return (
     <main id="contenido">
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Inicio", url: "/" },
+          { name: "Propiedades", url: "/propiedades" },
+          { name: property.titulo, url: `/propiedad/${property.id}` },
+        ])}
+      />
+      {/* Ficha como Accommodation + Offer: SOLO con feed real. Con el mock no
+          emitimos markup que presente datos ficticios como una oferta real. */}
+      {isLiveData() ? <JsonLd data={propertyLd(property)} /> : null}
       <Container className="pb-20 pt-28 sm:pt-36">
         <Link
           href={`/propiedades?operacion=${encodeURIComponent(property.operacion)}`}

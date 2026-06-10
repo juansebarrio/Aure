@@ -1,6 +1,8 @@
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Accordion, AccordionItem } from "@/components/ui/Accordion";
+import { JsonLd } from "@/components/JsonLd";
+import { faqPageLd } from "@/lib/structured-data";
 
 /**
  * FAQ (wireframe 08): las dudas reales antes de comprar. Las respuestas son
@@ -48,6 +50,9 @@ const faqs = [
 export function Faqs() {
   return (
     <Section id="faqs" background="white">
+      {/* Datos estructurados FAQPage: mismas Q&A que se ven, elegibles para
+          rich results. Vive acá para viajar solo con la sección (solo home). */}
+      <JsonLd data={faqPageLd(faqs)} />
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <Eyebrow>Preguntas frecuentes</Eyebrow>

@@ -2,17 +2,21 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 
 /**
- * Indexación atada a la fuente de datos: sin `TOKKO_API_KEY` el sitio sirve el
- * mock (datos ficticios), así que pedimos NO indexar (entorno de staging). Con
- * la key (datos reales de Tokko) habilitamos la indexación. Es reversible: al
- * cargar la key, el sitio queda indexable solo.
+ * Indexación quirúrgica atada a la fuente de datos. El contenido institucional
+ * y los emprendimientos (curados a mano, reales) se indexan siempre. Las
+ * propiedades dependen de Tokko: sin `TOKKO_API_KEY` el sitio sirve el mock
+ * (datos ficticios), así que bloqueamos /propiedades y /propiedad/* para no
+ * indexar fichas inventadas. Con la key, esas rutas quedan indexables solas.
+ *
+ * El placeholder de emprendimiento y /politicas (legal preliminar) se excluyen
+ * vía `robots: { index: false }` en su metadata, no acá.
  */
 export default function robots(): MetadataRoute.Robots {
-  const indexable = Boolean(process.env.TOKKO_API_KEY);
+  const live = Boolean(process.env.TOKKO_API_KEY);
   return {
-    rules: indexable
+    rules: live
       ? { userAgent: "*", allow: "/" }
-      : { userAgent: "*", disallow: "/" },
+      : { userAgent: "*", allow: "/", disallow: ["/propiedades", "/propiedad/"] },
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }

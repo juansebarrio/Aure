@@ -30,6 +30,14 @@ export const siteConfig = {
     // TODO(cliente): confirmar dirección. En el kick-off mencionaron Villa
     // Urquiza; el sitio actual usa Quesada 5739. Usamos Quesada por ahora.
     addressLine: "Quesada 5739, Dto. 4 — Ciudad de Buenos Aires",
+    // Partes estructuradas de la dirección (para PostalAddress / JSON-LD).
+    // Misma dirección que `addressLine`; al confirmarla, actualizar ambas.
+    address: {
+      streetAddress: "Quesada 5739, Dto. 4",
+      locality: "Ciudad Autónoma de Buenos Aires",
+      region: "CABA",
+      country: "AR",
+    },
   },
   social: {
     instagram: "https://www.instagram.com/aure.realty/",

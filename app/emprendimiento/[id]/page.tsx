@@ -8,6 +8,8 @@ import { ProyectoVideo } from "@/components/sections/ProyectoVideo";
 import { EMPRENDIMIENTOS, getEmprendimiento } from "@/lib/emprendimientos";
 import { siteConfig } from "@/lib/site";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/structured-data";
 
 type Params = { id: string };
 
@@ -28,6 +30,8 @@ export async function generateMetadata({
     title: emp.nombre,
     description: emp.descripcion,
     alternates: { canonical: `/emprendimiento/${emp.id}` },
+    // El placeholder (sin contenido real) no se indexa todavía.
+    ...(emp.placeholder ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "website",
       title: emp.nombre,
@@ -56,6 +60,13 @@ export default async function EmprendimientoPage({
 
   return (
     <main id="contenido">
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Inicio", url: "/" },
+          { name: "Emprendimientos", url: "/emprendimientos" },
+          { name: emp.nombre, url: `/emprendimiento/${emp.id}` },
+        ])}
+      />
       <Container className="pb-20 pt-28 sm:pt-36">
         <Link
           href="/emprendimientos"

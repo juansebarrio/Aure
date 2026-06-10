@@ -53,6 +53,15 @@ export type Property = {
 const useTokko = Boolean(process.env.TOKKO_API_KEY);
 
 /**
+ * `true` cuando la fuente es el feed real (Tokko), no el mock. Lo usan SEO/
+ * indexación para no exponer datos ficticios: sitemap de propiedades, JSON-LD
+ * de fichas y robots/noindex se atan a esto.
+ */
+export function isLiveData(): boolean {
+  return useTokko;
+}
+
+/**
  * Propiedades, opcionalmente filtradas por operación. Si la fuente falla o no
  * hay datos, devuelve [] (la UI muestra un estado vacío prolijo).
  */

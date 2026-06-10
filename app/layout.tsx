@@ -8,6 +8,8 @@ import { Footer } from "@/components/sections/Footer";
 import { WhatsappButton } from "@/components/WhatsappButton";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import { IntroSequence } from "@/components/motion/IntroSequence";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationLd, websiteLd } from "@/lib/structured-data";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -53,6 +55,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={ibmPlexSans.variable}>
       <body className="font-sans antialiased">
+        {/* Identidad de la marca (RealEstateAgent) + el sitio (WebSite),
+            presentes en todas las páginas. El resto del JSON-LD (FAQPage,
+            BreadcrumbList, fichas) se monta por página. */}
+        <JsonLd data={[organizationLd(), websiteLd()]} />
         {/* Antes del primer paint: si la intro ya se vio en esta sesión o hay
             reduced-motion, marca <html class="intro-seen"> para ocultar el
             overlay por CSS y evitar flash. La primera visita corre la animación. */}
