@@ -69,6 +69,7 @@ export const propiedadesMenu = [
  */
 export const navLinks = [
   { label: "Emprendimientos", href: "/emprendimientos" },
+  { label: "Guías", href: "/guias" },
   { label: "Nosotros", href: "/#nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ] as const;

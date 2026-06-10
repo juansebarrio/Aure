@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { getProperties, isLiveData } from "@/lib/properties";
 import { EMPRENDIMIENTOS } from "@/lib/emprendimientos";
+import { GUIAS } from "@/lib/guias";
 
 /**
  * Sitemap derivado de las fuentes de datos: se mantiene solo. Solo lista lo
@@ -25,6 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  const guias: MetadataRoute.Sitemap = GUIAS.map((g) => ({
+    url: `${base}/guias/${g.slug}`,
+    lastModified: new Date(g.actualizada),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const entries: MetadataRoute.Sitemap = [
     { url: `${base}/`, lastModified, changeFrequency: "weekly", priority: 1 },
     {
@@ -34,6 +42,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     ...emprendimientos,
+    {
+      url: `${base}/guias`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    ...guias,
   ];
 
   if (isLiveData()) {

@@ -93,6 +93,33 @@ export function faqPageLd(
   };
 }
 
+/**
+ * Article para las guías informativas (GEO): contenido citable por motores
+ * generativos. Autor y editor son la organización (entidad enlazada por @id).
+ */
+export function articleLd(a: {
+  title: string;
+  description: string;
+  url: string;
+  dateModified: string;
+  datePublished?: string;
+  image?: string;
+}): Record<string, unknown> {
+  return {
+    "@type": "Article",
+    headline: a.title,
+    description: a.description,
+    inLanguage: "es-AR",
+    url: abs(a.url),
+    mainEntityOfPage: abs(a.url),
+    dateModified: a.dateModified,
+    ...(a.datePublished ? { datePublished: a.datePublished } : {}),
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+    ...(a.image ? { image: abs(a.image) } : {}),
+  };
+}
+
 /** BreadcrumbList para las páginas internas (rutas relativas o absolutas). */
 export function breadcrumbLd(
   items: ReadonlyArray<{ name: string; url: string }>,

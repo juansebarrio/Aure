@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site";
 import { EMPRENDIMIENTOS } from "@/lib/emprendimientos";
+import { GUIAS } from "@/lib/guias";
 import { faqs } from "@/lib/faqs";
 
 /**
@@ -26,6 +27,10 @@ export function GET(): Response {
     )
     .join("\n");
 
+  const guias = GUIAS.map(
+    (g) => `- [${g.titulo}](${url}/guias/${g.slug}): ${g.resumen}`,
+  ).join("\n");
+
   const faqBlock = faqs.map((f) => `### ${f.q}\n${f.a}`).join("\n\n");
 
   const body = `# AURE · Arch & Urban Real Estate
@@ -42,6 +47,10 @@ AURE es una comercializadora inmobiliaria en Buenos Aires, Argentina. Selecciona
 ## Emprendimientos
 
 ${emprendimientos}
+
+## Guías
+
+${guias}
 
 ## Preguntas frecuentes
 
