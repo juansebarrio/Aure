@@ -8,13 +8,23 @@ export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Imagotipo negativo oficial (PNG) embebido como data URI para Satori.
-const logo = readFileSync(
-  join(process.cwd(), "public/brand/aure-imagotipo-negativo.png"),
-);
-const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
-
 export default function OpengraphImage() {
+  // IMPORTANTE: el readFileSync va DENTRO de la función, no a nivel de módulo.
+  // A nivel de módulo corría al importar el módulo durante la resolución de
+  // metadata en runtime (p. ej. en /propiedades, que es dinámica); en el
+  // serverless de Vercel `public/` no está en el bundle de la función y el
+  // readFileSync tiraba ENOENT → "Server Components render error". Acá solo corre
+  // cuando se genera la imagen (en build), y con try/catch degrada sin romper.
+  let logoSrc = "";
+  try {
+    const logo = readFileSync(
+      join(process.cwd(), "public/brand/aure-imagotipo-negativo.png"),
+    );
+    logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+  } catch {
+    logoSrc = "";
+  }
+
   return new ImageResponse(
     (
       <div
@@ -28,7 +38,10 @@ export default function OpengraphImage() {
           backgroundColor: "#212a45",
         }}
       >
-        <img width="600" height="220" src={logoSrc} alt="" />
+        {logoSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img width="600" height="220" src={logoSrc} alt="" />
+        ) : null}
         <span style={{ fontSize: 38, color: "#b3bacc", marginTop: 48 }}>
           {siteConfig.tagline}
         </span>

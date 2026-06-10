@@ -60,7 +60,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${ibmPlexSans.variable}`}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${outfit.variable} ${ibmPlexSans.variable}`}
+    >
       <body className="font-sans antialiased">
         {/* Antes del primer paint: si la intro ya se vio en esta sesión o hay
             reduced-motion, marca <html class="intro-seen"> para ocultar el
