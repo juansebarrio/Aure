@@ -43,8 +43,25 @@ export function organizationLd(): Record<string, unknown> {
       addressRegion: siteConfig.contact.address.region,
       addressCountry: siteConfig.contact.address.country,
     },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: siteConfig.contact.phoneHref.replace("tel:", ""),
+      email: siteConfig.contact.email,
+      availableLanguage: ["Spanish"],
+      areaServed: "AR",
+    },
     areaServed: { "@type": "City", name: "Buenos Aires" },
     knowsLanguage: ["es-AR"],
+    // Temas que AURE domina: ayuda a los motores generativos a entender de qué
+    // trata la entidad (GEO). Honesto: comercializa, no desarrolla.
+    knowsAbout: [
+      "Comercialización de desarrollos inmobiliarios",
+      "Compra de propiedades en pozo",
+      "Inversión inmobiliaria en Buenos Aires",
+      "Departamentos en pozo en CABA",
+      "Acompañamiento en la compra de propiedades",
+    ],
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
   };
 }
