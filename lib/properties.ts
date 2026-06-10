@@ -13,6 +13,12 @@
  * GUARDRAIL: el mock es SOLO para desarrollo/revisión. No se publica: hay que
  * conectar el feed real de Tokko antes de reemplazar aure.ar.
  */
+// Mock importado de forma ESTÁTICA: es el fallback siempre presente. Evita un
+// `await import()` dinámico en el path de render (que en el serverless de Vercel
+// puede fallar de forma intermitente durante el streaming → "Server Components
+// render error"). El adaptador Tokko queda dinámico: solo se carga con la key.
+import { getPropertiesMock, getPropertyMock } from "./properties.mock";
+
 export type Operacion = "Venta" | "Alquiler" | "Alquiler temporario";
 
 export type TipoPropiedad =
@@ -64,7 +70,6 @@ export async function getProperties(
       const { getPropertiesTokko } = await import("./properties.tokko");
       return await getPropertiesTokko(operacion);
     }
-    const { getPropertiesMock } = await import("./properties.mock");
     return await getPropertiesMock(operacion);
   } catch (error) {
     console.error("[properties] getProperties falló:", error);
@@ -79,7 +84,6 @@ export async function getProperty(id: string): Promise<Property | null> {
       const { getPropertyTokko } = await import("./properties.tokko");
       return await getPropertyTokko(id);
     }
-    const { getPropertyMock } = await import("./properties.mock");
     return await getPropertyMock(id);
   } catch (error) {
     console.error("[properties] getProperty falló:", error);
