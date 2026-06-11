@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { IBM_Plex_Sans } from "next/font/google";
+import { IBM_Plex_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { Navbar } from "@/components/sections/Navbar";
@@ -11,9 +11,18 @@ import { IntroSequence } from "@/components/motion/IntroSequence";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/structured-data";
 
+// Outfit: tipografía de todo el sitio (titulares, bajadas y cuerpos) — Aure_V1.pdf §05.
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+  variable: "--font-outfit",
+});
+
+// IBM Plex Sans: SOLO el logotipo "aure." (y la intro). El resto usa Outfit.
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["500", "600"],
   display: "swap",
   variable: "--font-ibm-plex-sans",
 });
@@ -46,14 +55,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1E2A47",
+  themeColor: "#212a45",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="es" className={ibmPlexSans.variable}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${outfit.variable} ${ibmPlexSans.variable}`}
+    >
       <body className="font-sans antialiased">
         {/* Identidad de la marca (RealEstateAgent) + el sitio (WebSite),
             presentes en todas las páginas. El resto del JSON-LD (FAQPage,

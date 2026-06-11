@@ -2,39 +2,42 @@
 
 /* ============================================================
    AURE — tokens de marca (Tailwind v4, CSS-first).
-   Fuente de verdad: AURE_Brand_Spec.md (§3). Nombres en español,
-   tal como define el spec: azul, dorado, blanco, gris, gris-claro,
-   gris-texto, borde. No usar colores fuera de la paleta; el dorado
-   nunca es texto de cuerpo; sin sombras/efectos.
+   Fuente de verdad visual: Aure_V1.pdf (identidad 2026). Nombres en
+   español: azul, dorado, blanco, gris, gris-claro, gris-texto, borde.
+   No usar colores fuera de la paleta; el dorado nunca es texto de
+   cuerpo (el acento lo lleva el isotipo); sin sombras/efectos.
    ============================================================ */
 @theme {
-  /* --- Marca (paleta oficial) --- */
-  --color-azul: #1e2a47; /* superficie de marca / texto sobre claro */
-  --color-dorado: #c6a86b; /* acento + CTA (no para texto de cuerpo) */
+  /* --- Marca (paleta oficial — Aure_V1.pdf §04) --- */
+  --color-azul: #212a45; /* superficie de marca / texto sobre claro */
+  --color-dorado: #c0a872; /* acento (lo lleva el isotipo) — no para texto de cuerpo */
   --color-blanco: #ffffff; /* texto sobre azul / fondos */
-  --color-gris: #afc0d9; /* submarca / texto secundario sobre azul */
+  --color-gris: #b3bacc; /* submarca / texto secundario sobre azul */
 
-  /* --- Neutrales de interfaz (no son de marca) --- */
-  --color-gris-claro: #f4f6fa; /* fondos claros alternativos */
-  --color-gris-texto: #6b7280; /* cuerpo sobre fondo claro */
-  --color-borde: #e5e9f0; /* líneas finas / separadores / bordes */
+  /* --- Neutrales de interfaz --- */
+  --color-gris-claro: #ebeae8; /* fondo claro cálido alternativo */
+  --color-gris-texto: #878787; /* texto secundario sobre fondo claro */
+  --color-borde: #e4e1db; /* líneas finas / separadores / bordes */
 
   /* --- Funcional (NO es color de marca) --- */
   /* Solo para estados de error de formularios. TODO(marca): confirmar. */
   --color-danger: #b42318;
 
   /* Azul más oscuro para fondos de video y scrims del hero (no es de marca). */
-  --color-azul-profundo: #11182c;
+  --color-azul-profundo: #161c2f;
 
-  /* --- Tipografía --- */
-  --font-sans: var(--font-ibm-plex-sans), ui-sans-serif, system-ui,
-    -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* --- Tipografía (Aure_V1.pdf §05) ---
+     Outfit: titulares, bajadas y cuerpos (todo el sitio).
+     IBM Plex Sans: SOLO el logotipo "aure." (utilidad font-logo). */
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-logo: var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif;
 
-  /* Tracking de marca (spec §4) */
-  --tracking-display: -0.02em; /* titulares peso 500 */
-  --tracking-eyebrow: 0.3em; /* eyebrows en MAYÚSCULA, dorado */
+  /* Tracking de marca */
+  --tracking-display: -0.02em; /* titulares */
+  --tracking-eyebrow: 0.3em; /* eyebrows en MAYÚSCULA */
 
-  /* Radio de bordes (spec §7: 4–8px). */
+  /* Radio de bordes (4–8px). */
   --radius-brand: 4px;
 }
 
@@ -115,6 +118,9 @@
 }
 
 .intro-seq {
+  /* El sitio usa Outfit, pero la intro forma el LOGOTIPO: se mantiene en IBM
+     Plex Sans (tipografía de logotipo) para no alterar la animación de inicio. */
+  font-family: var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;

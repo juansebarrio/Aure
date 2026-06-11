@@ -1,7 +1,7 @@
 # AURE — sitio institucional
 
 Sitio de captación de **AURE (Arch & Urban Real Estate)**, comercializadora
-inmobiliaria en Buenos Aires. Next.js 15 (App Router) · TypeScript · Tailwind v4 · IBM Plex Sans.
+inmobiliaria en Buenos Aires. Next.js 15 (App Router) · TypeScript · Tailwind v4 · Outfit + IBM Plex Sans.
 
 ## Requisitos
 
