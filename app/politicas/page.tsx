@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "Políticas",
   description:
     "Política de privacidad, política de cookies y términos y condiciones de AURE.",
+  alternates: { canonical: "/politicas" },
+  // TODO(legal): contenido preliminar. Quitar el noindex cuando estén los
+  // textos legales definitivos (y sumar /politicas al sitemap).
+  robots: { index: false, follow: true },
 };
 
 /**
