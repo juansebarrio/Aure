@@ -39,7 +39,6 @@ export default function OpengraphImage() {
         }}
       >
         {logoSrc ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img width="600" height="220" src={logoSrc} alt="" />
         ) : null}
         <span style={{ fontSize: 38, color: "#b3bacc", marginTop: 48 }}>
