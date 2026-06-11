@@ -116,7 +116,10 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-gris sm:flex-row sm:items-center sm:justify-between">
           {/* TODO(contenido): razón social / CUIT. */}
-          <p>© {year} {siteConfig.name}. Todos los derechos reservados.</p>
+          {/* min-w-0 deja envolver el texto en 375px (no se corta a la derecha). */}
+          <p className="min-w-0">
+            © {year} {siteConfig.name}. Todos los derechos reservados.
+          </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legalLinks.map((link) => (
               <li key={link.href}>
