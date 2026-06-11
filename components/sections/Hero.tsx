@@ -48,10 +48,12 @@ export function Hero() {
       <div className="relative z-10 flex min-h-svh flex-col justify-end px-6 pb-28 lg:px-16">
         <div className="flex flex-col gap-4">
 
-          {/* Eyebrow glass pill */}
-          <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/12 bg-white/8 px-4 py-1.5 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-dorado" aria-hidden="true" />
-            <p className="text-xs font-light uppercase tracking-eyebrow text-blanco/75">
+          {/* Eyebrow glass pill — en 375px el texto envuelve a 2 líneas centrado
+              y queda contenido (no se corta): max-w-full lo acota al ancho
+              disponible y min-w-0 deja envolver. En sm+ vuelve a una línea. */}
+          <div className="inline-flex w-fit max-w-full items-center gap-2.5 rounded-full border border-white/12 bg-white/8 px-4 py-1.5 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-dorado" aria-hidden="true" />
+            <p className="min-w-0 text-center text-[10px] font-light uppercase tracking-[0.18em] text-blanco/75 sm:text-xs sm:tracking-eyebrow">
               Comercialización inmobiliaria · Buenos Aires
             </p>
           </div>
