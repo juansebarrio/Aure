@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
-import { getProperties, formatPrice } from "@/lib/properties";
+import { getProperties, formatPrice, formatSuperficie } from "@/lib/properties";
 import {
   PortafolioCarrusel,
   type CarruselItem,
@@ -69,6 +69,12 @@ export async function Portafolio() {
     getProperties("Alquiler"),
   ]);
 
+  // Línea de meta: precio · N amb · M m² — omitiendo el m² cuando no hay dato.
+  const meta = (p: (typeof enVenta)[number], precio: string) =>
+    [precio, `${p.ambientes} amb`, formatSuperficie(p.superficie)]
+      .filter(Boolean)
+      .join(" · ");
+
   // Ventas REALES del feed (mismo patrón que alquileres); si no hay, fallback.
   const ventas: CarruselItem[] = enVenta.slice(0, 8).map((p) => ({
     id: p.id,
@@ -77,7 +83,7 @@ export async function Portafolio() {
     foto: p.fotos[0]?.url ?? "/propiedades/placeholder-2.svg",
     alt: p.fotos[0]?.alt ?? p.titulo,
     titulo: p.titulo,
-    descripcion: `${formatPrice(p.precio, p.moneda)} · ${p.ambientes} amb · ${p.superficie} m²`,
+    descripcion: meta(p, formatPrice(p.precio, p.moneda)),
     href: `/propiedad/${p.id}`,
     cta: "Ver propiedad",
   }));
@@ -89,7 +95,7 @@ export async function Portafolio() {
     foto: p.fotos[0]?.url ?? "/propiedades/placeholder-1.svg",
     alt: p.fotos[0]?.alt ?? p.titulo,
     titulo: p.titulo,
-    descripcion: `${formatPrice(p.precio, p.moneda)} / mes · ${p.ambientes} amb · ${p.superficie} m²`,
+    descripcion: meta(p, `${formatPrice(p.precio, p.moneda)} / mes`),
     href: `/propiedad/${p.id}`,
     cta: "Ver propiedad",
   }));

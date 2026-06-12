@@ -107,6 +107,16 @@ export function formatPrice(precio: number, moneda: Moneda): string {
 }
 
 /**
+ * Superficie formateada en es-AR (coma decimal: "75,75 m²"), o `null` cuando no
+ * hay dato. El mapeo de Tokko cae a 0 si la propiedad no tiene superficie
+ * cargada; 0/negativo se tratan como "sin dato" y la UI omite el m².
+ */
+export function formatSuperficie(m2: number): string | null {
+  if (!Number.isFinite(m2) || m2 <= 0) return null;
+  return `${new Intl.NumberFormat("es-AR", { maximumFractionDigits: 2 }).format(m2)} m²`;
+}
+
+/**
  * Sufijo de precio "/ mes": solo el alquiler estándar es mensual. La venta no
  * lleva sufijo, y el alquiler temporario se cotiza por período variable
  * (noche/estadía), así que tampoco lo afirmamos como mensual.
