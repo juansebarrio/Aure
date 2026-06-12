@@ -69,10 +69,17 @@ export const propiedadesMenu = [
  */
 export const navLinks = [
   { label: "Emprendimientos", href: "/emprendimientos" },
-  { label: "Guías", href: "/guias" },
+  // Guías queda fuera de la navbar superior, pero sigue en el footer (y sus
+  // páginas /guias siguen vivas e indexables — es la palanca de GEO).
+  { label: "Guías", href: "/guias", footerOnly: true },
   { label: "Nosotros", href: "/#nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ] as const;
+
+/** Links de la navbar superior: navLinks sin los marcados `footerOnly`. */
+export const navbarLinks = navLinks.filter(
+  (l) => !("footerOnly" in l && l.footerOnly),
+);
 
 /** CTA primario reutilizable (lleva al formulario de contacto, siempre visible). */
 export const primaryCta = {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { navLinks, propiedadesMenu, primaryCta, siteConfig } from "@/lib/site";
+import { navbarLinks, propiedadesMenu, primaryCta, siteConfig } from "@/lib/site";
 import { Isotipo } from "@/components/brand/Isotipo";
 import { cn } from "@/lib/cn";
 
@@ -152,7 +152,7 @@ export function Navbar() {
                 ) : null}
               </div>
 
-              {navLinks.map((link) => (
+              {navbarLinks.map((link) => (
                 <Link key={link.href} href={link.href} className={navLinkCls}>
                   {link.label}
                 </Link>
@@ -223,7 +223,7 @@ export function Navbar() {
 
               <div className="my-3 h-px bg-white/10" />
 
-              {navLinks.map((link) => (
+              {navbarLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
