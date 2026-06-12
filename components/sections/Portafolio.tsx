@@ -2,7 +2,12 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
-import { getProperties, formatPrice, formatSuperficie } from "@/lib/properties";
+import {
+  formatAmbientes,
+  formatPrice,
+  formatSuperficie,
+  getProperties,
+} from "@/lib/properties";
 import {
   PortafolioCarrusel,
   type CarruselItem,
@@ -69,9 +74,9 @@ export async function Portafolio() {
     getProperties("Alquiler"),
   ]);
 
-  // Línea de meta: precio · N amb · M m² — omitiendo el m² cuando no hay dato.
+  // Línea de meta: precio · N amb · M m² — amb y m² se omiten sin dato (0).
   const meta = (p: (typeof enVenta)[number], precio: string) =>
-    [precio, `${p.ambientes} amb`, formatSuperficie(p.superficie)]
+    [precio, formatAmbientes(p.ambientes), formatSuperficie(p.superficie)]
       .filter(Boolean)
       .join(" · ");
 

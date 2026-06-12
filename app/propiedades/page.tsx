@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { PropertiesBrowser } from "@/components/properties/PropertiesBrowser";
-import { getProperties, operacionCopy, type Operacion } from "@/lib/properties";
+import {
+  getProperties,
+  operacionCopy,
+  toPropertyListItem,
+  type Operacion,
+} from "@/lib/properties";
 
 type SP = { operacion?: string | string[] };
 
@@ -35,7 +40,9 @@ export default async function PropiedadesPage({
   searchParams: Promise<SP>;
 }) {
   const op = parseOperacion((await searchParams).operacion);
-  const properties = await getProperties();
+  // Slim: la grilla no usa descripción y solo 4 fotos por card — serializar las
+  // 86 propiedades completas (con ~24 fotos c/u) inflaba el HTML a ~1,5 MB.
+  const properties = (await getProperties()).map(toPropertyListItem);
 
   return (
     <main id="contenido">

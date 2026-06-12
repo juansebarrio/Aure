@@ -23,10 +23,14 @@ type Slide =
  */
 export function PropertyCardGallery({
   photos,
+  totalFotos,
   alt,
   priority,
 }: {
   photos: PropertyPhoto[];
+  /** Total REAL de fotos de la propiedad: el listado recorta `photos` a 4
+   *  (PropertyListItem) y el "+N fotos" se calcula sobre el total. */
+  totalFotos?: number;
   alt: string;
   priority?: boolean;
 }) {
@@ -38,7 +42,7 @@ export function PropertyCardGallery({
     return <PropertyImage photo={photos[0]} alt={alt} priority={priority} />;
   }
 
-  const restantes = photos.length - MAX_FOTOS;
+  const restantes = (totalFotos ?? photos.length) - MAX_FOTOS;
   const slides: Slide[] = [
     ...photos
       .slice(0, MAX_FOTOS)

@@ -5,10 +5,16 @@ import { useRouter } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PropertyCard } from "@/components/properties/PropertyCard";
-import { operacionCopy, type Operacion, type Property } from "@/lib/properties";
+import {
+  operacionCopy,
+  type Operacion,
+  type PropertyListItem,
+} from "@/lib/properties";
 
+// Foco: borde dorado al focusear con mouse; con teclado (focus-visible) suma un
+// anillo azul de 2px — el cambio de borde solo era un indicador débil (WCAG 2.4.7).
 const fieldCls =
-  "h-11 rounded-brand border border-borde bg-white px-3 text-sm text-azul focus:border-dorado focus:outline-none";
+  "h-11 rounded-brand border border-borde bg-white px-3 text-sm text-azul outline-none focus:border-dorado focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul";
 
 const OPERACIONES: Operacion[] = ["Venta", "Alquiler", "Alquiler temporario"];
 
@@ -26,7 +32,7 @@ export function PropertiesBrowser({
   properties,
   operacion,
 }: {
-  properties: Property[];
+  properties: PropertyListItem[];
   operacion: Operacion | "";
 }) {
   const router = useRouter();

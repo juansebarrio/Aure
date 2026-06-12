@@ -1,15 +1,18 @@
 import Link from "next/link";
 import { PropertyCardGallery } from "@/components/properties/PropertyCardGallery";
 import {
+  formatAmbientes,
   formatPrice,
   formatSuperficie,
   isMensual,
-  type Property,
+  type PropertyListItem,
 } from "@/lib/properties";
 
-function metaLine(p: Property): string {
-  const sup = formatSuperficie(p.superficie);
-  return [p.tipo, `${p.ambientes} amb`, ...(sup ? [sup] : [])].join(" · ");
+// Tipo · N amb · M m² — ambientes y m² se omiten cuando no hay dato (0).
+function metaLine(p: PropertyListItem): string {
+  return [p.tipo, formatAmbientes(p.ambientes), formatSuperficie(p.superficie)]
+    .filter(Boolean)
+    .join(" · ");
 }
 
 /**
@@ -22,7 +25,7 @@ export function PropertyCard({
   property,
   priority,
 }: {
-  property: Property;
+  property: PropertyListItem;
   priority?: boolean;
 }) {
   return (
@@ -30,6 +33,7 @@ export function PropertyCard({
       <div className="relative aspect-[4/3] overflow-hidden bg-gris-claro">
         <PropertyCardGallery
           photos={property.fotos}
+          totalFotos={property.totalFotos}
           alt={property.titulo}
           priority={priority}
         />
@@ -44,9 +48,11 @@ export function PropertyCard({
             <span className="text-xs font-normal text-gris-texto"> / mes</span>
           ) : null}
         </p>
-        <h3 className="mt-1 truncate text-sm font-medium text-azul">
+        {/* h2: el listado tiene h1 ("Todas las propiedades") y las cards son su
+            siguiente nivel — antes saltaba h1→h3 (a11y). */}
+        <h2 className="mt-1 truncate text-sm font-medium text-azul">
           {property.direccion}
-        </h3>
+        </h2>
         <p className="text-sm text-gris-texto">{property.barrio}</p>
         <p className="mt-3 text-xs uppercase tracking-eyebrow text-gris-texto">
           {metaLine(property)}

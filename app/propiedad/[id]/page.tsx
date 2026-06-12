@@ -75,7 +75,10 @@ export default async function PropiedadPage({
 
   const stats: { label: string; value: string }[] = [
     { label: "Tipo", value: property.tipo },
-    { label: "Ambientes", value: String(property.ambientes) },
+    // Ambientes 0 = sin dato en el CRM: se omite (no mostrar "Ambientes 0").
+    ...(property.ambientes > 0
+      ? [{ label: "Ambientes", value: String(property.ambientes) }]
+      : []),
     ...(property.dormitorios != null
       ? [{ label: "Dormitorios", value: String(property.dormitorios) }]
       : []),
@@ -85,11 +88,13 @@ export default async function PropiedadPage({
     ...(formatSuperficie(property.superficie)
       ? [{ label: "Superficie", value: formatSuperficie(property.superficie)! }]
       : []),
+    // Expensas SIEMPRE en pesos: Tokko las manda en ARS aunque el precio de la
+    // propiedad esté en USD (con property.moneda salía "Expensas USD 142.000").
     ...(property.expensas != null
       ? [
           {
             label: "Expensas",
-            value: `${formatPrice(property.expensas, property.moneda)}/mes`,
+            value: `${formatPrice(property.expensas, "ARS")}/mes`,
           },
         ]
       : []),
@@ -143,13 +148,23 @@ export default async function PropiedadPage({
                   </dd>
                 </div>
               ))}
+              {/* Relleno blanco hasta múltiplo de 6 (2 y 3 columnas): si la
+                  última fila queda incompleta, el hueco mostraba el fondo
+                  `bg-borde` como una celda fantasma beige. */}
+              {Array.from({ length: (6 - (stats.length % 6)) % 6 }).map(
+                (_, i) => (
+                  <div key={`relleno-${i}`} aria-hidden="true" className="bg-white" />
+                ),
+              )}
             </dl>
 
             <div className="mt-10">
               <h2 className="text-lg font-medium tracking-display text-azul">
                 Descripción
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-gris-texto">
+              {/* pre-line: las descripciones del CRM traen párrafos con \n que
+                  un <p> normal colapsa en un solo bloque ilegible. */}
+              <p className="mt-3 whitespace-pre-line text-base leading-relaxed text-gris-texto">
                 {property.descripcion}
               </p>
             </div>
@@ -164,9 +179,10 @@ export default async function PropiedadPage({
                   <span className="text-sm font-normal text-gris-texto"> / mes</span>
                 ) : null}
               </p>
+              {/* Expensas en ARS (ver nota en stats). */}
               {property.expensas != null ? (
                 <p className="mt-1 text-sm text-gris-texto">
-                  + expensas {formatPrice(property.expensas, property.moneda)}
+                  + expensas {formatPrice(property.expensas, "ARS")}
                 </p>
               ) : null}
 
