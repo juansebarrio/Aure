@@ -27,7 +27,9 @@ export function CarouselArrow({
       aria-label={label}
       tabIndex={hidden ? -1 : 0}
       className={cn(
-        "absolute top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full border border-borde bg-white/90 text-azul transition hover:border-azul hover:bg-azul hover:text-white",
+        // before:-inset-1.5 amplía la zona de toque (~+12px) sin cambiar el
+        // tamaño visual: 32/36px visibles ≈ 44px tocables (recomendación táctil).
+        "absolute top-1/2 z-20 flex -translate-y-1/2 items-center justify-center rounded-full border border-borde bg-white/90 text-azul transition before:absolute before:-inset-1.5 before:content-[''] hover:border-azul hover:bg-azul hover:text-white",
         dir === "left" ? "left-3" : "right-3",
         hidden && "pointer-events-none opacity-0",
         className,

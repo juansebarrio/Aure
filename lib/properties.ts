@@ -110,10 +110,53 @@ export function formatPrice(precio: number, moneda: Moneda): string {
  * Superficie formateada en es-AR (coma decimal: "75,75 m²"), o `null` cuando no
  * hay dato. El mapeo de Tokko cae a 0 si la propiedad no tiene superficie
  * cargada; 0/negativo se tratan como "sin dato" y la UI omite el m².
+ * El espacio es NBSP: el "m²" no se separa del número al partir línea.
  */
 export function formatSuperficie(m2: number): string | null {
   if (!Number.isFinite(m2) || m2 <= 0) return null;
-  return `${new Intl.NumberFormat("es-AR", { maximumFractionDigits: 2 }).format(m2)} m²`;
+  return `${new Intl.NumberFormat("es-AR", { maximumFractionDigits: 2 }).format(m2)} m²`;
+}
+
+/**
+ * Ambientes para mostrar ("3 amb", NBSP), o `null` sin dato: el mapeo de Tokko
+ * cae a 0 si la propiedad no trae room_amount, y "0 amb" no se muestra.
+ */
+export function formatAmbientes(ambientes: number): string | null {
+  if (!Number.isFinite(ambientes) || ambientes <= 0) return null;
+  return `${ambientes} amb`;
+}
+
+/**
+ * Versión LIVIANA de Property para la grilla de /propiedades: sin descripción y
+ * con las fotos recortadas a lo que usa la card (3 navegables + 1 de fondo de la
+ * slide "+N fotos"). `totalFotos` conserva el total real para ese "+N". Evita
+ * serializar 86 propiedades × ~24 fotos al cliente (~1,5 MB de HTML).
+ */
+export type PropertyListItem = Omit<Property, "descripcion"> & {
+  totalFotos: number;
+};
+
+export function toPropertyListItem(p: Property): PropertyListItem {
+  // Mapeo explícito (no spread): un campo nuevo en Property no engorda el
+  // listado por accidente; se suma acá solo si la grilla lo necesita.
+  return {
+    id: p.id,
+    titulo: p.titulo,
+    direccion: p.direccion,
+    barrio: p.barrio,
+    operacion: p.operacion,
+    tipo: p.tipo,
+    precio: p.precio,
+    moneda: p.moneda,
+    expensas: p.expensas,
+    ambientes: p.ambientes,
+    dormitorios: p.dormitorios,
+    banos: p.banos,
+    superficie: p.superficie,
+    cochera: p.cochera,
+    fotos: p.fotos.slice(0, 4),
+    totalFotos: p.fotos.length,
+  };
 }
 
 /**
