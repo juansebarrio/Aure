@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
@@ -79,7 +80,14 @@ const categoriaMeta: Record<
   },
 };
 
-export function PortafolioCarrusel({ items }: { items: CarruselItem[] }) {
+export function PortafolioCarrusel({
+  items,
+  ctaFinal,
+}: {
+  items: CarruselItem[];
+  /** Card de cierre del carrusel (p. ej. "Ver todas las propiedades"). */
+  ctaFinal?: { label: string; href: string };
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
 
@@ -182,6 +190,38 @@ export function PortafolioCarrusel({ items }: { items: CarruselItem[] }) {
             </article>
           );
         })}
+
+        {/* Card de cierre: invita a ver el listado completo. Misma huella que
+            las cards (w-72, rounded-2xl); azul de marca, sobria. */}
+        {ctaFinal ? (
+          <Link
+            href={ctaFinal.href}
+            className="group flex w-72 flex-shrink-0 snap-start flex-col items-center justify-center gap-4 rounded-2xl bg-azul p-8 text-center text-white transition-colors hover:bg-azul-profundo"
+          >
+            <span className="text-xl font-medium leading-snug tracking-display">
+              {ctaFinal.label}
+            </span>
+            <span className="inline-flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-eyebrow text-gris">
+              Explorar
+              <svg
+                viewBox="0 0 20 12"
+                width="18"
+                height="11"
+                fill="none"
+                aria-hidden="true"
+                className="text-dorado transition-transform group-hover:translate-x-0.5"
+              >
+                <path
+                  d="M1 6h17M13 1l5 5-5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </Link>
+        ) : null}
       </div>
       </div>
     </div>
