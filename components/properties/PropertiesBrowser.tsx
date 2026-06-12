@@ -247,10 +247,9 @@ export function PropertiesBrowser({
 
   return (
     <>
-      {/* Header — título según la operación (deriva de la URL). pt para el
-          navbar; pb extra para que el panel de filtros "flote" solapado. */}
+      {/* Header — título según la operación (deriva de la URL). pt para el navbar. */}
       <section className="bg-azul text-white">
-        <Container className="pb-24 pt-28 sm:pb-28 sm:pt-36">
+        <Container className="pb-12 pt-28 sm:pb-16 sm:pt-36">
           <Eyebrow>{copy.eyebrow}</Eyebrow>
           <h1 className="mt-5 text-4xl font-medium tracking-display sm:text-5xl">
             {copy.titulo}
@@ -262,10 +261,10 @@ export function PropertiesBrowser({
       </section>
 
       <section className="bg-white">
-        <Container className="pb-14 sm:pb-16">
-          {/* Panel de filtros — solapa el header azul (plano, sin sombras).
-              pt mayor que el resto: aire entre el borde superior y los labels. */}
-          <div className="relative -mt-12 rounded-2xl border border-borde bg-white px-5 pb-5 pt-8 sm:px-6 sm:pb-6 sm:pt-9">
+        <Container className="py-12 sm:py-14">
+          {/* Panel de filtros — separado del header azul (el py del Container
+              da el aire entre ambos). Plano, sin sombras. */}
+          <div className="rounded-2xl border border-borde bg-white p-5 sm:p-6">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
               <SelectField
                 id="f-operacion"
