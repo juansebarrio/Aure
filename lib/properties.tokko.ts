@@ -38,8 +38,24 @@ function str(v: unknown): string | undefined {
   return typeof v === "string" && v.trim() ? v.trim() : undefined;
 }
 function num(v: unknown): number | undefined {
-  const n =
-    typeof v === "string" ? parseFloat(v.replace(/\./g, "").replace(",", ".")) : Number(v);
+  // null explícito (Tastypie lo manda en campos vacíos): NO es 0 (Number(null)=0
+  // mostraría p. ej. "Expensas $ 0"); es "sin dato".
+  if (v == null) return undefined;
+  if (typeof v !== "string") {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : undefined;
+  }
+  const s = v.trim();
+  if (!s) return undefined;
+  // Formato API (Tastypie): decimal con PUNTO — "85.00", "1234.50". Antes se
+  // asumía formato es-AR y se borraban los puntos como separador de miles:
+  // "85.00" → 8500 (los m² salían multiplicados por 100).
+  if (/^-?\d+(\.\d+)?$/.test(s)) {
+    const n = Number(s);
+    return Number.isFinite(n) ? n : undefined;
+  }
+  // Fallback es-AR (coma decimal, puntos de miles): "1.234,56" → 1234.56.
+  const n = parseFloat(s.replace(/\./g, "").replace(",", "."));
   return Number.isFinite(n) ? n : undefined;
 }
 

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
-import { PropertyImage } from "@/components/properties/PropertyImage";
+import { PropertyGallery } from "@/components/properties/PropertyGallery";
 import {
   getProperty,
   getProperties,
@@ -95,8 +95,6 @@ export default async function PropiedadPage({
       : []),
   ];
 
-  const [cover, ...rest] = property.fotos;
-
   return (
     <main id="contenido">
       <JsonLd
@@ -117,33 +115,9 @@ export default async function PropiedadPage({
           ← Volver a propiedades
         </Link>
 
-        {/* Galería */}
+        {/* Galería: principal + miniaturas interactivas (tocar una la sube). */}
         <div className="mt-6">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-gris-claro">
-            <PropertyImage
-              photo={cover}
-              alt={property.titulo}
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              priority
-            />
-          </div>
-          {rest.length > 0 ? (
-            <div className="mt-3 grid grid-cols-3 gap-3">
-              {rest.map((foto, i) => (
-                <div
-                  key={i}
-                  className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gris-claro"
-                >
-                  <PropertyImage
-                    photo={foto}
-                    alt={`${property.titulo} — foto ${i + 2}`}
-                    sizes="33vw"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : null}
-          {/* TODO(ux): galería con lightbox/carrusel cuando estén las fotos reales. */}
+          <PropertyGallery photos={property.fotos} titulo={property.titulo} />
         </div>
 
         {/* Contenido + panel de contacto */}

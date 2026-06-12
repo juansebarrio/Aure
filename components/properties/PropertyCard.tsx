@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PropertyImage } from "@/components/properties/PropertyImage";
+import { PropertyCardGallery } from "@/components/properties/PropertyCardGallery";
 import { formatPrice, isMensual, type Property } from "@/lib/properties";
 
 function metaLine(p: Property): string {
@@ -8,7 +8,9 @@ function metaLine(p: Property): string {
 
 /**
  * Card de propiedad usada en la grilla de /propiedades (PropertiesBrowser).
- * Linkea al detalle /propiedad/[id]. Plano, sin sombras.
+ * Linkea al detalle con un LINK ESTIRADO (overlay z-10) en vez de envolver todo
+ * en <a>: así las flechas del mini-carrusel (z-20) son cliqueables sin anidar
+ * botones dentro de un link (HTML inválido). Plano, sin sombras.
  */
 export function PropertyCard({
   property,
@@ -18,13 +20,10 @@ export function PropertyCard({
   priority?: boolean;
 }) {
   return (
-    <Link
-      href={`/propiedad/${property.id}`}
-      className="group block overflow-hidden rounded-2xl border border-borde bg-white transition-colors hover:border-azul/30"
-    >
+    <article className="group relative overflow-hidden rounded-2xl border border-borde bg-white transition-colors hover:border-azul/30">
       <div className="relative aspect-[4/3] overflow-hidden bg-gris-claro">
-        <PropertyImage
-          photo={property.fotos[0]}
+        <PropertyCardGallery
+          photos={property.fotos}
           alt={property.titulo}
           priority={priority}
         />
@@ -47,6 +46,11 @@ export function PropertyCard({
           {metaLine(property)}
         </p>
       </div>
-    </Link>
+      <Link
+        href={`/propiedad/${property.id}`}
+        aria-label={`Ver propiedad: ${property.direccion}, ${property.barrio}`}
+        className="absolute inset-0 z-10 rounded-2xl"
+      />
+    </article>
   );
 }

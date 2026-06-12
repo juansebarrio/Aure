@@ -40,10 +40,10 @@ const DESARROLLOS: CarruselItem[] = [
 ];
 
 /**
- * Propiedades en venta — placeholder hasta conectar Tokko con operación=Venta.
- * TODO(integración): reemplazar por getVentas() cuando esté disponible.
+ * Propiedades en venta — FALLBACK si el feed real no devuelve ventas (Tokko
+ * caído o cuenta sin ventas): la sección nunca queda rota.
  */
-const VENTAS: CarruselItem[] = [
+const VENTAS_FALLBACK: CarruselItem[] = [
   {
     id: "venta-proximamente",
     categoria: "Venta",
@@ -64,7 +64,23 @@ const VENTAS: CarruselItem[] = [
  * La columna izquierda ancla el copy; la derecha scrollea con flechas.
  */
 export async function Portafolio() {
-  const rentals = await getProperties("Alquiler");
+  const [enVenta, rentals] = await Promise.all([
+    getProperties("Venta"),
+    getProperties("Alquiler"),
+  ]);
+
+  // Ventas REALES del feed (mismo patrón que alquileres); si no hay, fallback.
+  const ventas: CarruselItem[] = enVenta.slice(0, 8).map((p) => ({
+    id: p.id,
+    categoria: "Venta" as const,
+    badge: p.barrio,
+    foto: p.fotos[0]?.url ?? "/propiedades/placeholder-2.svg",
+    alt: p.fotos[0]?.alt ?? p.titulo,
+    titulo: p.titulo,
+    descripcion: `${formatPrice(p.precio, p.moneda)} · ${p.ambientes} amb · ${p.superficie} m²`,
+    href: `/propiedad/${p.id}`,
+    cta: "Ver propiedad",
+  }));
 
   const alquileres: CarruselItem[] = rentals.slice(0, 8).map((p) => ({
     id: p.id,
@@ -78,7 +94,11 @@ export async function Portafolio() {
     cta: "Ver propiedad",
   }));
 
-  const items: CarruselItem[] = [...DESARROLLOS, ...VENTAS, ...alquileres];
+  const items: CarruselItem[] = [
+    ...DESARROLLOS,
+    ...(ventas.length > 0 ? ventas : VENTAS_FALLBACK),
+    ...alquileres,
+  ];
 
   return (
     <section id="portafolio" className="bg-gris-claro pb-16 pt-[84px] text-azul sm:pb-24">
@@ -103,9 +123,15 @@ export async function Portafolio() {
         </Reveal>
       </Container>
 
-      {/* Carrusel full-width */}
+      {/* Carrusel full-width — cierra con la card "Ver todas las propiedades". */}
       <div className="mt-12">
-        <PortafolioCarrusel items={items} />
+        <PortafolioCarrusel
+          items={items}
+          ctaFinal={{
+            label: "Ver todas las propiedades disponibles",
+            href: "/propiedades",
+          }}
+        />
       </div>
     </section>
   );
