@@ -18,13 +18,8 @@ import type { Moneda, Operacion, Property, TipoPropiedad } from "./properties";
 const TOKKO_BASE = "https://www.tokkobroker.com/api/v1";
 const REVALIDATE = 60 * 60 * 6; // 6 h (ISR)
 
-// TODO(tokko): confirmar los IDs de operación reales de la cuenta del cliente.
-const OPERATION_TYPE_ID: Record<Operacion, number> = {
-  Venta: 1,
-  Alquiler: 2,
-  "Alquiler temporario": 3,
-};
-
+// Sólo se usa si `operation_type` viene como número; el map también resuelve el
+// nombre string (Venta/Alquiler/…), que es lo habitual en la respuesta de Tokko.
 const OPERATION_BY_ID: Record<number, Operacion> = {
   1: "Venta",
   2: "Alquiler",
@@ -146,14 +141,10 @@ export async function getPropertiesTokko(
     const params = commonParams(key);
     params.set("limit", "200"); // TODO(tokko): paginar si meta.total_count > limit
     params.set("offset", "0");
-    // TODO(tokko): confirmar /property/search vs /property y la forma de `data`.
-    if (operacion) {
-      params.set(
-        "data",
-        JSON.stringify({ operation_types: [OPERATION_TYPE_ID[operacion]] }),
-      );
-    }
-    const url = `${TOKKO_BASE}/property/search/?${params.toString()}`;
+    // Listado plano (Tastypie): /property/ devuelve { meta, objects } y NO requiere
+    // `data`. El endpoint /property/search/ exige un `data` de filtros completo y sin
+    // él devolvía HTTP 400; el filtro por operación se aplica abajo, sobre el mapeo.
+    const url = `${TOKKO_BASE}/property/?${params.toString()}`;
 
     const res = await fetch(url, { next: { revalidate: REVALIDATE } });
     if (!res.ok) throw new Error(`Tokko ${res.status}`);
