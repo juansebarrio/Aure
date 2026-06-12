@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import type { Moneda, Operacion, Property, TipoPropiedad } from "./properties";
 
 /**
@@ -132,30 +133,52 @@ function commonParams(key: string): URLSearchParams {
   return new URLSearchParams({ key, format: "json", lang: "es_ar" });
 }
 
-export async function getPropertiesTokko(
+// Trae + mapea el listado. SIN caché de fetch a propósito: la respuesta CRUDA de
+// Tokko (todas las propiedades) supera el límite de 2 MB del Data Cache de Next y
+// tiraba el warning "Failed to set Next.js data cache" (cada request refetcheaba).
+// En Next 15 un fetch sin opciones no se cachea; el resultado MAPEADO —liviano— se
+// cachea aparte con unstable_cache (ver getPropertiesTokko).
+async function fetchPropertiesTokko(
   operacion?: Operacion,
 ): Promise<Property[]> {
   const key = process.env.TOKKO_API_KEY;
   if (!key) return [];
+  const params = commonParams(key);
+  params.set("limit", "200"); // TODO(tokko): paginar si meta.total_count > limit
+  params.set("offset", "0");
+  // Listado plano (Tastypie): /property/ devuelve { meta, objects } y NO requiere
+  // `data`. El endpoint /property/search/ exige un `data` de filtros completo y sin
+  // él devolvía HTTP 400; el filtro por operación se aplica abajo, sobre el mapeo.
+  const url = `${TOKKO_BASE}/property/?${params.toString()}`;
+
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Tokko ${res.status}`);
+
+  const json = rec(await res.json());
+  const mapped = arr(json.objects)
+    .map((o) => mapTokkoProperty(o, operacion))
+    .filter((p): p is Property => p !== null);
+
+  // Refuerzo: si el endpoint no filtró, filtramos por operación acá.
+  return operacion ? mapped.filter((p) => p.operacion === operacion) : mapped;
+}
+
+/**
+ * Listado de propiedades, cacheado con `unstable_cache` (revalida cada 6 h),
+ * con una entrada por operación. Se cachea el resultado MAPEADO (liviano), no la
+ * respuesta cruda de Tokko. Ante error → log + [] (el error NO se cachea: se
+ * reintenta en el próximo request). Invalidable on-demand con el tag.
+ */
+export async function getPropertiesTokko(
+  operacion?: Operacion,
+): Promise<Property[]> {
   try {
-    const params = commonParams(key);
-    params.set("limit", "200"); // TODO(tokko): paginar si meta.total_count > limit
-    params.set("offset", "0");
-    // Listado plano (Tastypie): /property/ devuelve { meta, objects } y NO requiere
-    // `data`. El endpoint /property/search/ exige un `data` de filtros completo y sin
-    // él devolvía HTTP 400; el filtro por operación se aplica abajo, sobre el mapeo.
-    const url = `${TOKKO_BASE}/property/?${params.toString()}`;
-
-    const res = await fetch(url, { next: { revalidate: REVALIDATE } });
-    if (!res.ok) throw new Error(`Tokko ${res.status}`);
-
-    const json = rec(await res.json());
-    const mapped = arr(json.objects)
-      .map((o) => mapTokkoProperty(o, operacion))
-      .filter((p): p is Property => p !== null);
-
-    // Refuerzo: si el endpoint no filtró, filtramos por operación acá.
-    return operacion ? mapped.filter((p) => p.operacion === operacion) : mapped;
+    const load = unstable_cache(
+      () => fetchPropertiesTokko(operacion),
+      ["tokko-properties", operacion ?? "all"],
+      { revalidate: REVALIDATE, tags: ["tokko-properties"] },
+    );
+    return await load();
   } catch (error) {
     console.error("[tokko] getPropertiesTokko falló:", error);
     return [];
