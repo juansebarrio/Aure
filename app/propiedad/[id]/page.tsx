@@ -9,6 +9,7 @@ import {
   getProperty,
   getProperties,
   formatPrice,
+  formatSuperficie,
   isMensual,
   isLiveData,
 } from "@/lib/properties";
@@ -81,7 +82,9 @@ export default async function PropiedadPage({
     ...(property.banos != null
       ? [{ label: "Baños", value: String(property.banos) }]
       : []),
-    { label: "Superficie", value: `${property.superficie} m²` },
+    ...(formatSuperficie(property.superficie)
+      ? [{ label: "Superficie", value: formatSuperficie(property.superficie)! }]
+      : []),
     ...(property.expensas != null
       ? [
           {

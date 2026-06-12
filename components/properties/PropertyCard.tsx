@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { PropertyCardGallery } from "@/components/properties/PropertyCardGallery";
-import { formatPrice, isMensual, type Property } from "@/lib/properties";
+import {
+  formatPrice,
+  formatSuperficie,
+  isMensual,
+  type Property,
+} from "@/lib/properties";
 
 function metaLine(p: Property): string {
-  return [p.tipo, `${p.ambientes} amb`, `${p.superficie} m²`].join(" · ");
+  const sup = formatSuperficie(p.superficie);
+  return [p.tipo, `${p.ambientes} amb`, ...(sup ? [sup] : [])].join(" · ");
 }
 
 /**
