@@ -263,8 +263,9 @@ export function PropertiesBrowser({
 
       <section className="bg-white">
         <Container className="pb-14 sm:pb-16">
-          {/* Panel de filtros — solapa el header azul (plano, sin sombras). */}
-          <div className="relative -mt-12 rounded-2xl border border-borde bg-white p-5 sm:p-6">
+          {/* Panel de filtros — solapa el header azul (plano, sin sombras).
+              pt mayor que el resto: aire entre el borde superior y los labels. */}
+          <div className="relative -mt-12 rounded-2xl border border-borde bg-white px-5 pb-5 pt-8 sm:px-6 sm:pb-6 sm:pt-9">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
               <SelectField
                 id="f-operacion"
