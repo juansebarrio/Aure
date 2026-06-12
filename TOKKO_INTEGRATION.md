@@ -1,9 +1,11 @@
 # Integración Tokko Broker — puesta en vivo
 
-Estado: **todo implementado menos la API key.** Mientras no haya `TOKKO_API_KEY`, el
-sitio usa el **mock** (`lib/properties.mock.ts`) y el formulario **no** postea al CRM
-(responde ok igual). Al cargar la key, el sitio pasa a **datos reales** y se habilita
-el **envío de leads** al CRM. La UI no cambia: la costura es por env.
+Estado: **API key cargada en Vercel — conectando el feed real.** Con `TOKKO_API_KEY`
+presente, el sitio pasa del **mock** (`lib/properties.mock.ts`) a **datos reales** de
+Tokko y se habilita el **envío de leads** al CRM; sin la key, vuelve al mock y el
+formulario responde ok sin postear. La UI no cambia: la costura es por env. Queda
+pendiente **verificar el mapeo contra la respuesta real** (ver checklist) y ajustar
+`mapTokkoProperty` si algún campo difiere.
 
 ## Arquitectura (dónde está cada cosa)
 - Interfaz única: `lib/properties.ts` → `getProperties(operacion?)`, `getProperty(id)`, tipo `Property`.
