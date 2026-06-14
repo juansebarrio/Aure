@@ -162,11 +162,19 @@ export default async function PropiedadPage({
               <h2 className="text-lg font-medium tracking-display text-azul">
                 Descripción
               </h2>
-              {/* pre-line: las descripciones del CRM traen párrafos con \n que
-                  un <p> normal colapsa en un solo bloque ilegible. */}
-              <p className="mt-3 whitespace-pre-line text-base leading-relaxed text-gris-texto">
-                {property.descripcion}
-              </p>
+              {/* Las descripciones del CRM separan párrafos con saltos de línea.
+                  Las partimos en <p> con espacio entre sí (split por \n+: tolera
+                  1 o 2 saltos) para que se lean como párrafos, no como un bloque
+                  corrido pegado. */}
+              <div className="mt-3 space-y-4 text-base leading-relaxed text-gris-texto">
+                {property.descripcion
+                  .split(/\n+/)
+                  .map((parrafo) => parrafo.trim())
+                  .filter(Boolean)
+                  .map((parrafo, i) => (
+                    <p key={i}>{parrafo}</p>
+                  ))}
+              </div>
             </div>
           </div>
 
