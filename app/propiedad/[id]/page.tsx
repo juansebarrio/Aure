@@ -165,12 +165,13 @@ export default async function PropiedadPage({
               {/* Las descripciones del CRM separan párrafos con saltos de línea.
                   Las partimos en <p> con espacio entre sí (split por \n+: tolera
                   1 o 2 saltos) para que se lean como párrafos, no como un bloque
-                  corrido pegado. */}
+                  corrido pegado. Se descartan líneas sin letras ni números
+                  (separadores sueltos tipo "-" que el CRM mete entre bloques). */}
               <div className="mt-3 space-y-4 text-base leading-relaxed text-gris-texto">
                 {property.descripcion
                   .split(/\n+/)
                   .map((parrafo) => parrafo.trim())
-                  .filter(Boolean)
+                  .filter((parrafo) => /\p{L}|\p{N}/u.test(parrafo))
                   .map((parrafo, i) => (
                     <p key={i}>{parrafo}</p>
                   ))}
