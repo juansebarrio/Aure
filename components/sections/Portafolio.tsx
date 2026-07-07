@@ -31,16 +31,16 @@ const DESARROLLOS: CarruselItem[] = [
     cta: "Ver ficha completa",
   },
   {
-    id: "proximo-desarrollo",
+    id: "vuelta-de-obligado",
     categoria: "Desarrollo",
-    badge: "Próximamente",
-    foto: "/propiedades/placeholder-1.svg",
-    alt: "Próximo desarrollo",
-    titulo: "Próximo desarrollo",
+    badge: "En desarrollo",
+    foto: "/proyectos/vuelta-de-obligado-poster.jpg",
+    alt: "Vuelta de Obligado 3830",
+    titulo: "Vuelta de Obligado 3830",
     descripcion:
-      "Sumamos proyectos de forma curada: pocos, bien elegidos. Avisanos y te contamos cuando se publique el próximo.",
-    href: "/#contacto",
-    cta: "Avisame cuando salga",
+      "Núñez, CABA · Unidades de 1, 2 y 3 ambientes con balcón, a metros de Av. del Libertador y Cabildo.",
+    href: "/emprendimiento/vuelta-de-obligado",
+    cta: "Ver ficha completa",
   },
 ];
 

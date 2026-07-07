@@ -45,19 +45,25 @@ export const EMPRENDIMIENTOS: Emprendimiento[] = [
     showroomEmbedUrl: "https://metaverse.winbuild.app/Mario%20Yennaccaro/nogoya",
   },
   {
-    // TODO(cliente): reemplazar por el segundo desarrollo real (info + media + showroom).
-    id: "proximo",
-    nombre: "Próximo desarrollo",
-    zona: "Buenos Aires",
-    estado: "Próximamente",
+    // Contenido tomado del brochure oficial de CDO hub (brochure_V2).
+    // TODO(cliente): confirmar estado (¿en pozo / en obra?). Showroom 3D pendiente.
+    id: "vuelta-de-obligado",
+    nombre: "Vuelta de Obligado 3830",
+    zona: "Núñez, CABA",
+    estado: "En desarrollo",
+    desarrolladora: "CDO hub",
     descripcion:
-      "Sumamos desarrollos de forma curada: pocos, bien elegidos. Dejanos tus datos y te avisamos apenas se publique el próximo, con la misma información clara y el mismo acompañamiento de principio a fin.",
+      "Unidades de 1, 2 y 3 ambientes en Núñez, con una propuesta contemporánea que prioriza la funcionalidad, el confort y el aprovechamiento del espacio. Ambientes luminosos y bien resueltos, terminaciones de calidad y balcón en todas las unidades, con terrazas propias en los pisos altos. A metros de Av. del Libertador, Av. Cabildo y Av. General Paz, con acceso rápido al subte (línea D), al tren Mitre y a espacios verdes como el Parque Saavedra y la Costanera Norte.",
     destacados: [
-      "Selección curada de desarrollos",
-      "Información clara desde el primer día",
-      "Showroom 3D al publicarse",
+      "Unidades de 1, 2 y 3 ambientes, todas con balcón",
+      "Terrazas propias en los pisos altos",
+      "A metros de Av. del Libertador, Cabildo y Gral. Paz",
+      "Entorno barrial: Parque Saavedra y Costanera Norte cerca",
     ],
-    placeholder: true,
+    media: {
+      videoSrc: "/proyectos/vuelta-de-obligado.mp4",
+      posterSrc: "/proyectos/vuelta-de-obligado-poster.jpg",
+    },
   },
 ];
 
