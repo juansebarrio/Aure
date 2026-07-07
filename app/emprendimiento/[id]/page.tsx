@@ -161,6 +161,30 @@ export default async function EmprendimientoPage({
             </p>
           )}
         </div>
+
+        {/* Video de presentación (con audio: arranca a pedido, con controles) */}
+        {emp.presentacion ? (
+          <div className="mt-14 border-t border-borde pt-12">
+            <h2 className="text-2xl font-medium tracking-display text-azul">
+              Presentación
+            </h2>
+            <p className="mt-2 text-sm text-gris-texto">
+              Conocé el proyecto en detalle.
+            </p>
+            <div className="mt-5 w-full overflow-hidden rounded-2xl bg-azul-profundo">
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                poster={emp.presentacion.posterSrc}
+                aria-label={`Presentación — ${emp.nombre}`}
+                className="h-auto w-full"
+              >
+                <source src={emp.presentacion.videoSrc} type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        ) : null}
       </Container>
     </main>
   );
