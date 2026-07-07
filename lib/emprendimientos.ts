@@ -19,6 +19,8 @@ export type Emprendimiento = {
   media?: { videoSrc?: string; posterSrc?: string };
   /** Showroom 3D embebible (iframe metaverse.winbuild.app). */
   showroomEmbedUrl?: string;
+  /** Video de presentación completo (con audio): va en la ficha, con controles. */
+  presentacion?: { videoSrc: string; posterSrc?: string };
   /** Placeholder: emprendimiento sin contenido real todavía. */
   placeholder?: boolean;
 };
@@ -63,6 +65,10 @@ export const EMPRENDIMIENTOS: Emprendimiento[] = [
     media: {
       videoSrc: "/proyectos/vuelta-de-obligado.mp4",
       posterSrc: "/proyectos/vuelta-de-obligado-poster.jpg",
+    },
+    presentacion: {
+      videoSrc: "/proyectos/vuelta-de-obligado-presentacion.mp4",
+      posterSrc: "/proyectos/vuelta-de-obligado-presentacion-poster.jpg",
     },
   },
 ];
